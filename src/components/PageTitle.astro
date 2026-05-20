@@ -1,0 +1,37 @@
+---
+/**
+ * Custom PageTitle — overrides Starlight's default to inject the breadcrumb
+ * and version badge above the H1 (matches the prototype).
+ *
+ * Only renders the breadcrumb + badge on pages under `/docs/<skill>/...`
+ * (i.e., where there's an active skill). For the (eventual) marketing landing
+ * at `/`, this component isn't used.
+ */
+import Breadcrumb from './Breadcrumb.astro';
+import VersionBadge from './VersionBadge.astro';
+
+// Starlight uses '_top' as the id for the page title H1 (so the "skip to content"
+// link and in-page anchors can target it). The path '@astrojs/starlight/constants'
+// is internal, not a public export — we just inline the constant here.
+const PAGE_TITLE_ID = '_top';
+
+const isSkillPage = Astro.url.pathname.startsWith('/docs/');
+---
+
+{isSkillPage && <Breadcrumb />}
+{isSkillPage && <VersionBadge />}
+
+<h1 id={PAGE_TITLE_ID}>{Astro.locals.starlightRoute.entry.data.title}</h1>
+
+<style>
+  @layer starlight.core {
+    h1 {
+      margin-top: 0.5rem;
+      font-size: var(--sl-text-h1);
+      line-height: var(--sl-line-height-headings);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--sl-color-white);
+    }
+  }
+</style>

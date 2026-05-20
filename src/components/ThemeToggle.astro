@@ -1,0 +1,100 @@
+---
+/**
+ * ThemeToggle — overrides Starlight's default ThemeSelect (the "Auto" dropdown)
+ * with a single sun/moon icon button matching the prototype.
+ *
+ * - When `data-theme="dark"`, the sun is shown (click → switch to light).
+ * - When `data-theme="light"`, the moon is shown (click → switch to dark).
+ *
+ * Persists the choice in localStorage using the same key Starlight uses
+ * (`starlight-theme`) so the preference is honored on the next visit.
+ */
+---
+
+<button
+  class="tt-button"
+  id="cs-theme-toggle"
+  type="button"
+  aria-label="Toggle light / dark theme"
+  title="Toggle light / dark theme"
+>
+  <svg
+    class="tt-sun"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    width="16"
+    height="16"
+  >
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+  </svg>
+  <svg
+    class="tt-moon"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+    width="16"
+    height="16"
+  >
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+</button>
+
+<script>
+  const btn = document.getElementById('cs-theme-toggle');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      const current = document.documentElement.dataset.theme;
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.dataset.theme = next;
+      try {
+        localStorage.setItem('starlight-theme', next);
+      } catch {
+        /* localStorage may be unavailable (e.g. private mode) — non-fatal */
+      }
+    });
+  }
+</script>
+
+<style>
+  .tt-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.375rem;
+    height: 2.375rem;
+    border-radius: 0.5rem;
+    background: var(--sl-color-gray-6);
+    color: var(--sl-color-white);
+    border: 1px solid var(--sl-color-gray-5);
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+  }
+  .tt-button:hover {
+    filter: brightness(1.12);
+  }
+
+  /* Show sun in dark mode, moon in light mode. */
+  .tt-sun {
+    display: inline;
+  }
+  .tt-moon {
+    display: none;
+  }
+  :root[data-theme='light'] .tt-sun {
+    display: none;
+  }
+  :root[data-theme='light'] .tt-moon {
+    display: inline;
+  }
+</style>

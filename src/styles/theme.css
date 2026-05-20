@@ -1,20 +1,26 @@
 /*
- * Cody Skills brand theme — overrides Starlight's default design tokens.
+ * Cody Skills brand theme — overrides Starlight's default design tokens
+ * AND visual treatments (sidebar, right rail, typography) to match the
+ * mockup-4 prototype.
  *
  * Brand: iBuildWith.ai
  * Font:  DM Sans (loaded in astro.config.mjs head)
- * Dark:  #121212 / #161616 / #2a2a2a / #ffffff text / #22c55e accent
- * Light: #ffffff / #f7f7f5 / #e8e8e6 / #1a1a1a text / #16a34a accent (deeper green for contrast on white)
  */
 
-/* ============ DARK MODE (default) ============ */
+/* ============================================================
+   PART 1 — DESIGN TOKENS
+   ============================================================ */
+
+/* ---------- Dark mode (default) ---------- */
 :root,
 ::backdrop {
-  /* Brand font */
   --sl-font:
     'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Gray scale — dark mode (white = bright text, black = page background) */
+  /* Tighter sidebar width to match prototype's 196px */
+  --sl-sidebar-width: 14rem; /* 224px */
+
+  /* Gray scale */
   --sl-color-white: #ffffff;
   --sl-color-gray-1: #e6e6e6;
   --sl-color-gray-2: #b0b0b0;
@@ -24,27 +30,29 @@
   --sl-color-gray-6: #161616;
   --sl-color-black: #121212;
 
-  /* Accent — iBuildWith.ai green */
-  --sl-color-accent-low: #14361f; /* deep green tint — active backgrounds */
-  --sl-color-accent: #22c55e; /* primary brand green */
-  --sl-color-accent-high: #4ade80; /* lighter green — accent text / highlights */
+  /* Accent — iBuildWith.ai green.
+     accent-low is intentionally a translucent green so it sits softly on the
+     dark page background when used as an active/hover backdrop (matches the
+     prototype's subtle pill behind the active sidebar item). */
+  --sl-color-accent-low: rgba(34, 197, 94, 0.1);
+  --sl-color-accent: #22c55e;
+  --sl-color-accent-high: #4ade80;
 
   /* Composed colors */
   --sl-color-text: #e6e6e6;
   --sl-color-text-accent: #4ade80;
   --sl-color-bg: #121212;
-  --sl-color-bg-nav: #121212; /* top bar matches body */
-  --sl-color-bg-sidebar: #121212; /* sidebar matches body (per prototype) */
+  --sl-color-bg-nav: #121212;
+  --sl-color-bg-sidebar: #121212;
   --sl-color-bg-inline-code: #1a1a1a;
   --sl-color-hairline: #2a2a2a;
   --sl-color-hairline-light: #2a2a2a;
   --sl-color-hairline-shade: #121212;
 }
 
-/* ============ LIGHT MODE ============ */
+/* ---------- Light mode ---------- */
 :root[data-theme='light'],
 [data-theme='light'] ::backdrop {
-  /* Gray scale — light mode (white = dark text, black = page background) */
   --sl-color-white: #1a1a1a;
   --sl-color-gray-1: #2a2a2a;
   --sl-color-gray-2: #4a4a4a;
@@ -55,12 +63,10 @@
   --sl-color-gray-7: #f7f7f5;
   --sl-color-black: #ffffff;
 
-  /* Accent — deeper green for legibility on white */
-  --sl-color-accent-low: #d1fadf;
+  --sl-color-accent-low: rgba(22, 163, 74, 0.1);
   --sl-color-accent: #16a34a;
   --sl-color-accent-high: #15803d;
 
-  /* Composed colors */
   --sl-color-text: #1a1a1a;
   --sl-color-text-accent: #16a34a;
   --sl-color-bg: #ffffff;
@@ -72,10 +78,221 @@
   --sl-color-hairline-shade: #e8e8e6;
 }
 
-/* ============ TYPOGRAPHY TIGHTENING ============ */
-/* DM Sans renders best with a touch of negative tracking on display sizes. */
-h1,
-h2,
+/* ============================================================
+   PART 2 — SIDEBAR (left navigation)
+
+   Match prototype mockup-4: uppercase gray group labels, no
+   collapse chevrons, a small dot before every link, subtle
+   green pill on the active item.
+   ============================================================ */
+
+/* Hide the right-pointing caret in group headers — our groups
+   don't visually behave as collapsible. */
+.sidebar details > summary svg.caret,
+.sidebar details > summary .caret {
+  display: none !important;
+}
+
+/* Force every details panel to stay open. We hide the caret, force
+   the content to display regardless of the `open` attribute (below),
+   and disable summary clicks entirely so the group can never collapse. */
+.sidebar details > summary {
+  cursor: default;
+  list-style: none;
+  padding: 0 0.5rem;
+  margin-bottom: 0.375rem;
+  pointer-events: none;
+}
+.sidebar details > summary::-webkit-details-marker,
+.sidebar details > summary::marker {
+  display: none;
+}
+.sidebar details > :not(summary) {
+  display: block !important;
+}
+
+/* Group container spacing */
+.sidebar details {
+  margin-bottom: 1.25rem;
+}
+
+/* Group label: small, uppercase, gray, low-contrast. Matches
+   prototype's .sb-title. */
+.sidebar details > summary .group-label .large {
+  font-size: 0.6875rem; /* 11px */
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3);
+}
+
+/* Sidebar link sizing/spacing — keep Starlight's default left-line indicator
+   (the small vertical guide on each item, which highlights when active);
+   only tighten font size, weight, and padding to match the prototype's density. */
+.sidebar ul li > a {
+  font-size: 0.8125rem !important; /* 13px */
+  font-weight: 400 !important;
+  padding-block: 0.3125rem !important; /* tighter vertical rhythm */
+  color: var(--sl-color-gray-2) !important;
+}
+.sidebar ul li > a:hover {
+  color: var(--sl-color-accent-high) !important;
+  background: var(--sl-color-accent-low) !important;
+}
+.sidebar ul li > a[aria-current='page'] {
+  font-weight: 600 !important;
+  background: var(--sl-color-accent-low) !important;
+  color: var(--sl-color-accent-high) !important;
+}
+
+/* ============================================================
+   PART 2b — TOP BAR CONTROL SIZING
+
+   Standardize every interactive control in the header to 38px tall
+   so the row visually aligns (matches the prototype).
+   ============================================================ */
+
+.header .ss-trigger,
+.header .gs-trigger,
+.header .gh-link,
+.header .tt-button {
+  height: 2.375rem; /* 38px */
+  min-height: 2.375rem;
+  box-sizing: border-box;
+}
+
+/* Search input/button rendered by Starlight in the header — also 38px. */
+.header .search-slot button,
+.header .search-slot input {
+  height: 2.375rem;
+  min-height: 2.375rem;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   PART 3 — RIGHT RAIL ("On this page")
+
+   Remove the separator line, tighten typography.
+   ============================================================ */
+
+@media (min-width: 72rem) {
+  .right-sidebar {
+    border-inline-start: none !important;
+  }
+}
+
+/* TOC heading styled like a sidebar group label */
+.right-sidebar-panel h2 {
+  font-size: 0.6875rem !important; /* 11px */
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--sl-color-gray-3) !important;
+}
+
+/* TOC links — subtle by default, accent when active */
+.right-sidebar-panel a {
+  font-size: 0.8125rem; /* 13px */
+  color: var(--sl-color-gray-3);
+  text-decoration: none;
+}
+.right-sidebar-panel a[aria-current='true'] {
+  color: var(--sl-color-accent-high);
+  font-weight: 600;
+}
+
+/* ============================================================
+   PART 4 — TYPOGRAPHY
+
+   DM Sans renders best with a touch of negative tracking on
+   headings, and slightly heavier weights for hierarchy.
+   ============================================================ */
+
+/* ============================================================
+   PART 4 — TYPOGRAPHY DESIGN SYSTEM
+
+   All font sizes, weights, line-heights, and letter-spacing live
+   in theme.css as tokens. Components reference these via
+   var(--sl-text-*) (Starlight's scale, overridden to match the
+   prototype) and var(--cs-*) for brand-specific tokens Starlight
+   doesn't have. Tuning typography in one place updates the whole
+   site — no hardcoded values in component .astro files.
+
+   The scale is taken from `docs/prototypes/design-chooser/mockup-4-ibuildwith.html`:
+   slightly denser than Starlight's default (15px body, 17px lead,
+   21px H2, 35px H1) — gives the site a tighter, less marketing feel.
+   ============================================================ */
+
+:root,
+::backdrop {
+  /* Override Starlight's size scale to match the prototype. */
+  --sl-text-2xs:   0.625rem;    /* 10px   — eyebrow labels (sidebar groups, dropdown labels) */
+  --sl-text-xs:    0.6875rem;   /* 11px   — small ui (dropdown version, TOC heading) */
+  --sl-text-sm:    0.8125rem;   /* 13px   — ui buttons, sidebar links, dropdown items */
+  --sl-text-base:  0.9375rem;   /* 15px   — body, brand */
+  --sl-text-lg:    1.0625rem;   /* 17px   — lead paragraph */
+  --sl-text-xl:    1.3125rem;   /* 21px   — H2 */
+  --sl-text-2xl:   1.5rem;      /* 24px   — H3 */
+  --sl-text-3xl:   1.75rem;     /* 28px   — H1 (mobile) */
+  --sl-text-4xl:   2.1875rem;   /* 35px   — H1 (desktop) */
+
+  /* Heading bindings */
+  --sl-text-h2: var(--sl-text-xl);     /* 21px */
+  --sl-text-h3: var(--sl-text-2xl);    /* 24px */
+
+  /* Body line-height */
+  --sl-line-height: 1.68;              /* prototype body */
+  --sl-line-height-headings: 1.2;      /* tight headings */
+
+  /* Brand-specific size tokens (no Starlight equivalent). */
+  --cs-text-badge:    0.71875rem;      /* 11.5px — version badge, eyebrow on small cards */
+  --cs-text-crumb:    0.78125rem;      /* 12.5px — breadcrumb, TOC links, code */
+  --cs-text-lead:     var(--sl-text-lg); /* 17px */
+  --cs-text-card-h3:  0.90625rem;      /* 14.5px — card headings */
+
+  /* Letter-spacing scale */
+  --cs-tracking-tightest: -0.025em;    /* H1 */
+  --cs-tracking-tight:    -0.02em;     /* brand */
+  --cs-tracking-snug:     -0.01em;     /* H2 */
+  --cs-tracking-normal:   0;
+  --cs-tracking-wide:     0.06em;      /* sidebar group labels */
+  --cs-tracking-wider:    0.07em;      /* TOC heading */
+  --cs-tracking-widest:   0.08em;      /* dropdown labels */
+
+  /* Font-weight scale */
+  --cs-fw-regular:    400;
+  --cs-fw-medium:     500;
+  --cs-fw-button:     650;             /* prototype's Get Skill button */
+  --cs-fw-semibold:   600;
+  --cs-fw-bold:       700;
+}
+
+/* Body — use the prototype's 15px body with 1.68 line-height. */
+body {
+  font-size: var(--sl-text-base);
+  line-height: var(--sl-line-height);
+}
+
+/* Headings — sizes are bound above via --sl-text-h2 / --sl-text-h3.
+   Here we set weight and tracking. */
+h1 {
+  letter-spacing: var(--cs-tracking-tightest);
+  font-weight: var(--cs-fw-bold);
+}
+h2 {
+  letter-spacing: var(--cs-tracking-snug);
+  font-weight: var(--cs-fw-button); /* 650 — matches prototype's mid-weight */
+}
 h3 {
-  letter-spacing: -0.02em;
+  letter-spacing: var(--cs-tracking-snug);
+  font-weight: var(--cs-fw-semibold);
+}
+
+/* Hold H1 at 35px (Starlight's --sl-text-4xl) on all viewports.
+   Starlight bumps it to --sl-text-5xl (42px) at ≥ 50em; the prototype
+   keeps the smaller size for a tighter, less marketing-style hero. */
+@media (min-width: 50em) {
+  :root {
+    --sl-text-h1: var(--sl-text-4xl);
+  }
 }

@@ -1,0 +1,108 @@
+---
+/**
+ * Custom Header — overrides Starlight's default top bar to lay out:
+ *
+ *   LEFT:   brand · SkillSwitcher · GetSkillMenu  (contextual to the active skill)
+ *   RIGHT:  Search · GitHubLink · ThemeSelect      (global affordances)
+ *
+ * Starlight's per-page `Search` and `ThemeSelect` are still used (via the virtual
+ * imports) so site-wide search and the existing light/dark toggle keep working.
+ */
+import Search from 'virtual:starlight/components/Search';
+import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
+import config from 'virtual:starlight/user-config';
+
+import SkillSwitcher from './SkillSwitcher.astro';
+import GetSkillMenu from './GetSkillMenu.astro';
+import GitHubLink from './GitHubLink.astro';
+
+const shouldRenderSearch =
+  config.pagefind ||
+  config.components.Search !== '@astrojs/starlight/components/Search.astro';
+
+const { siteTitleHref } = Astro.locals.starlightRoute;
+---
+
+<div class="header">
+  <a href={siteTitleHref} class="brand">
+    <span class="brand-logo" aria-hidden="true">C</span>
+    <span class="brand-text">Cody Skills</span>
+  </a>
+
+  <SkillSwitcher />
+  <GetSkillMenu />
+
+  <div class="spacer"></div>
+
+  {shouldRenderSearch && <div class="search-slot print:hidden"><Search /></div>}
+
+  <div class="right-group sl-hidden md:sl-flex print:hidden">
+    <GitHubLink />
+    <ThemeSelect />
+  </div>
+</div>
+
+<style>
+  @layer starlight.core {
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 1rem; /* 16px — matches prototype's topbar gap */
+      height: 100%;
+    }
+
+    /* Brand — green "C" logo + white "Cody Skills" wordmark (matches the prototype).
+       Only the logo carries the brand accent; the wordmark uses the topbar text color
+       so it inverts automatically in light mode. */
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5625rem;
+      font-weight: var(--cs-fw-bold);
+      font-size: var(--sl-text-base);
+      letter-spacing: var(--cs-tracking-tight);
+      color: var(--sl-color-white);
+      text-decoration: none;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 0.4375rem;
+      background: var(--sl-color-accent);
+      color: var(--sl-color-bg);
+      font-weight: 800;
+      font-size: var(--sl-text-sm);
+      line-height: 1;
+    }
+
+    /* Spacer takes all available middle space */
+    .spacer {
+      flex: 1;
+    }
+
+    /* Search slot — capped width on desktop so the row stays balanced */
+    .search-slot {
+      max-width: 16rem;
+      flex: 0 1 16rem;
+    }
+
+    .right-group {
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    /* ---------- Responsive compression ---------- */
+
+    /* Hide the wordmark on small screens (logo stays) */
+    @media (max-width: 48rem) {
+      .brand-text {
+        display: none;
+      }
+    }
+  }
+</style>
