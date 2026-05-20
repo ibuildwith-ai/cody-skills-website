@@ -1,0 +1,81 @@
+/*
+ * Cody Skills brand theme — overrides Starlight's default design tokens.
+ *
+ * Brand: iBuildWith.ai
+ * Font:  DM Sans (loaded in astro.config.mjs head)
+ * Dark:  #121212 / #161616 / #2a2a2a / #ffffff text / #22c55e accent
+ * Light: #ffffff / #f7f7f5 / #e8e8e6 / #1a1a1a text / #16a34a accent (deeper green for contrast on white)
+ */
+
+/* ============ DARK MODE (default) ============ */
+:root,
+::backdrop {
+  /* Brand font */
+  --sl-font:
+    'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Gray scale — dark mode (white = bright text, black = page background) */
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #e6e6e6;
+  --sl-color-gray-2: #b0b0b0;
+  --sl-color-gray-3: #888888;
+  --sl-color-gray-4: #555555;
+  --sl-color-gray-5: #2a2a2a;
+  --sl-color-gray-6: #161616;
+  --sl-color-black: #121212;
+
+  /* Accent — iBuildWith.ai green */
+  --sl-color-accent-low: #14361f; /* deep green tint — active backgrounds */
+  --sl-color-accent: #22c55e; /* primary brand green */
+  --sl-color-accent-high: #4ade80; /* lighter green — accent text / highlights */
+
+  /* Composed colors */
+  --sl-color-text: #e6e6e6;
+  --sl-color-text-accent: #4ade80;
+  --sl-color-bg: #121212;
+  --sl-color-bg-nav: #121212; /* top bar matches body */
+  --sl-color-bg-sidebar: #121212; /* sidebar matches body (per prototype) */
+  --sl-color-bg-inline-code: #1a1a1a;
+  --sl-color-hairline: #2a2a2a;
+  --sl-color-hairline-light: #2a2a2a;
+  --sl-color-hairline-shade: #121212;
+}
+
+/* ============ LIGHT MODE ============ */
+:root[data-theme='light'],
+[data-theme='light'] ::backdrop {
+  /* Gray scale — light mode (white = dark text, black = page background) */
+  --sl-color-white: #1a1a1a;
+  --sl-color-gray-1: #2a2a2a;
+  --sl-color-gray-2: #4a4a4a;
+  --sl-color-gray-3: #6b6b6b;
+  --sl-color-gray-4: #888888;
+  --sl-color-gray-5: #d0d0d0;
+  --sl-color-gray-6: #e8e8e6;
+  --sl-color-gray-7: #f7f7f5;
+  --sl-color-black: #ffffff;
+
+  /* Accent — deeper green for legibility on white */
+  --sl-color-accent-low: #d1fadf;
+  --sl-color-accent: #16a34a;
+  --sl-color-accent-high: #15803d;
+
+  /* Composed colors */
+  --sl-color-text: #1a1a1a;
+  --sl-color-text-accent: #16a34a;
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: #ffffff;
+  --sl-color-bg-sidebar: #ffffff;
+  --sl-color-bg-inline-code: #f0f0ee;
+  --sl-color-hairline: #e8e8e6;
+  --sl-color-hairline-light: #e8e8e6;
+  --sl-color-hairline-shade: #e8e8e6;
+}
+
+/* ============ TYPOGRAPHY TIGHTENING ============ */
+/* DM Sans renders best with a touch of negative tracking on display sizes. */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+}

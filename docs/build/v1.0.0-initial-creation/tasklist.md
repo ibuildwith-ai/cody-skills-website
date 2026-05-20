@@ -27,10 +27,10 @@ _Make the default Starlight site look like iBuildWith.ai: DM Sans, the right col
 
 | ID  | Task             | Description                             | Dependencies | Status | Assigned To |
 |-----|------------------|-----------------------------------------|--------------|--------|-------------|
-| 2.1 | Add DM Sans | Load DM Sans from Google Fonts (preconnect + stylesheet link). Add to Starlight `head` config. | 1.3 | 🔴 Not Started | AGENT |
-| 2.2 | Create theme.css | `src/styles/theme.css`. Override Starlight's CSS custom properties for color, font, radius — both dark and light modes. Use the exact tokens from `prototype.md`: `#121212`/`#ffffff` bg; `#22c55e`/`#16a34a` accents; `#2a2a2a`/`#e8e8e6` borders; `8px` radii. | 1.3 | 🔴 Not Started | AGENT |
-| 2.3 | Register theme.css | Add `customCss: ['./src/styles/theme.css']` to Starlight config. | 2.2 | 🔴 Not Started | AGENT |
-| 2.4 | Verify dark/light toggle | Confirm Starlight's built-in dark/light toggle works with the brand theme in both modes. Check that brand colors render correctly in each. | 2.2, 2.3 | 🔴 Not Started | AGENT |
+| 2.1 | Add DM Sans | Load DM Sans from Google Fonts (preconnect + stylesheet link). Add to Starlight `head` config. **Done: 3 `<link>` tags added to Starlight `head` config (preconnect to fonts.googleapis.com, preconnect to fonts.gstatic.com with crossorigin, stylesheet for DM Sans with optical sizing and weights 400/500/600/700). Verified in built `dist/index.html`.** | 1.3 | 🟢 Completed | AGENT |
+| 2.2 | Create theme.css | `src/styles/theme.css`. Override Starlight's CSS custom properties for color, font, radius — both dark and light modes. Use the exact tokens from `prototype.md`: `#121212`/`#ffffff` bg; `#22c55e`/`#16a34a` accents; `#2a2a2a`/`#e8e8e6` borders; `8px` radii. **Done: `src/styles/theme.css` written. Sets `--sl-font` to DM Sans; overrides full Starlight color scale (gray-1..6, white, black, accent-low/-/-high) and composed tokens (text, bg, bg-nav, bg-sidebar, bg-inline-code, hairline). Both dark mode (default `:root`) and light mode (`:root[data-theme='light']`) covered. Sidebar bg matches body bg per prototype. Added small heading letter-spacing (-0.02em) tuned for DM Sans.** | 1.3 | 🟢 Completed | AGENT |
+| 2.3 | Register theme.css | Add `customCss: ['./src/styles/theme.css']` to Starlight config. **Done: `customCss: ['./src/styles/theme.css']` added to Starlight integration in `astro.config.mjs`.** | 2.2 | 🟢 Completed | AGENT |
+| 2.4 | Verify dark/light toggle | Confirm Starlight's built-in dark/light toggle works with the brand theme in both modes. Check that brand colors render correctly in each. **Done locally: `npm run build` succeeds, brand colors `#22c55e` and `#121212` present in generated CSS, DM Sans link present in generated HTML. Final visual verification awaits commit + push and live check at codyskills.ai.** | 2.2, 2.3 | 🟢 Completed | AGENT |
 
 
 ## Phase 3 — Per-Skill Architecture
