@@ -70,11 +70,11 @@ _Confirm the site works at desktop, tablet, and mobile. Override Starlight's def
 
 | ID  | Task             | Description                             | Dependencies | Status | Assigned To |
 |-----|------------------|-----------------------------------------|--------------|--------|-------------|
-| 5.1 | Right rail at narrow viewport | Verify Starlight's "on this page" rail hides at ≤1100px. Adjust breakpoint via CSS if needed. | 4.6 | 🔴 Not Started | AGENT |
-| 5.2 | Mobile drawer | Verify Starlight's mobile sidebar drawer behavior at ≤768px matches the prototype's hamburger pattern. Override the mobile menu component if needed. | 4.6 | 🔴 Not Started | AGENT |
-| 5.3 | Top-bar control compression | At ≤768px, hide switcher's skill name, hide "Search docs" text and `⌘K` kbd hint (search shrinks to icon), hide "Get Skill" text (button shrinks to icon). | 4.5 | 🔴 Not Started | AGENT |
-| 5.4 | Hide GitHub on very small | At ≤480px, hide `GitHubLink`. | 5.3 | 🔴 Not Started | AGENT |
-| 5.5 | Touch QA on real device | Test on an actual phone (iOS or Android): hamburger opens drawer, all interactive controls work on touch, no horizontal scroll. | 5.1, 5.2, 5.3 | 🔴 Not Started | USER |
+| 5.1 | Right rail at narrow viewport | Verify Starlight's "on this page" rail hides at ≤1100px. Adjust breakpoint via CSS if needed. **Done: Starlight's default `@media (min-width: 72rem)` (1152px) gate already hides the right rail below that — close enough to the prototype's 1100px. No additional CSS required.** | 4.6 | 🟢 Completed | AGENT |
+| 5.2 | Mobile drawer | Verify Starlight's mobile sidebar drawer behavior at ≤768px matches the prototype's hamburger pattern. Override the mobile menu component if needed. **Done: `MobileMenuToggle` is rendered by Starlight's `PageFrame` (not its `Header`) so the floating hamburger persists despite our `Header` override. Drawer toggles `data-mobile-menu-expanded` on `<body>` and the sidebar slides in at ≤50rem (800px). Matches prototype's pattern; no override needed.** | 4.6 | 🟢 Completed | AGENT |
+| 5.3 | Top-bar control compression | At ≤768px, hide switcher's skill name, hide "Search docs" text and `⌘K` kbd hint (search shrinks to icon), hide "Get Skill" text (button shrinks to icon). **Done: added `@media (max-width: 48rem)` rules to `SkillSwitcher.astro` (hides `.ss-name` and `.ss-chev`, shrinks trigger padding to a dot pill) and `GetSkillMenu.astro` (hides `.gs-label`, shrinks button padding, anchors menu to right edge with `right: 0` to avoid viewport overflow). Search text/kbd already hidden by Starlight's built-in `sl-hidden md:sl-block` / `sl-hidden md:sl-flex` classes — no extra CSS needed.** | 4.5 | 🟢 Completed | AGENT |
+| 5.4 | Hide GitHub on very small | At ≤480px, hide `GitHubLink`. **Done in Phase 4: `GitHubLink.astro` already has `@media (max-width: 30rem) { .gh-link { display: none; } }`.** | 5.3 | 🟢 Completed | AGENT |
+| 5.5 | Touch QA on real device | Test on an actual phone (iOS or Android): hamburger opens drawer, all interactive controls work on touch, no horizontal scroll. **Done: user signed off after manual check at the current state. Any device-specific polish deferred to a later version.** | 5.1, 5.2, 5.3 | 🟢 Completed | USER |
 
 
 ## Phase 6 — Cody Product Builder Content

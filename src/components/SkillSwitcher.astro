@@ -216,4 +216,17 @@ const active = getActiveSkill(Astro.url.pathname);
   .ss-item.active .ss-item-check {
     opacity: 1;
   }
+
+  /* At ≤48rem (768px), shrink the trigger to a green dot pill — matches the
+     prototype's mobile pattern. The dropdown menu still works on tap. */
+  @media (max-width: 48rem) {
+    .ss-name,
+    .ss-chev {
+      display: none;
+    }
+    .ss-trigger {
+      padding: 0.4375rem 0.625rem;
+      gap: 0;
+    }
+  }
 </style>
