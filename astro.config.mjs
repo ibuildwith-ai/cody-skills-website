@@ -80,6 +80,23 @@ export default defineConfig({
             href: 'https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap',
           },
         },
+        // iOS / Android home-screen icon
+        {
+          tag: 'link',
+          attrs: { rel: 'apple-touch-icon', href: '/images/cody-skills-logo.png' },
+        },
+        // OpenGraph image (also used by Twitter Cards via summary_large_image).
+        // Temporarily reuses the brand logo so link previews render with the
+        // right brand. Replace with a proper 1200×630 designed card (see
+        // feature-backlog B7) post-v1.
+        {
+          tag: 'meta',
+          attrs: { property: 'og:image', content: 'https://codyskills.ai/images/cody-skills-logo.png' },
+        },
+        {
+          tag: 'meta',
+          attrs: { name: 'twitter:image', content: 'https://codyskills.ai/images/cody-skills-logo.png' },
+        },
       ],
     }),
   ],

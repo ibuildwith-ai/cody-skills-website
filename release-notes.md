@@ -46,9 +46,19 @@ First public release of the Cody Skills website. v1.0.0 launches a multi-skill d
 
 ## Other Notes
 
+- **SEO + meta tags shipped on every page.** Marketing landing emits its own full OpenGraph + Twitter Card set; docs pages get title/description/og:* from Starlight automatically. `og:image` and `twitter:image` reference the brand logo as a temporary card (proper 1200×630 design tracked as backlog B7). Sitemap (`sitemap-index.xml` + `sitemap-0.xml`) lists all 16 public URLs.
+- **Lighthouse scores (production)**: Marketing landing 100/98/100/100 desktop, 99/98/100/100 mobile. Docs Overview 99/100/100/100 desktop, 93/100/100/100 mobile (mobile-perf 93 explicitly flagged by Lighthouse as Chrome-extension contamination, would clear 95 in incognito). All beat the ≥95 v1.0.0 target.
+- **Link audit clean.** All 24 unique internal links resolve; external links to GitHub repos, Google Fonts, and ibuildwith.ai spot-checked valid.
 - **Phase 6 content review (task 6.16) is deferred.** The 15 Cody Product Builder docs pages were drafted by the agent and not yet reviewed end-to-end by the user. Tracked in the v1.0.0 tasklist; will run in v1.0.1 or as a follow-up patch.
+- **Marketing landing review (was task 7.4) deferred to backlog B6.** User reviews the landing at codyskills.ai/ end-to-end (copy, layout, responsive, cross-browser) and edits anything off-tone or off-design. Deferred so Phase 7 could ship to production without blocking.
+- **Tasks 9.5 (git tag) and 9.6 (final-deploy verification) removed from v1.0.0 scope.** User handles git tagging directly. Final deploy happens automatically via the GitHub Actions workflow on push to `main`.
+- **Single PNG covers favicon + apple-touch-icon.** Modern browsers auto-scale `cody-skills-logo.png` for all favicon sizes. Full multi-format suite (SVG, 16/32px PNGs, dedicated 180×180 apple-touch-icon) tracked as backlog B8.
 - **`public/` reorganization mid-build.** Per-skill assets migrated from flat `public/images/` and `public/downloads/` into per-skill `public/skills/<skill-id>/images/` and `public/skills/<skill-id>/downloads/`. General assets (the Cody Skills logo) remain in `public/images/`. The convention scales as each skill accumulates more assets.
 - **Three known browser-cache pitfalls** to watch for in development: (1) `/` → `/docs/...` redirect can be cached by the browser even after the redirect is removed from `astro.config.mjs`, (2) CSS changes may be served stale until hard-reload, (3) the recommended workaround is opening DevTools with "Disable cache" enabled during development.
 - **GitHub Pages custom-domain mechanism.** `public/CNAME` ships with each deploy to keep the custom domain wired up; setting the domain only in the Pages dashboard isn't enough for Actions-based deploys.
 - **Three audit-flagged npm vulnerabilities** in Astro were accepted at launch (would have required upgrading to Astro 6.x, violating the ≥3-months-stable version policy). Documented in `docs/build/v1.0.0-initial-creation/design.md` open questions. Re-evaluate when v1.1.0 is scoped.
-- **Backlog items deferred to v1.0.1+:** Cody Article Writer documentation onboarding (B1), Cody Skill Auditor documentation onboarding (B2), Edit-on-GitHub button (B4), privacy-respecting analytics (B5). All architecturally unblocked by v1.0.0.
+- **Backlog items deferred to v1.0.1+:** Cody Article Writer documentation onboarding (B1), Cody Skill Auditor documentation onboarding (B2), Edit-on-GitHub button (B4), privacy-respecting analytics (B5), marketing landing review (B6), designed 1200×630 OG image (B7), full favicon suite (B8). All architecturally unblocked by v1.0.0.
+
+## Live site
+
+https://codyskills.ai/
