@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<title>Mockup 4 — iBuildWith.ai Theme</title>
+<style>
+  /* ===== THEME: iBuildWith.ai — DARK default + LIGHT toggle ===== */
+  :root{
+    --font:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --bg:#121212; --bg-2:#161616; --bg-code:#090909; --border:#2a2a2a;
+    --text:#ffffff; --text-mute:#8a8a8a;
+    --accent:#22c55e; --accent-soft:rgba(34,197,94,.13); --accent-contrast:#0a0a0a; --link:#4ade80;
+    --topbar-bg:rgba(18,18,18,.9); --topbar-fg:#ffffff; --topbar-border:#2a2a2a;
+    --switch-bg:#161616; --switch-fg:#ffffff; --switch-border:#2a2a2a;
+    --side-bg:#121212; --side-fg:#9a9a9a; --side-mute:#666666; --side-hover:#161616;
+    --side-active-bg:rgba(34,197,94,.1); --side-active-fg:#4ade80;
+    --code-text:#e2e2e2; --code-comment:#666666; --code-cmd:#4ade80;
+    --radius:8px;
+  }
+  :root[data-theme="light"]{
+    --bg:#ffffff; --bg-2:#f7f7f5; --bg-code:#0c0c0c; --border:#e8e8e6;
+    --text:#1a1a1a; --text-mute:#6b6b6b;
+    --accent:#16a34a; --accent-soft:rgba(34,197,94,.12); --accent-contrast:#ffffff; --link:#16a34a;
+    --topbar-bg:rgba(255,255,255,.92); --topbar-fg:#1a1a1a; --topbar-border:#e8e8e6;
+    --switch-bg:#ffffff; --switch-fg:#1a1a1a; --switch-border:#e8e8e6;
+    --side-bg:#ffffff; --side-fg:#6b6b6b; --side-mute:#9a9a9a; --side-hover:#f7f7f5;
+    --side-active-bg:rgba(34,197,94,.12); --side-active-fg:#16a34a;
+    --code-text:#e2e2e2; --code-comment:#888888; --code-cmd:#4ade80;
+  }
+
+  /* ===== STRUCTURE (shared by all mockups) ===== */
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:var(--font);color:var(--text);background:var(--bg);
+    font-size:15px;line-height:1.68;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+
+  .topbar{height:62px;display:flex;align-items:center;gap:20px;padding:0 24px;
+    background:var(--topbar-bg);border-bottom:1px solid var(--topbar-border);
+    backdrop-filter:blur(9px);position:sticky;top:0;z-index:30;}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:15px;
+    color:var(--topbar-fg);letter-spacing:-.02em;}
+  .brand .logo{width:23px;height:23px;border-radius:7px;background:var(--accent);
+    color:var(--accent-contrast);display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:13px;}
+  .switch-wrap{position:relative;}
+  .switcher{display:flex;align-items:center;gap:9px;padding:7px 12px;border-radius:var(--radius);
+    font-size:13px;font-weight:600;cursor:pointer;background:var(--switch-bg);
+    color:var(--switch-fg);border:1px solid var(--switch-border);}
+  .switcher .sd{width:15px;height:15px;border-radius:5px;background:var(--accent);}
+  .switcher .chev{font-size:9px;opacity:.6;transition:transform .15s;}
+  .switcher.open .chev{transform:rotate(180deg);}
+  .dropdown{position:absolute;top:48px;left:0;width:286px;background:var(--bg);
+    border:1px solid var(--border);border-radius:12px;padding:6px;z-index:40;
+    box-shadow:0 16px 46px rgba(0,0,0,.22);display:none;}
+  .dropdown.open{display:block;}
+  .dd-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--text-mute);padding:8px 10px 6px;}
+  .dd-item{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:9px;cursor:pointer;}
+  .dd-item:hover{background:var(--bg-2);}
+  .dd-item .di-ico{width:28px;height:28px;border-radius:8px;background:var(--accent);
+    color:var(--accent-contrast);display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:12px;flex-shrink:0;}
+  .dd-item .di-name{font-size:13.5px;font-weight:600;}
+  .dd-item .di-ver{font-size:11px;color:var(--text-mute);}
+  .dd-item .di-check{margin-left:auto;color:var(--accent);font-size:14px;opacity:0;}
+  .dd-item.active .di-check{opacity:1;}
+  .spacer{flex:1;}
+  .search-btn{display:flex;align-items:center;gap:9px;padding:8px 13px;border-radius:var(--radius);
+    font-size:13px;width:248px;cursor:pointer;background:var(--switch-bg);
+    color:var(--switch-fg);border:1px solid var(--switch-border);}
+  .search-btn .kbd{margin-left:auto;border:1px solid var(--switch-border);border-radius:4px;
+    padding:1px 6px;font-size:11px;}
+  .get-skill-wrap{position:relative;}
+  .get-skill-btn{display:flex;align-items:center;gap:7px;padding:8px 14px;
+    border-radius:var(--radius);background:var(--accent);color:var(--accent-contrast);
+    font-size:13px;font-weight:650;cursor:pointer;border:0;font-family:inherit;line-height:1.15;
+    letter-spacing:.005em;}
+  .get-skill-btn:hover{filter:brightness(1.08);}
+  .get-skill-btn .dl-ico{width:14px;height:14px;flex-shrink:0;stroke-width:2;}
+  .get-skill-menu{position:absolute;top:46px;left:0;min-width:240px;background:var(--bg);
+    border:1px solid var(--border);border-radius:12px;padding:6px;z-index:40;
+    box-shadow:0 16px 46px rgba(0,0,0,.4);display:none;}
+  .get-skill-wrap.open .get-skill-menu{display:block;}
+  .gs-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--text-mute);padding:9px 10px 5px;}
+  .gs-item{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:8px;
+    color:var(--text);cursor:pointer;text-decoration:none;}
+  .gs-item:hover{background:var(--bg-2);}
+  .gs-item .gs-ico{width:30px;height:30px;border-radius:8px;background:var(--accent-soft);
+    color:var(--accent);display:flex;align-items:center;justify-content:center;
+    font-size:13px;flex-shrink:0;}
+  .gs-item .gs-ico svg{width:17px;height:17px;}
+  .gs-item .gs-name{font-size:13.5px;font-weight:600;}
+  .gs-item .gs-desc{font-size:11.5px;color:var(--text-mute);margin-top:1px;}
+  .icon-btn{display:flex;align-items:center;justify-content:center;width:38px;height:38px;
+    border-radius:var(--radius);background:var(--switch-bg);color:var(--switch-fg);
+    border:1px solid var(--switch-border);cursor:pointer;text-decoration:none;}
+  .icon-btn:hover{filter:brightness(1.12);}
+  .icon-btn svg{width:18px;height:18px;}
+  .theme-toggle{display:flex;align-items:center;justify-content:center;width:38px;height:38px;
+    border-radius:var(--radius);background:var(--switch-bg);color:var(--switch-fg);
+    border:1px solid var(--switch-border);cursor:pointer;font-size:15px;line-height:1;
+    font-family:inherit;}
+  .theme-toggle:hover{filter:brightness(1.12);}
+  .theme-toggle .ti-sun{display:inline;}
+  .theme-toggle .ti-moon{display:none;}
+  :root[data-theme="light"] .theme-toggle .ti-sun{display:none;}
+  :root[data-theme="light"] .theme-toggle .ti-moon{display:inline;}
+
+  .layout{display:flex;}
+  .sidebar{width:196px;background:var(--side-bg);border-right:1px solid var(--border);
+    padding:22px 22px 60px;height:calc(100vh - 62px);position:sticky;top:62px;overflow-y:auto;}
+  .sb-group{margin-bottom:24px;}
+  .sb-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--side-mute);padding:0 8px;margin-bottom:6px;display:flex;align-items:center;}
+  .sb-tag{font-size:8.5px;font-weight:700;letter-spacing:.05em;border-radius:20px;
+    padding:1px 6px;margin-left:7px;border:1px solid currentColor;}
+  .sb-tag.core{color:var(--accent);} .sb-tag.flex{color:var(--side-mute);}
+  .sb-link{display:flex;align-items:center;gap:8px;padding:5px 8px;border-radius:7px;
+    font-size:13px;color:var(--side-fg);}
+  .sb-link:hover{background:var(--side-hover);color:var(--side-active-fg);}
+  .sb-link.active{background:var(--side-active-bg);color:var(--side-active-fg);font-weight:600;}
+  .sb-link .dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.45;flex-shrink:0;}
+
+  .content{flex:1;padding:46px 56px 120px;max-width:790px;}
+  .crumb{font-size:12.5px;color:var(--text-mute);margin-bottom:16px;}
+  .badge{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;
+    border:1px solid var(--border);border-radius:20px;padding:3px 11px;color:var(--text-mute);
+    margin-bottom:18px;}
+  .badge .v-dot{width:6px;height:6px;border-radius:50%;background:#28a45b;}
+  h1{font-size:35px;font-weight:700;letter-spacing:-.025em;margin-bottom:12px;color:var(--text);}
+  .lead{font-size:17px;color:var(--text-mute);margin-bottom:32px;line-height:1.55;}
+  h2{font-size:21px;font-weight:650;letter-spacing:-.01em;margin:38px 0 12px;color:var(--text);}
+  p{margin-bottom:14px;}
+  p a,.lead a{color:var(--link);}
+  ul{margin:0 0 16px 20px;}
+  li{margin-bottom:6px;}
+  li::marker{color:var(--accent);}
+  code.inline{background:var(--accent-soft);border-radius:5px;padding:1px 6px;
+    font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:12.5px;}
+  .codeblock{background:var(--bg-code);border-radius:11px;margin:18px 0;overflow:hidden;}
+  .codeblock .cb-head{padding:9px 16px;border-bottom:1px solid rgba(255,255,255,.08);
+    font-size:10.5px;color:#8b8b8b;font-weight:700;letter-spacing:.09em;text-transform:uppercase;}
+  .codeblock pre{font-family:"SF Mono",ui-monospace,Menlo,monospace;font-size:12.5px;
+    line-height:1.75;color:var(--code-text);padding:15px 18px;overflow-x:auto;}
+  .c-comment{color:var(--code-comment);} .c-cmd{color:var(--code-cmd);}
+  .callout{border:1px solid var(--border);border-left:3px solid var(--accent);
+    background:var(--bg-2);border-radius:8px;padding:13px 16px;margin:18px 0;font-size:14px;}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;}
+  .card{border:1px solid var(--border);border-radius:11px;padding:16px 17px;}
+  .card h3{font-size:14.5px;font-weight:650;margin-bottom:4px;color:var(--text);}
+  .card p{font-size:13px;color:var(--text-mute);margin:0;}
+  .toc{width:198px;padding:46px 20px;font-size:12.5px;position:sticky;top:62px;
+    height:calc(100vh - 62px);}
+  .toc .toc-title{font-size:11px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.07em;color:var(--text-mute);margin-bottom:10px;}
+  .toc a{display:block;color:var(--text-mute);padding:4px 0;}
+  .toc a.active{color:var(--text);font-weight:600;}
+
+  /* search modal */
+  .search-modal{position:fixed;inset:0;z-index:100;display:none;}
+  .search-modal.open{display:block;}
+  .sm-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.5);}
+  .sm-panel{position:relative;max-width:580px;margin:78px auto 0;background:var(--bg);
+    border:1px solid var(--border);border-radius:14px;overflow:hidden;
+    box-shadow:0 26px 72px rgba(0,0,0,.45);}
+  .sm-input-row{display:flex;align-items:center;gap:11px;padding:15px 17px;
+    border-bottom:1px solid var(--border);}
+  .sm-input-row .si{font-size:16px;color:var(--text-mute);}
+  .sm-input{flex:1;border:0;background:transparent;font-size:16px;color:var(--text);
+    outline:none;font-family:inherit;}
+  .sm-esc{border:1px solid var(--border);border-radius:5px;padding:2px 7px;
+    font-size:11px;color:var(--text-mute);}
+  .sm-results{max-height:392px;overflow-y:auto;padding:8px;}
+  .sm-glabel{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--text-mute);padding:10px 10px 5px;}
+  .sm-result{display:block;padding:10px 12px;border-radius:9px;cursor:pointer;}
+  .sm-result.sel{background:var(--accent-soft);}
+  .sm-result .sr-eyebrow{font-size:11px;color:var(--text-mute);margin-bottom:3px;}
+  .sm-result .sr-title{font-size:14px;font-weight:600;margin-bottom:3px;color:var(--text);}
+  .sm-result .sr-snip{font-size:12.5px;color:var(--text-mute);line-height:1.5;}
+  .sm-result mark{background:transparent;color:var(--accent);font-weight:700;}
+  .sm-empty{padding:30px 16px;text-align:center;color:var(--text-mute);font-size:13px;}
+  .sm-foot{display:flex;gap:18px;padding:10px 16px;border-top:1px solid var(--border);
+    font-size:11px;color:var(--text-mute);}
+  .sm-foot .k{border:1px solid var(--border);border-radius:4px;padding:1px 6px;margin-right:5px;}
+
+  .label{position:fixed;bottom:14px;left:14px;background:var(--accent);
+    color:var(--accent-contrast);font-size:11px;font-weight:700;padding:5px 11px;
+    border-radius:6px;letter-spacing:.02em;z-index:60;}
+
+  /* ===== RESPONSIVE ===== */
+  .hamburger{display:none;width:38px;height:38px;border-radius:var(--radius);
+    background:var(--switch-bg);color:var(--switch-fg);border:1px solid var(--switch-border);
+    cursor:pointer;align-items:center;justify-content:center;font-family:inherit;padding:0;}
+  .hamburger:hover{filter:brightness(1.12);}
+  .hamburger svg{width:18px;height:18px;}
+  .drawer-backdrop{display:none;position:fixed;inset:62px 0 0 0;
+    background:rgba(0,0,0,.5);backdrop-filter:blur(2px);z-index:25;}
+
+  @media (max-width: 1100px){
+    .toc{display:none;}
+    .content{max-width:none;padding-right:44px;}
+  }
+  @media (max-width: 768px){
+    .hamburger{display:flex;}
+    .topbar{gap:8px;padding:0 12px;}
+    .brand{font-size:14px;}
+    .brand .logo{width:22px;height:22px;font-size:12px;}
+    #switcher-name{display:none;}
+    .switcher{padding:7px 10px;gap:7px;}
+    .switcher .chev{display:none;}
+    .search-btn{width:38px;padding:0;justify-content:center;}
+    .sb-text,.search-btn .kbd{display:none;}
+    .gs-text{display:none;}
+    .get-skill-btn{padding:8px 11px;}
+    .sidebar{position:fixed;top:62px;left:0;height:calc(100vh - 62px);z-index:30;
+      transform:translateX(-100%);transition:transform .22s ease;
+      box-shadow:8px 0 36px rgba(0,0,0,.45);}
+    body[data-drawer="open"] .sidebar{transform:translateX(0);}
+    body[data-drawer="open"] .drawer-backdrop{display:block;}
+    .content{padding:28px 18px 100px;max-width:100%;}
+    h1{font-size:28px;}
+    .lead{font-size:15px;line-height:1.55;}
+    h2{font-size:19px;margin:30px 0 11px;}
+    .cards{grid-template-columns:1fr;}
+    .sm-panel{max-width:calc(100% - 24px);margin:50px 12px 0;}
+    .dropdown{width:260px;}
+    .get-skill-menu{min-width:230px;left:auto;right:0;}
+  }
+  @media (max-width: 480px){
+    .topbar{gap:6px;padding:0 10px;}
+    #github-btn{display:none;}
+    .get-skill-btn{padding:8px 10px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <button class="hamburger" id="hamburger" aria-label="Open navigation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <div class="brand"><span class="logo">C</span> Cody Skills</div>
+  <div class="switch-wrap">
+    <div class="switcher" id="switcher">
+      <span class="sd"></span><span id="switcher-name">Cody Product Builder</span>
+      <span class="chev">▾</span>
+    </div>
+    <div class="dropdown" id="dropdown">
+      <div class="dd-label">Switch skill</div>
+      <div class="dd-item" data-skill="cpb">
+        <span class="di-ico">P</span>
+        <div><div class="di-name">Cody Product Builder</div><div class="di-ver">v2.1.0</div></div>
+        <span class="di-check">✓</span>
+      </div>
+      <div class="dd-item" data-skill="caw">
+        <span class="di-ico">A</span>
+        <div><div class="di-name">Cody Article Writer</div><div class="di-ver">v3.0</div></div>
+        <span class="di-check">✓</span>
+      </div>
+    </div>
+  </div>
+  <div class="get-skill-wrap" id="get-skill-wrap">
+    <button class="get-skill-btn" id="get-skill-btn"><svg class="dl-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg><span class="gs-text">Get Skill</span></button>
+    <div class="get-skill-menu" id="get-skill-menu"></div>
+  </div>
+  <div class="spacer"></div>
+  <div class="search-btn" id="search-btn"><span class="sb-ico">⌕</span><span class="sb-text">Search docs</span><span class="kbd">⌘K</span></div>
+  <a class="icon-btn" id="github-btn" href="#" target="_blank" rel="noopener" title="View on GitHub" aria-label="GitHub repository">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.2 1.9 1.2 1.1 1.9 2.9 1.4 3.6 1 .1-.8.4-1.4.8-1.7-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+  </a>
+  <button class="theme-toggle" id="theme-toggle" title="Toggle light / dark" aria-label="Toggle theme">
+    <span class="ti-sun">☀</span><span class="ti-moon">☾</span>
+  </button>
+</div>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar"></aside>
+  <main class="content" id="content"></main>
+  <nav class="toc" id="toc"></nav>
+</div>
+
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+<div class="search-modal" id="search-modal">
+  <div class="sm-backdrop" id="sm-backdrop"></div>
+  <div class="sm-panel">
+    <div class="sm-input-row">
+      <span class="si">⌕</span>
+      <input class="sm-input" id="sm-input" placeholder="Search all Cody Skills docs…" autocomplete="off">
+      <span class="sm-esc">esc</span>
+    </div>
+    <div class="sm-results" id="sm-results"></div>
+    <div class="sm-foot">
+      <span><span class="k">↑</span><span class="k">↓</span>navigate</span>
+      <span><span class="k">↵</span>open</span>
+      <span><span class="k">esc</span>close</span>
+    </div>
+  </div>
+</div>
+
+<div class="label">Mockup 4 — iBuildWith.ai Theme</div>
+
+<script>
+/* ============ shared data ============ */
+var SKILLS = {
+  cpb:{
+    name:"Cody Product Builder", version:"2.1.0",
+    sidebar:[
+      {title:"Getting Started", tag:"core",  links:["Overview","Installation","Quick Start"]},
+      {title:"Workflow",        tag:"core",  links:["The Plan Phase","The Build Phase","Versions & Patches"]},
+      {title:"Commands",        tag:"flex",  links:[":cody plan",":cody build",":cody prototype",":cody idea",":cody refresh",":cody help"]},
+      {title:"Reference",       tag:"core",  links:["Prototypes","Project Settings","Changelog"]}
+    ],
+    crumb:"Cody Product Builder / Getting Started / Overview",
+    h1:"Cody Product Builder",
+    lead:"From idea to finished product — a structured, repeatable workflow for domain experts and knowledge workers, in any AI coding environment.",
+    body:
+      '<h2>What it is</h2>'+
+      '<p>Cody Product Builder is an AI agent skill that gives your projects a structured, '+
+      'two-phase process — so they are scalable, maintainable, and built right from the start, '+
+      'whether you start fresh, improve existing work, or ship a quick update.</p>'+
+      '<p>You drive everything with <code class="inline">:cody</code> commands. Cody keeps '+
+      'the structure; you stay the decision-maker.</p>'+
+      '<h2>The two phases</h2>'+
+      '<div class="cards"><div class="card"><h3>1 · Plan</h3><p>Turn an idea into a Discovery '+
+      'document, a PRD, and a plan you both agree on.</p></div>'+
+      '<div class="card"><h3>2 · Build</h3><p>Work the feature backlog version by version '+
+      'until the product ships.</p></div></div>'+
+      '<h2>Get started</h2><p>Activate the skill, then start the Plan phase:</p>'+
+      '<div class="codeblock"><div class="cb-head">Terminal</div><pre>'+
+      '<span class="c-comment"># Start the Plan phase</span>\n<span class="c-cmd">:cody plan</span>\n\n'+
+      '<span class="c-comment"># Or test an idea first with a throwaway prototype</span>\n'+
+      '<span class="c-cmd">:cody prototype</span></pre></div>'+
+      '<div class="callout"><strong>Tip.</strong> Run <code class="inline">:cody help</code> '+
+      'any time to see every command and exactly what it does.</div>',
+    toc:["What it is","The two phases","Get started"],
+    getSkill:[
+      {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/><path d="M11 12l1.5 1.5L11 15l1.5 1.5L11 18"/></svg>',name:'Download .zip',desc:'Source archive',href:'#'},
+      {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 L5 13.5 L11.5 13.5 L11 21 L19 10.5 L12.5 10.5 L13 3 Z"/></svg>',name:'Download .skill',desc:'Skill bundle (drop-in)',href:'#'}
+    ],
+    github:'https://github.com/bymarcelolewin/cody-product-builder'
+  },
+  caw:{
+    name:"Cody Article Writer", version:"3.0",
+    sidebar:[
+      {title:"Getting Started", tag:"core", links:["Overview","Installation","Quick Start"]},
+      {title:"Workflow",        tag:"core", links:["Research a Topic","Outline","Draft","Export"]},
+      {title:"Writing Styles",  tag:"flex", links:["Style Guides","Create a Style","The Humor Slider"]},
+      {title:"Reference",       tag:"core", links:["Drafts & Archive","Changelog"]}
+    ],
+    crumb:"Cody Article Writer / Getting Started / Overview",
+    h1:"Cody Article Writer",
+    lead:"Plan, research, draft, and export long-form articles — a writing partner that keeps your drafts and writing styles organized.",
+    body:
+      '<h2>What it is</h2>'+
+      '<p>Cody Article Writer takes a blog post, essay, or thought-leadership piece from a '+
+      'raw topic all the way to a finished, exported draft — handling ideation, research, '+
+      'outlining, drafting, and style management along the way.</p>'+
+      '<p>It is conversational: you describe what you want to write, and Cody guides the '+
+      'piece forward step by step.</p>'+
+      '<h2>How it works</h2>'+
+      '<div class="cards"><div class="card"><h3>Research &amp; Outline</h3><p>Gather sources, '+
+      'then shape them into a structured plan for the article.</p></div>'+
+      '<div class="card"><h3>Draft &amp; Export</h3><p>Write section by section in your chosen '+
+      'style, then export the finished piece.</p></div></div>'+
+      '<h2>Get started</h2><p>Activate the skill, then tell Cody what you want to write:</p>'+
+      '<div class="codeblock"><div class="cb-head">Chat</div><pre>'+
+      '<span class="c-comment"># Just describe the piece</span>\n'+
+      '<span class="c-cmd">I want to write about AI for domain experts</span>\n\n'+
+      '<span class="c-comment"># Or pick up where you left off</span>\n'+
+      '<span class="c-cmd">continue my article</span></pre></div>'+
+      '<div class="callout"><strong>Note.</strong> Cody Article Writer has no <code class="inline">:cody</code> '+
+      'commands — you guide it in plain language. That is why its sidebar has no Commands category.</div>',
+    toc:["What it is","How it works","Get started"],
+    getSkill:[
+      {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><polyline points="14 3 14 8 19 8"/><path d="M11 12l1.5 1.5L11 15l1.5 1.5L11 18"/></svg>',name:'Download .zip',desc:'Source archive',href:'#'},
+      {icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 L5 13.5 L11.5 13.5 L11 21 L19 10.5 L12.5 10.5 L13 3 Z"/></svg>',name:'Download .skill',desc:'Skill bundle (drop-in)',href:'#'}
+    ],
+    github:'https://github.com/bymarcelolewin/cody-article-writer'
+  }
+};
+
+/* searchable index across all skills */
+var INDEX=[
+  ["cpb","Getting Started","Overview","Cody Product Builder gives your projects a structured, two-phase process — plan first, then build."],
+  ["cpb","Getting Started","Installation","Add the Cody Product Builder skill to your AI coding environment in a few steps."],
+  ["cpb","Getting Started","Quick Start","Build your first project end to end: start the plan phase, then build."],
+  ["cpb","Workflow","The Plan Phase","The plan phase turns a raw idea into a Discovery document, a PRD, and a plan you both agree on."],
+  ["cpb","Workflow","The Build Phase","Work the feature backlog version by version until the product ships."],
+  ["cpb","Workflow","Versions & Patches","Add a new version or a quick patch to an existing project."],
+  ["cpb","Commands",":cody plan","Creates a Cody project and starts the plan phase — the first command you run."],
+  ["cpb","Commands",":cody prototype","Build a throwaway prototype to test an idea before you plan or build."],
+  ["cpb","Reference","Prototypes","Throwaway, interactive mockups built to test an idea in a single session."],
+  ["cpb","Reference","Changelog","Every change to Cody Product Builder, newest first."],
+  ["caw","Getting Started","Overview","Cody Article Writer plans, researches, drafts, and exports long-form articles."],
+  ["caw","Workflow","Research a Topic","Gather sources and notes before you outline the article."],
+  ["caw","Workflow","Outline","Turn your research into a structured plan for the article before you draft."],
+  ["caw","Workflow","Draft","Write the article section by section in your chosen writing style."],
+  ["caw","Writing Styles","Style Guides","Manage reusable writing styles that shape tone, voice, and humor."],
+  ["caw","Reference","Drafts & Archive","Browse your in-progress drafts and your archived articles."]
+];
+
+/* ============ render ============ */
+function esc(s){return s.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+function render(key){
+  var s=SKILLS[key];
+  document.getElementById('switcher-name').textContent=s.name;
+  var sb='';
+  s.sidebar.forEach(function(g,gi){
+    sb+='<div class="sb-group"><div class="sb-title">'+g.title+'</div>';
+    g.links.forEach(function(l,li){
+      var on=(gi===0&&li===0)?' active':'';
+      sb+='<a class="sb-link'+on+'"><span class="dot"></span>'+esc(l)+'</a>';
+    });
+    sb+='</div>';
+  });
+  document.getElementById('sidebar').innerHTML=sb;
+  document.getElementById('content').innerHTML=
+    '<div class="crumb">'+s.crumb+'</div>'+
+    '<span class="badge"><span class="v-dot"></span> Version '+s.version+' · latest</span>'+
+    '<h1>'+s.h1+'</h1><p class="lead">'+s.lead+'</p>'+s.body;
+  var toc='<div class="toc-title">On this page</div>';
+  s.toc.forEach(function(t,i){toc+='<a class="'+(i===0?'active':'')+'">'+t+'</a>';});
+  document.getElementById('toc').innerHTML=toc;
+  document.querySelectorAll('.dd-item').forEach(function(d){
+    d.classList.toggle('active',d.dataset.skill===key);
+  });
+  // populate Get Skill menu
+  var menu=document.getElementById('get-skill-menu');
+  var gh='<div class="gs-label">Get '+esc(s.name)+'</div>';
+  (s.getSkill||[]).forEach(function(it){
+    gh+='<a class="gs-item" href="'+it.href+'">'+
+      '<span class="gs-ico">'+it.icon+'</span>'+
+      '<div><div class="gs-name">'+esc(it.name)+'</div>'+
+      (it.desc?'<div class="gs-desc">'+esc(it.desc)+'</div>':'')+
+      '</div></a>';
+  });
+  menu.innerHTML=gh;
+  document.getElementById('github-btn').setAttribute('href',s.github||'#');
+}
+
+/* ============ switcher ============ */
+var sw=document.getElementById('switcher'),dd=document.getElementById('dropdown');
+sw.addEventListener('click',function(e){e.stopPropagation();
+  sw.classList.toggle('open');dd.classList.toggle('open');});
+document.querySelectorAll('.dd-item').forEach(function(d){
+  d.addEventListener('click',function(){render(d.dataset.skill);
+    sw.classList.remove('open');dd.classList.remove('open');});
+});
+/* ============ Get Skill ============ */
+var gsw=document.getElementById('get-skill-wrap'),gsb=document.getElementById('get-skill-btn');
+gsb.addEventListener('click',function(e){e.stopPropagation();
+  gsw.classList.toggle('open');
+  sw.classList.remove('open');dd.classList.remove('open');});
+gsw.addEventListener('click',function(e){e.stopPropagation();});
+
+document.addEventListener('click',function(){
+  sw.classList.remove('open');dd.classList.remove('open');
+  gsw.classList.remove('open');
+});
+
+/* ============ search ============ */
+var modal=document.getElementById('search-modal'),input=document.getElementById('sm-input'),
+    results=document.getElementById('sm-results'),sel=0,current=[];
+function openSearch(){modal.classList.add('open');input.value='plan';input.focus();
+  input.select();doSearch();}
+function closeSearch(){modal.classList.remove('open');}
+function hl(text,q){if(!q)return esc(text);
+  var i=text.toLowerCase().indexOf(q.toLowerCase());
+  if(i<0)return esc(text);
+  return esc(text.slice(0,i))+'<mark>'+esc(text.slice(i,i+q.length))+'</mark>'+esc(text.slice(i+q.length));}
+function doSearch(){
+  var q=input.value.trim().toLowerCase();
+  current=INDEX.filter(function(r){
+    return !q||r[2].toLowerCase().indexOf(q)>=0||r[3].toLowerCase().indexOf(q)>=0;
+  });
+  sel=0;
+  if(!current.length){results.innerHTML='<div class="sm-empty">No results for “'+esc(input.value)+'”.</div>';return;}
+  var html='',lastSkill='';
+  current.forEach(function(r,i){
+    var skillName=SKILLS[r[0]].name;
+    if(skillName!==lastSkill){html+='<div class="sm-glabel">'+skillName+'</div>';lastSkill=skillName;}
+    html+='<a class="sm-result'+(i===sel?' sel':'')+'" data-i="'+i+'">'+
+      '<div class="sr-eyebrow">'+r[1]+'</div>'+
+      '<div class="sr-title">'+hl(r[2],q)+'</div>'+
+      '<div class="sr-snip">'+hl(r[3],q)+'</div></a>';
+  });
+  results.innerHTML=html;
+  results.querySelectorAll('.sm-result').forEach(function(el){
+    el.addEventListener('click',function(){pick(+el.dataset.i);});
+  });
+}
+function pick(i){var r=current[i];if(!r)return;render(r[0]);closeSearch();}
+function move(d){if(!current.length)return;sel=(sel+d+current.length)%current.length;
+  var els=results.querySelectorAll('.sm-result');
+  els.forEach(function(e,i){e.classList.toggle('sel',i===sel);});
+  if(els[sel])els[sel].scrollIntoView({block:'nearest'});}
+document.getElementById('search-btn').addEventListener('click',openSearch);
+document.getElementById('sm-backdrop').addEventListener('click',closeSearch);
+input.addEventListener('input',doSearch);
+document.addEventListener('keydown',function(e){
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openSearch();}
+  if(!modal.classList.contains('open'))return;
+  if(e.key==='Escape')closeSearch();
+  if(e.key==='ArrowDown'){e.preventDefault();move(1);}
+  if(e.key==='ArrowUp'){e.preventDefault();move(-1);}
+  if(e.key==='Enter'){e.preventDefault();pick(sel);}
+});
+
+/* ============ mobile drawer ============ */
+var hamb=document.getElementById('hamburger'),backdrop=document.getElementById('drawer-backdrop');
+function setDrawer(open){document.body.setAttribute('data-drawer',open?'open':'closed');}
+hamb.addEventListener('click',function(){
+  setDrawer(document.body.getAttribute('data-drawer')!=='open');
+});
+backdrop.addEventListener('click',function(){setDrawer(false);});
+document.getElementById('sidebar').addEventListener('click',function(e){
+  if(e.target.closest('.sb-link')&&window.innerWidth<=768)setDrawer(false);
+});
+
+/* ============ theme toggle ============ */
+document.getElementById('theme-toggle').addEventListener('click',function(){
+  var cur=document.documentElement.dataset.theme;
+  document.documentElement.dataset.theme=cur==='light'?'dark':'light';
+});
+
+render('cpb');
+</script>
+</body>
+</html>
