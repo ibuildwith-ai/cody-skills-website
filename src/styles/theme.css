@@ -201,6 +201,17 @@
   font-weight: 600;
 }
 
+/* Initial-load fallback: Starlight's TOC IntersectionObserver runs via
+   requestIdleCallback, so for a brief moment after page load no TOC link
+   has aria-current set and the panel looks unfocused. While that's the
+   case, treat the first TOC link (the page-title "Overview") as active.
+   The :not(:has(...)) guard self-disables this rule the moment the
+   observer assigns a real active link. */
+.right-sidebar-panel:not(:has(a[aria-current='true'])) nav > ul > li:first-child > a {
+  color: var(--sl-color-accent-high);
+  font-weight: 600;
+}
+
 /* ============================================================
    PART 4 — TYPOGRAPHY
 

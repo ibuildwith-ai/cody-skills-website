@@ -78,25 +78,26 @@ _Confirm the site works at desktop, tablet, and mobile. Override Starlight's def
 
 
 ## Phase 6 — Cody Product Builder Content
-_Replace the placeholder stubs with real content. Cody drafts each page from the real `cody-product-builder/` source folder; user reviews and signs off. A task is 🟢 only after sign-off._
+_Replace the placeholder stubs with real content. Cody drafts each page from the real `cody-product-builder/` source folder. User review and sign-off is deferred to task 6.16 so the marketing landing page (Phase 7) can be built in parallel._
 
 | ID  | Task             | Description                             | Dependencies | Status | Assigned To |
 |-----|------------------|-----------------------------------------|--------------|--------|-------------|
-| 6.1  | Overview (`index.md`) | Skill landing. Frontmatter title + description (drives SEO). Draft from `cody-product-builder/SKILL.md`. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.2  | Installation | How to add the skill to a user's environment. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.3  | Quick Start | End-to-end first project — start the Plan phase, see it through. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.4  | The Plan Phase | The full plan workflow from `commands/plan.md` + references. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.5  | The Build Phase | The full build workflow from `commands/build.md` + references. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.6  | Versions & Patches | Versioning conventions from `references/phases.md`. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.7  | `:cody plan` | Command page — purpose, what it does, what it produces. From `commands/plan.md`. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.8  | `:cody build` | From `commands/build.md`. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.9  | `:cody prototype` | From `commands/prototype.md`. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.10 | `:cody idea` | From `commands/idea.md`. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.11 | `:cody refresh` | From `commands/refresh.md`. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.12 | `:cody help` | From `commands/help.md`. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.13 | Prototypes (reference) | What prototypes are, how they fit the workflow. From `references/note-available-prototypes.md` and `commands/prototype.md`. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.14 | Project Settings (reference) | The `cody.json` reference. From `assets/cody.json` template and the workspace references. | 3.7 | 🔴 Not Started | AGENT + USER |
-| 6.15 | Changelog (reference) | Reverse-chronological changelog stub. Real entries get added per version going forward; v1.0.0 entry created after launch. | 3.7 | 🔴 Not Started | AGENT + USER |
+| 6.1  | Overview (`index.md`) | Skill landing. Frontmatter title + description (drives SEO). Draft from `cody-product-builder/SKILL.md`. **Done: drafted with hook, "Why it exists", capability list, two-phase workflow summary, commands table, and Where-to-start CTA. Links out to every other CPB page.** | 3.7 | 🟢 Completed | AGENT |
+| 6.2  | Installation | How to add the skill to a user's environment. **Done: two install paths (`.skill` file vs skill folder), per-agent path table, activation notes, and the `what gets created` file tree.** | 3.7 | 🟢 Completed | AGENT |
+| 6.3  | Quick Start | End-to-end first project, start the Plan phase, see it through. **Done: 5-step walkthrough from activate → plan → build → ship → keep going. Cross-links to all relevant command and workflow pages.** | 3.7 | 🟢 Completed | AGENT |
+| 6.4  | The Plan Phase | The full plan workflow from `commands/plan.md` + references. **Done: conceptual overview, document table (discovery / brownfield-analysis / prd / plan), step-by-step flow, brownfield notes, "when the phase is done" checklist.** | 3.7 | 🟢 Completed | AGENT |
+| 6.5  | The Build Phase | The full build workflow from `commands/build.md` + references. **Done: conceptual overview, artifact tables (per-version + per-patch), how-to-run flow, versions-vs-patches, mid-flow idea capture, resuming in a new AI session.** | 3.7 | 🟢 Completed | AGENT |
+| 6.6  | Versions & Patches | Versioning conventions from `references/phases.md`. **Done: version vs patch decision guide, naming convention (`v[major.minor.patch]-[name]`), file-tree example, post-ship automation notes.** | 3.7 | 🟢 Completed | AGENT |
+| 6.7  | `:cody plan` | Command page, purpose, what it does, what it produces. From `commands/plan.md`. **Done: when to use, 9-step flow, output file tree, what's next.** | 3.7 | 🟢 Completed | AGENT |
+| 6.8  | `:cody build` | From `commands/build.md`. **Done: when to use, 6-step flow, menu-option decision table, cross-links to `:cody idea`, `:cody prototype`, `:cody refresh`.** | 3.7 | 🟢 Completed | AGENT |
+| 6.9  | `:cody prototype` | From `commands/prototype.md`. **Done: when to use, 7-step flow, output folder layout, same-session vs separate-session guidance, git warning.** | 3.7 | 🟢 Completed | AGENT |
+| 6.10 | `:cody idea` | From `commands/idea.md`. **Done: capture mode (silent add to backlog) + view mode, how captured ideas flow into versions and patches.** | 3.7 | 🟢 Completed | AGENT |
+| 6.11 | `:cody refresh` | From `commands/refresh.md`. **Done: when to use, 6-step flow including brownfield branch, document review order, optional doc-update offer.** | 3.7 | 🟢 Completed | AGENT |
+| 6.12 | `:cody help` | From `commands/help.md`. **Done: when to use, 3-step flow, full command table.** | 3.7 | 🟢 Completed | AGENT |
+| 6.13 | Prototypes (reference) | What prototypes are, how they fit the workflow. From `references/note-available-prototypes.md` and `commands/prototype.md`. **Done: purpose, folder layout, `prototype.md` section reference, passive-mention pattern, same vs separate session, git note.** | 3.7 | 🟢 Completed | AGENT |
+| 6.14 | Project Settings (reference) | The `cody.json` reference. From `assets/cody.json` template and the workspace references. **Done: lifecycle table (when each event mutates the file), full example, per-field reference, `project.json` migration note.** | 3.7 | 🟢 Completed | AGENT |
+| 6.15 | Changelog (reference) | Reverse-chronological changelog stub. Real entries get added per version going forward; v1.0.0 entry created after launch. **Done: condensed entries for v2.1.0 through v1.4.0 with link to canonical `release-notes.md` on GitHub for the full history. Interpreted as the CPB changelog rather than a website changelog, since the page lives under the CPB skill folder.** | 3.7 | 🟢 Completed | AGENT |
+| 6.16 | User content review | User reviews every drafted page end-to-end and edits anything that's inaccurate, off-tone, missing material, or otherwise needs work. Deferred to after Phase 7 so the marketing landing can be built in parallel. This task is the actual sign-off gate for the Cody Product Builder content. | 6.1 – 6.15 | 🔴 Not Started | USER |
 
 
 ## Phase 7 — Marketing Landing Page
