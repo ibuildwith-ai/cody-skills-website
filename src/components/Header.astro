@@ -19,13 +19,16 @@ import GitHubLink from './GitHubLink.astro';
 const shouldRenderSearch =
   config.pagefind ||
   config.components.Search !== '@astrojs/starlight/components/Search.astro';
-
-const { siteTitleHref } = Astro.locals.starlightRoute;
 ---
 
 <div class="header">
-  <a href={siteTitleHref} class="brand">
-    <span class="brand-logo" aria-hidden="true">C</span>
+  <a href="/" class="brand" aria-label="Cody Skills home">
+    <img
+      class="brand-logo"
+      src="/images/cody-skills-logo.png"
+      alt=""
+      aria-hidden="true"
+    />
     <span class="brand-text">Cody Skills</span>
   </a>
 
@@ -51,13 +54,20 @@ const { siteTitleHref } = Astro.locals.starlightRoute;
       height: 100%;
     }
 
-    /* Brand — green "C" logo + white "Cody Skills" wordmark (matches the prototype).
-       Only the logo carries the brand accent; the wordmark uses the topbar text color
-       so it inverts automatically in light mode. */
+    /* Brand — robot logo + "Cody Skills" wordmark. The PNG works on both
+       themes (green/black robot on a green-ring black circle), so we don't
+       need to swap it for light mode. The wordmark uses the topbar text color
+       and inverts automatically in light mode.
+
+       `margin-inline-end` (~12px) adds a deliberate visual gap between the
+       brand and the SkillSwitcher next to it, on top of the 1rem `.header`
+       gap. Comes out to ~28px total, matching the marketing landing's nav
+       spacing. */
     .brand {
       display: inline-flex;
       align-items: center;
       gap: 0.5625rem;
+      margin-inline-end: 0.75rem;
       font-weight: var(--cs-fw-bold);
       font-size: var(--sl-text-base);
       letter-spacing: var(--cs-tracking-tight);
@@ -67,17 +77,10 @@ const { siteTitleHref } = Astro.locals.starlightRoute;
       min-width: 0;
     }
     .brand-logo {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 1.5rem;
-      height: 1.5rem;
-      border-radius: 0.4375rem;
-      background: var(--sl-color-accent);
-      color: var(--sl-color-bg);
-      font-weight: 800;
-      font-size: var(--sl-text-sm);
-      line-height: 1;
+      display: block;
+      width: 1.625rem; /* 26px — matches the marketing landing */
+      height: 1.625rem;
+      flex-shrink: 0;
     }
 
     /* Spacer takes all available middle space */

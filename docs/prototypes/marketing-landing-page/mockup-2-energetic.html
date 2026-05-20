@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cody Skills · Created for Builders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --bg:#0e0e0e; --bg-2:#181818; --bg-3:#1f1f1f; --border:#2a2a2a;
+    --text:#e6e6e6; --text-2:#b0b0b0; --text-3:#888;
+    --accent:#22c55e; --accent-2:#4ade80; --accent-low:rgba(34,197,94,.12);
+  }
+  body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.65;font-size:15px;
+    min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;}
+
+  /* Topbar */
+  .topbar{height:62px;border-bottom:1px solid var(--border);background:rgba(14,14,14,.85);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    display:flex;align-items:center;gap:16px;padding:0 24px;position:sticky;top:0;z-index:20;}
+  .brand{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;
+    letter-spacing:-.01em;color:#fff;text-decoration:none;}
+  .brand .logo{width:26px;height:26px;display:block;flex-shrink:0;}
+  .foot-brand .logo{width:22px;height:22px;display:block;flex-shrink:0;}
+  .spacer{flex:1;}
+  .top-links{display:flex;align-items:center;gap:28px;}
+  .top-link{display:inline-flex;align-items:center;gap:4px;font-size:13px;
+    color:var(--text-2);text-decoration:none;font-weight:500;
+    background:transparent;border:0;cursor:pointer;font-family:inherit;padding:0;}
+  .top-link:hover{color:var(--accent-2);}
+  .top-link svg{width:11px;height:11px;opacity:.7;}
+
+  /* Skills dropdown */
+  .skills-menu{position:relative;}
+  .skills-menu .chev{width:11px;height:11px;opacity:.6;transition:transform .15s;}
+  .skills-menu.open .top-link{color:var(--accent-2);}
+  .skills-menu.open .chev{transform:rotate(180deg);}
+  .skills-dropdown{position:absolute;top:calc(100% + 12px);right:0;min-width:280px;
+    background:#181818;border:1px solid var(--border);border-radius:12px;padding:6px;
+    z-index:50;box-shadow:0 16px 40px rgba(0,0,0,.45);display:none;}
+  .skills-menu.open .skills-dropdown{display:block;}
+  .sm-item{display:flex;align-items:center;gap:11px;padding:10px;border-radius:8px;
+    text-decoration:none;color:inherit;}
+  a.sm-item:hover{background:#222;}
+  .sm-item.soon{opacity:.55;cursor:default;}
+  .sm-ico{width:30px;height:30px;border-radius:8px;background:var(--accent);
+    color:var(--bg);display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:14px;flex-shrink:0;}
+  .sm-item.soon .sm-ico{background:var(--bg-3);border:1px solid var(--border);color:var(--text-3);}
+  .sm-text{display:flex;flex-direction:column;}
+  .sm-name{font-size:13.5px;font-weight:600;color:#fff;letter-spacing:-.005em;}
+  .sm-meta{font-size:11px;color:var(--text-3);margin-top:2px;font-weight:500;}
+  a.sm-item.live .sm-meta{color:var(--accent-2);}
+
+  /* Hamburger + mobile drawer (≤768px only) */
+  .hamburger{display:none;background:transparent;border:1px solid var(--border);
+    width:38px;height:38px;border-radius:8px;align-items:center;justify-content:center;
+    color:var(--text);cursor:pointer;padding:0;}
+  .hamburger:hover{filter:brightness(1.15);}
+  .hamburger svg{width:18px;height:18px;}
+  .hamburger .ham-close{display:none;}
+  .hamburger[aria-expanded="true"] .ham-open{display:none;}
+  .hamburger[aria-expanded="true"] .ham-close{display:block;}
+
+  .mobile-drawer{display:none;position:fixed;top:62px;left:0;right:0;
+    background:var(--bg);border-bottom:1px solid var(--border);
+    box-shadow:0 16px 36px rgba(0,0,0,.45);z-index:19;padding:16px;
+    max-height:calc(100vh - 62px);overflow-y:auto;}
+  .mobile-drawer.open{display:block;}
+  .md-section{padding:8px 0;}
+  .md-section + .md-section{border-top:1px solid var(--border);margin-top:8px;padding-top:16px;}
+  .md-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--text-3);margin-bottom:8px;padding-left:8px;}
+  .md-skill{display:flex;align-items:center;gap:12px;padding:10px 8px;border-radius:8px;
+    text-decoration:none;color:inherit;}
+  a.md-skill:hover{background:var(--bg-2);}
+  .md-skill.soon{opacity:.55;}
+  .md-skill-ico{width:32px;height:32px;border-radius:8px;background:var(--accent);
+    color:var(--bg);display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:14px;flex-shrink:0;}
+  .md-skill.soon .md-skill-ico{background:var(--bg-3);border:1px solid var(--border);color:var(--text-3);}
+  .md-skill-text{display:flex;flex-direction:column;}
+  .md-skill-name{font-size:14px;font-weight:600;color:#fff;letter-spacing:-.005em;}
+  .md-skill-meta{font-size:11px;color:var(--text-3);margin-top:2px;font-weight:500;}
+  a.md-skill.live .md-skill-meta{color:var(--accent-2);}
+  .md-link{display:flex;align-items:center;gap:6px;padding:12px 8px;border-radius:8px;
+    font-size:15px;font-weight:500;color:var(--text);text-decoration:none;}
+  a.md-link:hover{background:var(--bg-2);color:var(--accent-2);}
+  .md-link svg{width:12px;height:12px;opacity:.7;}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:8px;
+    background:var(--accent);color:var(--bg);font-size:13px;font-weight:650;text-decoration:none;}
+  .cta:hover{filter:brightness(1.08);}
+  .cta svg{width:14px;height:14px;}
+
+  /* HERO — big, energetic, gradient accent */
+  .hero{position:relative;padding:130px 24px 110px;text-align:center;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);
+    width:1200px;height:1200px;border-radius:50%;
+    background:radial-gradient(circle,rgba(34,197,94,.18) 0%,rgba(34,197,94,0) 55%);
+    pointer-events:none;z-index:0;}
+  .hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent 0,var(--border) 30%,var(--border) 70%,transparent 100%);}
+  .hero-inner{max-width:920px;margin:0 auto;position:relative;z-index:1;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:700;
+    letter-spacing:.08em;text-transform:uppercase;color:var(--text-2);
+    padding:6px 13px;border:1px solid var(--border);border-radius:999px;margin-bottom:28px;
+    background:rgba(0,0,0,.3);}
+  .eyebrow .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:var(--accent);box-shadow:0 0 12px rgba(34,197,94,.6);}
+  h1{font-size:72px;line-height:1.04;letter-spacing:-.035em;font-weight:800;color:#fff;
+    margin-bottom:24px;}
+  h1 .accent{background:linear-gradient(135deg,#22c55e 0%,#4ade80 50%,#86efac 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+    color:transparent;}
+  .lead{font-size:19px;color:var(--text-2);max-width:640px;margin:0 auto 36px;line-height:1.55;}
+  .hero-ctas{display:inline-flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:10px;
+    font-size:14.5px;font-weight:650;text-decoration:none;letter-spacing:.005em;}
+  .btn-primary{background:var(--accent);color:var(--bg);
+    box-shadow:0 0 0 1px rgba(255,255,255,.06),0 10px 30px rgba(34,197,94,.25);}
+  .btn-primary:hover{filter:brightness(1.08);transform:translateY(-1px);}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border);}
+  .btn-ghost:hover{border-color:var(--accent-2);color:#fff;}
+
+  /* Marquee strip */
+  .marquee{padding:30px 24px;text-align:center;font-size:12.5px;color:var(--text-3);
+    letter-spacing:.08em;text-transform:uppercase;font-weight:600;
+    border-bottom:1px solid var(--border);}
+  .marquee span{margin:0 18px;}
+  .marquee .m-label{display:block;text-align:center;color:var(--accent-2);
+    text-transform:none;letter-spacing:0;font-weight:500;font-size:12px;
+    margin:0 0 10px 0;}
+
+  /* Skills section — 1 card per row, illustration + content side by side */
+  .skills{padding:90px 24px 90px;}
+  .skills-inner{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:24px;}
+
+  .skill-row{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:48px;align-items:center;background:var(--bg-2);border:1px solid var(--border);
+    border-radius:18px;padding:36px;text-decoration:none;color:inherit;
+    transition:.2s;overflow:hidden;}
+  .skill-row::before{content:'';position:absolute;inset:0;border-radius:18px;padding:1px;
+    background:linear-gradient(135deg,rgba(34,197,94,0) 0%,rgba(34,197,94,.5) 100%);
+    -webkit-mask:linear-gradient(#000,#000) content-box,linear-gradient(#000,#000);
+    -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:.2s;}
+  .skill-row.live:hover{transform:translateY(-2px);}
+  .skill-row.live:hover::before{opacity:1;}
+  .skill-row.soon{opacity:.66;cursor:default;}
+
+  /* Reverse layout — illustration on the right instead of left */
+  .skill-row.reverse .skill-illust{order:2;}
+  .skill-row.reverse .skill-content{order:1;}
+
+  .skill-illust{display:block;width:100%;height:auto;border-radius:10px;
+    border:1px solid var(--border);overflow:hidden;}
+  .skill-illust img{display:block;width:100%;height:auto;}
+
+  .skill-content{display:flex;flex-direction:column;}
+  .skill-status{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;
+    letter-spacing:.07em;text-transform:uppercase;padding:5px 11px;border-radius:999px;
+    border:1px solid var(--border);width:fit-content;margin-bottom:18px;}
+  .skill-row.live .skill-status{color:var(--accent-2);}
+  .skill-row.live .skill-status::before{content:'';display:inline-block;width:6px;height:6px;
+    border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(34,197,94,.6);}
+  .skill-row.soon .skill-status{color:var(--text-3);}
+
+  .skill-title{font-size:28px;font-weight:700;color:#fff;letter-spacing:-.02em;
+    margin-bottom:12px;line-height:1.15;}
+  .skill-body{font-size:15.5px;color:var(--text-2);line-height:1.6;margin-bottom:22px;}
+
+  .skill-cta{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:650;
+    color:var(--accent-2);text-decoration:none;width:fit-content;}
+  .skill-cta svg{width:14px;height:14px;transition:transform .15s;}
+  .skill-row.live:hover .skill-cta svg{transform:translateX(3px);}
+  .skill-row.soon .skill-cta{color:var(--text-3);font-weight:500;}
+
+  /* Footer */
+  footer{margin-top:auto;border-top:1px solid var(--border);padding:44px 24px 34px;background:#0a0a0a;}
+  .foot-inner{max-width:1080px;margin:0 auto;display:grid;
+    grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);
+    gap:48px;align-items:flex-start;}
+  .foot-brand{display:inline-flex;align-items:center;gap:9px;font-weight:700;color:#fff;
+    font-size:14px;letter-spacing:-.01em;}
+  .foot-copy{font-size:12.5px;color:var(--text-3);margin-top:8px;}
+
+  .foot-col-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--text-3);margin-bottom:14px;}
+  .foot-col-link{display:flex;align-items:center;gap:5px;font-size:13px;
+    color:var(--text-2);text-decoration:none;padding:5px 0;}
+  a.foot-col-link:hover{color:var(--accent-2);}
+  .foot-col-link.soon{color:var(--text-3);cursor:default;}
+  .foot-col-link svg{width:11px;height:11px;opacity:.7;}
+
+  @media (max-width:768px){
+    .topbar{padding:0 14px;gap:10px;}
+    .top-links{display:none;}
+    .hamburger{display:inline-flex;}
+    .hero{padding:80px 18px 70px;}
+    h1{font-size:42px;letter-spacing:-.03em;}
+    .lead{font-size:16px;}
+    .skills{padding:56px 18px;}
+    .skill-row{grid-template-columns:1fr;gap:24px;padding:24px;}
+    .skill-row.reverse .skill-illust{order:1;}
+    .skill-row.reverse .skill-content{order:2;}
+    .skill-title{font-size:22px;}
+    .skill-body{font-size:14.5px;}
+    .foot-inner{grid-template-columns:1fr;gap:28px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="#" class="brand"><img class="logo" src="../../../public/images/cody-skills-logo.png" alt=""> Cody Skills</a>
+  <div class="spacer"></div>
+  <nav class="top-links">
+
+    <div class="skills-menu" id="skills-menu">
+      <button class="top-link" id="skills-trigger" type="button" aria-haspopup="menu" aria-expanded="false">
+        Skills
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="skills-dropdown" role="menu">
+        <a class="sm-item live" href="/docs/cody-product-builder/" role="menuitem">
+          <span class="sm-ico">P</span>
+          <span class="sm-text">
+            <span class="sm-name">Cody Product Builder</span>
+            <span class="sm-meta">v2.1.0 · Available now</span>
+          </span>
+        </a>
+        <div class="sm-item soon" role="menuitem" aria-disabled="true">
+          <span class="sm-ico">A</span>
+          <span class="sm-text">
+            <span class="sm-name">Cody Article Writer</span>
+            <span class="sm-meta">Coming soon</span>
+          </span>
+        </div>
+        <div class="sm-item soon" role="menuitem" aria-disabled="true">
+          <span class="sm-ico">S</span>
+          <span class="sm-text">
+            <span class="sm-name">Cody Skill Auditor</span>
+            <span class="sm-meta">Coming soon</span>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="top-link">Documentation</a>
+    <a href="mailto:marcelo@ibuildwith.ai" class="top-link">Contact</a>
+    <a href="https://www.ibuildwith.ai" target="_blank" rel="noopener noreferrer" class="top-link">
+      iBuildWith.ai
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+    </a>
+  </nav>
+
+  <button class="hamburger" id="hamburger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+    <svg class="ham-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <svg class="ham-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+</header>
+
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+  <div class="md-section">
+    <div class="md-label">Skills</div>
+    <a class="md-skill live" href="/docs/cody-product-builder/">
+      <span class="md-skill-ico">P</span>
+      <span class="md-skill-text">
+        <span class="md-skill-name">Cody Product Builder</span>
+        <span class="md-skill-meta">v2.1.0 · Available now</span>
+      </span>
+    </a>
+    <div class="md-skill soon">
+      <span class="md-skill-ico">A</span>
+      <span class="md-skill-text">
+        <span class="md-skill-name">Cody Article Writer</span>
+        <span class="md-skill-meta">Coming soon</span>
+      </span>
+    </div>
+    <div class="md-skill soon">
+      <span class="md-skill-ico">S</span>
+      <span class="md-skill-text">
+        <span class="md-skill-name">Cody Skill Auditor</span>
+        <span class="md-skill-meta">Coming soon</span>
+      </span>
+    </div>
+  </div>
+  <div class="md-section">
+    <a class="md-link" href="#">Documentation</a>
+    <a class="md-link" href="mailto:marcelo@ibuildwith.ai">Contact</a>
+    <a class="md-link" href="https://www.ibuildwith.ai" target="_blank" rel="noopener noreferrer">
+      iBuildWith.ai
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+    </a>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Agent Skills<br>Created for <span class="accent">Builders</span></h1>
+    <p class="lead">AI agent skills that turn ideas into shipped products. Built for knowledge workers, domain experts, and creators using any AI agent that supports agent skills.</p>
+    <div class="hero-ctas">
+      <a href="#skills" class="btn btn-primary">Get Started →</a>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <span class="m-label">works with</span><span>Claude Code</span>·<span>Cursor</span>·<span>GitHub Copilot</span>·<span>Codex</span>·<span>Claude.ai</span>
+</div>
+
+<section class="skills" id="skills">
+  <div class="skills-inner">
+
+    <a href="#" class="skill-row live">
+      <div class="skill-illust">
+        <img src="../../../public/images/cody-product-builder.svg" alt="">
+      </div>
+      <div class="skill-content">
+        <span class="skill-status">v2.1.0 · Available now</span>
+        <h3 class="skill-title">Cody Product Builder</h3>
+        <p class="skill-body">Take an idea from raw concept to shipped product with a structured two-phase workflow. Plan, build, and ship versions in any AI coding environment. Capture ideas mid-flow, prototype risky bits, and keep the work shippable as it grows.</p>
+        <span class="skill-cta">
+          Open the docs
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </span>
+      </div>
+    </a>
+
+    <div class="skill-row soon reverse">
+      <div class="skill-illust">
+        <img src="../../../public/images/cody-article-writer.svg" alt="">
+      </div>
+      <div class="skill-content">
+        <span class="skill-status">Coming soon</span>
+        <h3 class="skill-title">Cody Article Writer</h3>
+        <p class="skill-body">Plan, research, draft, and manage long-form articles end-to-end. Topic ideation through export, with custom writing styles you can save and reuse across pieces. Built for thought leadership, essays, and product writing.</p>
+        <span class="skill-cta">In development</span>
+      </div>
+    </div>
+
+    <div class="skill-row soon">
+      <div class="skill-illust">
+        <img src="../../../public/images/cody-skill-auditor.svg" alt="">
+      </div>
+      <div class="skill-content">
+        <span class="skill-status">Coming soon</span>
+        <h3 class="skill-title">Cody Skill Auditor</h3>
+        <p class="skill-body">Audit an existing agent skill against the agentskills.io specification and the Cody Skill Framework. Surface compliance gaps and framework drift before you publish or compose on top of an existing skill.</p>
+        <span class="skill-cta">In development</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+
+    <div>
+      <div class="foot-brand"><img class="logo" src="../../../public/images/cody-skills-logo.png" alt=""> Cody Skills</div>
+      <div class="foot-copy">© 2026 Red Pill Blue Pill Studios.</div>
+    </div>
+
+    <div>
+      <div class="foot-col-label">Skills</div>
+      <a class="foot-col-link" href="/docs/cody-product-builder/">Cody Product Builder</a>
+      <span class="foot-col-link soon">Cody Article Writer</span>
+      <span class="foot-col-link soon">Cody Skill Auditor</span>
+    </div>
+
+    <div>
+      <div class="foot-col-label">Site</div>
+      <a class="foot-col-link" href="#">Documentation</a>
+      <a class="foot-col-link" href="mailto:marcelo@ibuildwith.ai">Contact</a>
+      <a class="foot-col-link" href="https://www.ibuildwith.ai" target="_blank" rel="noopener noreferrer">
+        iBuildWith.ai
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+  // Skills dropdown — click to toggle, close on outside click or Escape.
+  (function(){
+    var wrap = document.getElementById('skills-menu');
+    var trigger = document.getElementById('skills-trigger');
+    if (!wrap || !trigger) return;
+    trigger.addEventListener('click', function(e){
+      e.stopPropagation();
+      var open = wrap.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', String(open));
+    });
+    wrap.querySelector('.skills-dropdown').addEventListener('click', function(e){
+      e.stopPropagation();
+    });
+    document.addEventListener('click', function(){
+      wrap.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') {
+        wrap.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+
+  // Hamburger — toggles the mobile drawer; closes on Escape.
+  (function(){
+    var btn = document.getElementById('hamburger');
+    var drawer = document.getElementById('mobile-drawer');
+    if (!btn || !drawer) return;
+    function setOpen(open){
+      drawer.classList.toggle('open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      drawer.setAttribute('aria-hidden', String(!open));
+    }
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      setOpen(!drawer.classList.contains('open'));
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') setOpen(false);
+    });
+    // Close drawer when window grows past mobile breakpoint.
+    var mq = window.matchMedia('(max-width: 768px)');
+    mq.addEventListener('change', function(e){ if (!e.matches) setOpen(false); });
+  })();
+</script>
+
+</body>
+</html>

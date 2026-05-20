@@ -20,6 +20,10 @@
   /* Tighter sidebar width to match prototype's 196px */
   --sl-sidebar-width: 14rem; /* 224px */
 
+  /* Bump Starlight's default 3.5rem (56px) topbar to 3.875rem (62px) so the
+     docs site matches the marketing landing's topbar height exactly. */
+  --sl-nav-height: 3.875rem; /* 62px */
+
   /* Gray scale */
   --sl-color-white: #ffffff;
   --sl-color-gray-1: #e6e6e6;
@@ -47,7 +51,7 @@
   --sl-color-bg-inline-code: #1a1a1a;
   --sl-color-hairline: #2a2a2a;
   --sl-color-hairline-light: #2a2a2a;
-  --sl-color-hairline-shade: #121212;
+  --sl-color-hairline-shade: #2a2a2a;
 }
 
 /* ---------- Light mode ---------- */
@@ -145,6 +149,23 @@
   color: var(--sl-color-accent-high) !important;
 }
 
+/* Suppress Starlight's default separator border between the page-title
+   content-panel and the body content-panel. The vertical padding between
+   them already creates enough visual separation. */
+.content-panel + .content-panel {
+  border-top: 0;
+}
+
+/* Starlight stacks 1.5rem (24px) between every sibling in `.sl-container`
+   via `.sl-container > * + *`. That doubles the spacing around the version
+   badge and the H1 above the breadcrumb/badge's own margin-bottom. Reset
+   margin-top on those two so our component margins govern the rhythm,
+   matching the mockup-4 spacing. */
+.content-panel > .sl-container > .ver-badge,
+.content-panel > .sl-container > h1#_top {
+  margin-top: 0;
+}
+
 /* ============================================================
    PART 2b — TOP BAR CONTROL SIZING
 
@@ -156,16 +177,16 @@
 .header .gs-trigger,
 .header .gh-link,
 .header .tt-button {
-  height: 2.375rem; /* 38px */
-  min-height: 2.375rem;
+  height: 1.8rem; /* 34px */
+  min-height: 1.8rem;
   box-sizing: border-box;
 }
 
-/* Search input/button rendered by Starlight in the header — also 38px. */
+/* Search input/button rendered by Starlight in the header — also 34px. */
 .header .search-slot button,
 .header .search-slot input {
-  height: 2.375rem;
-  min-height: 2.375rem;
+  height: 2.125rem;
+  min-height: 2.125rem;
   box-sizing: border-box;
 }
 

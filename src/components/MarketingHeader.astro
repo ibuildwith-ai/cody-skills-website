@@ -1,0 +1,526 @@
+---
+/**
+ * MarketingHeader — top bar for the marketing landing (`src/pages/index.astro`).
+ *
+ * Distinct from Starlight's Header (which only lives inside `/docs/*`). This one
+ * has its own brand, a Skills dropdown listing every skill (available + coming
+ * soon), site links (Documentation / Contact / iBuildWith.ai), and a hamburger
+ * drawer for mobile.
+ *
+ * All client-side behavior (dropdown, drawer) is wired in `<script>` blocks
+ * at the bottom so this file is self-contained.
+ */
+import { skills, availableSkills, getSkillIconLetter } from '../skills';
+import { CONTACT_EMAIL, IBUILDWITH_AI_URL } from '../site-config';
+
+const defaultSkill = availableSkills[0];
+const docsHref = `/docs/${defaultSkill.id}/`;
+const contactHref = `mailto:${CONTACT_EMAIL}`;
+---
+
+<header class="topbar">
+  <a href="/" class="brand">
+    <img class="logo" src="/images/cody-skills-logo.png" alt="" />
+    <span class="brand-text">Cody Skills</span>
+  </a>
+  <div class="spacer"></div>
+
+  <nav class="top-links">
+    <div class="skills-menu" id="skills-menu">
+      <button
+        class="top-link"
+        id="skills-trigger"
+        type="button"
+        aria-haspopup="menu"
+        aria-expanded="false"
+      >
+        Skills
+        <svg
+          class="chev"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </button>
+      <div class="skills-dropdown" role="menu">
+        {
+          skills.map((s) =>
+            s.status === 'available' ? (
+              <a class="sm-item live" href={`/docs/${s.id}/`} role="menuitem">
+                <span class="sm-ico">{getSkillIconLetter(s)}</span>
+                <span class="sm-text">
+                  <span class="sm-name">{s.name}</span>
+                  <span class="sm-meta">{`v${s.version} · Available now`}</span>
+                </span>
+              </a>
+            ) : (
+              <div class="sm-item soon" role="menuitem" aria-disabled="true">
+                <span class="sm-ico">{getSkillIconLetter(s)}</span>
+                <span class="sm-text">
+                  <span class="sm-name">{s.name}</span>
+                  <span class="sm-meta">Coming soon</span>
+                </span>
+              </div>
+            )
+          )
+        }
+      </div>
+    </div>
+
+    <a href={docsHref} class="top-link">Documentation</a>
+    <a href={contactHref} class="top-link">Contact</a>
+    <a
+      href={IBUILDWITH_AI_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="top-link"
+    >
+      iBuildWith.ai
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M7 17 17 7M8 7h9v9" />
+      </svg>
+    </a>
+  </nav>
+
+  <button
+    class="hamburger"
+    id="hamburger"
+    type="button"
+    aria-label="Open menu"
+    aria-expanded="false"
+    aria-controls="mobile-drawer"
+  >
+    <svg
+      class="ham-open"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      aria-hidden="true"
+    >
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    </svg>
+    <svg
+      class="ham-close"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      aria-hidden="true"
+    >
+      <path d="M6 6l12 12M18 6L6 18" />
+    </svg>
+  </button>
+</header>
+
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+  <div class="md-section">
+    <div class="md-label">Skills</div>
+    {
+      skills.map((s) =>
+        s.status === 'available' ? (
+          <a class="md-skill live" href={`/docs/${s.id}/`}>
+            <span class="md-skill-ico">{getSkillIconLetter(s)}</span>
+            <span class="md-skill-text">
+              <span class="md-skill-name">{s.name}</span>
+              <span class="md-skill-meta">{`v${s.version} · Available now`}</span>
+            </span>
+          </a>
+        ) : (
+          <div class="md-skill soon">
+            <span class="md-skill-ico">{getSkillIconLetter(s)}</span>
+            <span class="md-skill-text">
+              <span class="md-skill-name">{s.name}</span>
+              <span class="md-skill-meta">Coming soon</span>
+            </span>
+          </div>
+        )
+      )
+    }
+  </div>
+  <div class="md-section">
+    <a class="md-link" href={docsHref}>Documentation</a>
+    <a class="md-link" href={contactHref}>Contact</a>
+    <a
+      class="md-link"
+      href={IBUILDWITH_AI_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      iBuildWith.ai
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M7 17 17 7M8 7h9v9" />
+      </svg>
+    </a>
+  </div>
+</div>
+
+<script>
+  // Skills dropdown — click to toggle, close on outside click or Escape.
+  const wrap = document.getElementById('skills-menu');
+  const trigger = document.getElementById('skills-trigger');
+  if (wrap && trigger) {
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = wrap.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', String(open));
+    });
+    wrap
+      .querySelector('.skills-dropdown')!
+      .addEventListener('click', (e) => e.stopPropagation());
+    document.addEventListener('click', () => {
+      wrap.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        wrap.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // Hamburger — toggles the mobile drawer; closes on Escape or viewport grow.
+  const hamBtn = document.getElementById('hamburger');
+  const drawer = document.getElementById('mobile-drawer');
+  if (hamBtn && drawer) {
+    const setOpen = (open: boolean) => {
+      drawer.classList.toggle('open', open);
+      hamBtn.setAttribute('aria-expanded', String(open));
+      drawer.setAttribute('aria-hidden', String(!open));
+    };
+    hamBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setOpen(!drawer.classList.contains('open'));
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') setOpen(false);
+    });
+    const mq = window.matchMedia('(max-width: 48rem)');
+    mq.addEventListener('change', (e) => {
+      if (!e.matches) setOpen(false);
+    });
+  }
+</script>
+
+<style>
+  .topbar {
+    height: 62px;
+    border-bottom: 1px solid var(--cs-border, #2a2a2a);
+    background: rgba(14, 14, 14, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    color: #fff;
+    text-decoration: none;
+  }
+  .brand .logo {
+    width: 26px;
+    height: 26px;
+    display: block;
+    flex-shrink: 0;
+  }
+  .spacer {
+    flex: 1;
+  }
+
+  .top-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .top-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--cs-text-2, #b0b0b0);
+    text-decoration: none;
+    font-weight: 500;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+    padding: 0;
+  }
+  .top-link:hover {
+    color: var(--cs-accent-2, #4ade80);
+  }
+  .top-link svg {
+    width: 11px;
+    height: 11px;
+    opacity: 0.7;
+  }
+
+  /* Skills dropdown */
+  .skills-menu {
+    position: relative;
+  }
+  .skills-menu .chev {
+    transition: transform 0.15s;
+  }
+  .skills-menu.open .top-link {
+    color: var(--cs-accent-2, #4ade80);
+  }
+  .skills-menu.open .chev {
+    transform: rotate(180deg);
+  }
+  .skills-dropdown {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    min-width: 280px;
+    background: #181818;
+    border: 1px solid var(--cs-border, #2a2a2a);
+    border-radius: 12px;
+    padding: 6px;
+    z-index: 50;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    display: none;
+  }
+  .skills-menu.open .skills-dropdown {
+    display: block;
+  }
+  .sm-item {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+  }
+  a.sm-item:hover {
+    background: #222;
+  }
+  .sm-item.soon {
+    opacity: 0.55;
+    cursor: default;
+  }
+  .sm-ico {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--cs-accent, #22c55e);
+    color: var(--cs-bg, #121212);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .sm-item.soon .sm-ico {
+    background: var(--cs-bg-3, #1f1f1f);
+    border: 1px solid var(--cs-border, #2a2a2a);
+    color: var(--cs-text-3, #888);
+  }
+  .sm-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .sm-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.005em;
+  }
+  .sm-meta {
+    font-size: 11px;
+    color: var(--cs-text-3, #888);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  a.sm-item.live .sm-meta {
+    color: var(--cs-accent-2, #4ade80);
+  }
+
+  /* Hamburger + mobile drawer */
+  .hamburger {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--cs-border, #2a2a2a);
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    color: var(--cs-text, #e6e6e6);
+    cursor: pointer;
+    padding: 0;
+  }
+  .hamburger:hover {
+    filter: brightness(1.15);
+  }
+  .hamburger svg {
+    width: 18px;
+    height: 18px;
+  }
+  .hamburger .ham-close {
+    display: none;
+  }
+  .hamburger[aria-expanded='true'] .ham-open {
+    display: none;
+  }
+  .hamburger[aria-expanded='true'] .ham-close {
+    display: block;
+  }
+
+  .mobile-drawer {
+    display: none;
+    position: fixed;
+    top: 62px;
+    left: 0;
+    right: 0;
+    background: var(--cs-bg, #0e0e0e);
+    border-bottom: 1px solid var(--cs-border, #2a2a2a);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+    z-index: 19;
+    padding: 16px;
+    max-height: calc(100vh - 62px);
+    overflow-y: auto;
+  }
+  .mobile-drawer.open {
+    display: block;
+  }
+  .md-section {
+    padding: 8px 0;
+  }
+  .md-section + .md-section {
+    border-top: 1px solid var(--cs-border, #2a2a2a);
+    margin-top: 8px;
+    padding-top: 16px;
+  }
+  .md-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cs-text-3, #888);
+    margin-bottom: 8px;
+    padding-left: 8px;
+  }
+  .md-skill {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 8px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+  }
+  a.md-skill:hover {
+    background: var(--cs-bg-2, #181818);
+  }
+  .md-skill.soon {
+    opacity: 0.55;
+  }
+  .md-skill-ico {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--cs-accent, #22c55e);
+    color: var(--cs-bg, #0e0e0e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .md-skill.soon .md-skill-ico {
+    background: var(--cs-bg-3, #1f1f1f);
+    border: 1px solid var(--cs-border, #2a2a2a);
+    color: var(--cs-text-3, #888);
+  }
+  .md-skill-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .md-skill-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.005em;
+  }
+  .md-skill-meta {
+    font-size: 11px;
+    color: var(--cs-text-3, #888);
+    margin-top: 2px;
+    font-weight: 500;
+  }
+  a.md-skill.live .md-skill-meta {
+    color: var(--cs-accent-2, #4ade80);
+  }
+  .md-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 8px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--cs-text, #e6e6e6);
+    text-decoration: none;
+  }
+  a.md-link:hover {
+    background: var(--cs-bg-2, #181818);
+    color: var(--cs-accent-2, #4ade80);
+  }
+  .md-link svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0.7;
+  }
+
+  @media (max-width: 48rem) {
+    .topbar {
+      padding: 0 14px;
+      gap: 10px;
+    }
+    .top-links {
+      display: none;
+    }
+    .hamburger {
+      display: inline-flex;
+    }
+  }
+</style>

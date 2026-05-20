@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cody Skills · Created for Builders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --bg:#121212; --bg-2:#161616; --border:#2a2a2a; --border-2:#1f1f1f;
+    --text:#e6e6e6; --text-2:#b0b0b0; --text-3:#888;
+    --accent:#22c55e; --accent-2:#4ade80; --accent-low:rgba(34,197,94,.10);
+  }
+  body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.68;font-size:15px;
+    min-height:100vh;display:flex;flex-direction:column;}
+
+  /* Topbar — identical to docs site */
+  .topbar{height:62px;border-bottom:1px solid var(--border);background:var(--bg);
+    display:flex;align-items:center;gap:16px;padding:0 22px;position:sticky;top:0;z-index:20;}
+  .brand{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;
+    letter-spacing:-.01em;color:#fff;text-decoration:none;}
+  .brand .logo{display:inline-flex;align-items:center;justify-content:center;
+    width:24px;height:24px;border-radius:7px;background:var(--accent);color:var(--bg);
+    font-weight:800;font-size:13px;line-height:1;}
+  .spacer{flex:1;}
+  .top-link{font-size:13px;color:var(--text-2);text-decoration:none;font-weight:500;}
+  .top-link:hover{color:var(--accent-2);}
+  .gh-link{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;
+    border-radius:8px;background:var(--bg-2);color:#fff;border:1px solid var(--border);
+    text-decoration:none;}
+  .gh-link:hover{filter:brightness(1.12);}
+  .gh-link svg{width:18px;height:18px;}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:8px;
+    background:var(--accent);color:var(--bg);font-size:13px;font-weight:650;text-decoration:none;
+    letter-spacing:.005em;}
+  .cta:hover{filter:brightness(1.08);}
+  .cta svg{width:14px;height:14px;}
+
+  /* Hero */
+  .hero{padding:96px 22px 80px;text-align:center;border-bottom:1px solid var(--border);}
+  .hero-inner{max-width:760px;margin:0 auto;}
+  .eyebrow{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--text-3);padding:6px 12px;
+    border:1px solid var(--border);border-radius:999px;margin-bottom:24px;}
+  .eyebrow .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:var(--accent);margin-right:8px;vertical-align:middle;}
+  h1{font-size:48px;line-height:1.15;letter-spacing:-.025em;font-weight:700;color:#fff;
+    margin-bottom:18px;}
+  .lead{font-size:17px;color:var(--text-2);max-width:580px;margin:0 auto 28px;line-height:1.6;}
+  .hero-ctas{display:inline-flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:8px;
+    font-size:13.5px;font-weight:650;text-decoration:none;letter-spacing:.005em;}
+  .btn-primary{background:var(--accent);color:var(--bg);}
+  .btn-primary:hover{filter:brightness(1.08);}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border);}
+  .btn-ghost:hover{border-color:var(--text-3);color:#fff;}
+
+  /* Skills section */
+  .skills{padding:80px 22px;}
+  .skills-inner{max-width:1080px;margin:0 auto;}
+  .section-label{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--text-3);text-align:center;margin-bottom:14px;}
+  .section-title{font-size:21px;font-weight:650;letter-spacing:-.01em;color:#fff;
+    text-align:center;margin-bottom:48px;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .card{background:var(--bg-2);border:1px solid var(--border);border-radius:14px;padding:26px;
+    text-decoration:none;color:inherit;display:flex;flex-direction:column;
+    transition:border-color .15s, transform .15s;}
+  .card.live:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .card.soon{opacity:.62;cursor:default;}
+  .card-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .card-ico{width:34px;height:34px;border-radius:9px;background:var(--accent);color:var(--bg);
+    display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;flex-shrink:0;}
+  .card.soon .card-ico{background:var(--bg);border:1px solid var(--border);color:var(--text-3);}
+  .card-meta{flex:1;}
+  .card-title{font-size:15px;font-weight:650;color:#fff;letter-spacing:-.005em;}
+  .card-ver{font-size:11.5px;color:var(--text-3);margin-top:2px;font-weight:500;}
+  .card.live .card-ver{color:var(--accent-2);}
+  .card-body{font-size:13.5px;color:var(--text-2);line-height:1.6;flex:1;}
+  .card-foot{margin-top:18px;display:flex;align-items:center;gap:6px;font-size:13px;
+    font-weight:600;color:var(--accent-2);}
+  .card-foot svg{width:13px;height:13px;transition:transform .15s;}
+  .card.live:hover .card-foot svg{transform:translateX(3px);}
+  .card.soon .card-foot{color:var(--text-3);font-weight:500;}
+
+  /* Footer */
+  footer{margin-top:auto;border-top:1px solid var(--border);padding:32px 22px;background:var(--bg);}
+  .foot-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;
+    gap:20px;flex-wrap:wrap;}
+  .foot-brand{display:inline-flex;align-items:center;gap:9px;font-weight:700;color:#fff;
+    font-size:14px;letter-spacing:-.01em;}
+  .foot-copy{font-size:12.5px;color:var(--text-3);}
+  .foot-links{display:flex;gap:22px;}
+  .foot-links a{font-size:13px;color:var(--text-2);text-decoration:none;}
+  .foot-links a:hover{color:var(--accent-2);}
+
+  @media (max-width:768px){
+    .topbar{padding:0 14px;gap:10px;}
+    .top-link{display:none;}
+    .hero{padding:64px 18px 56px;}
+    h1{font-size:34px;}
+    .lead{font-size:15.5px;}
+    .skills{padding:56px 18px;}
+    .grid{grid-template-columns:1fr;}
+    .foot-inner{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="#" class="brand"><span class="logo">C</span> Cody Skills</a>
+  <div class="spacer"></div>
+  <a href="#" class="top-link">Docs</a>
+  <a href="#" class="top-link">GitHub</a>
+  <a href="#skills" class="cta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg>
+    Browse Skills
+  </a>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow"><span class="dot"></span>v1.0 · Cody Product Builder</span>
+    <h1>Created for Builders</h1>
+    <p class="lead">AI agent skills that turn ideas into shipped products. Built for knowledge workers, domain experts, and creators using any AI coding environment.</p>
+    <div class="hero-ctas">
+      <a href="#skills" class="btn btn-primary">Browse Skills</a>
+      <a href="#" class="btn btn-ghost">Read the Docs →</a>
+    </div>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <div class="skills-inner">
+    <div class="section-label">The Skills</div>
+    <h2 class="section-title">One workflow, every project, any AI environment.</h2>
+
+    <div class="grid">
+
+      <a href="#" class="card live">
+        <div class="card-head">
+          <div class="card-ico">P</div>
+          <div class="card-meta">
+            <div class="card-title">Cody Product Builder</div>
+            <div class="card-ver">v2.1.0 · Available now</div>
+          </div>
+        </div>
+        <div class="card-body">Take an idea from raw concept to shipped product with a structured two-phase workflow. Plan, build, and ship versions in any AI coding environment.</div>
+        <div class="card-foot">
+          Open the docs
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+      </a>
+
+      <div class="card soon">
+        <div class="card-head">
+          <div class="card-ico">A</div>
+          <div class="card-meta">
+            <div class="card-title">Cody Article Writer</div>
+            <div class="card-ver">Coming soon</div>
+          </div>
+        </div>
+        <div class="card-body">Plan, research, draft, and manage long-form articles. Topic ideation through export, with custom writing styles you can save and reuse.</div>
+        <div class="card-foot">In development</div>
+      </div>
+
+      <div class="card soon">
+        <div class="card-head">
+          <div class="card-ico">S</div>
+          <div class="card-meta">
+            <div class="card-title">Cody Skill Auditor</div>
+            <div class="card-ver">Coming soon</div>
+          </div>
+        </div>
+        <div class="card-body">Audit an existing agent skill against the agentskills.io spec and the Cody Skill Framework. Surface compliance gaps and framework drift before you publish.</div>
+        <div class="card-foot">In development</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand"><span class="logo" style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:var(--accent);color:var(--bg);font-weight:800;font-size:11px;">C</span> Cody Skills</div>
+      <div class="foot-copy" style="margin-top:6px;">© 2026 Red Pill Blue Pill Studios. <a href="https://www.ibuildwith.ai" style="color:var(--text-2);text-decoration:none;">iBuildWith.ai</a>.</div>
+    </div>
+    <div class="foot-links">
+      <a href="#">Docs</a>
+      <a href="#">GitHub</a>
+      <a href="https://www.ibuildwith.ai">iBuildWith.ai</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -7,7 +7,7 @@
  * mark in the open menu. Clicking another skill navigates to that skill's
  * Overview at `/docs/<id>/`.
  */
-import { skills } from '../skills';
+import { skills, getSkillIconLetter } from '../skills';
 import { getActiveSkill } from '../skills/active';
 
 const active = getActiveSkill(Astro.url.pathname);
@@ -43,36 +43,48 @@ const active = getActiveSkill(Astro.url.pathname);
   <div class="ss-menu" id="skill-switcher-menu" role="listbox">
     <div class="ss-label">Switch skill</div>
     {
-      skills.map((s) => (
-        <a
-          class:list={['ss-item', { active: s.id === active.id }]}
-          href={`/docs/${s.id}/`}
-          role="option"
-          aria-selected={s.id === active.id}
-        >
-          <span class="ss-item-ico" aria-hidden="true">
-            {s.name.charAt(0)}
-          </span>
-          <span class="ss-item-text">
-            <span class="ss-item-name">{s.name}</span>
-            <span class="ss-item-ver">v{s.version}</span>
-          </span>
-          <svg
-            class="ss-item-check"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-            width="14"
-            height="14"
+      skills.map((s) =>
+        s.status === 'available' ? (
+          <a
+            class:list={['ss-item', { active: s.id === active.id }]}
+            href={`/docs/${s.id}/`}
+            role="option"
+            aria-selected={s.id === active.id}
           >
-            <path d="M5 13l4 4L19 7" />
-          </svg>
-        </a>
-      ))
+            <span class="ss-item-ico" aria-hidden="true">
+              {getSkillIconLetter(s)}
+            </span>
+            <span class="ss-item-text">
+              <span class="ss-item-name">{s.name}</span>
+              <span class="ss-item-ver">v{s.version}</span>
+            </span>
+            <svg
+              class="ss-item-check"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              width="14"
+              height="14"
+            >
+              <path d="M5 13l4 4L19 7" />
+            </svg>
+          </a>
+        ) : (
+          <div class="ss-item soon" role="option" aria-disabled="true">
+            <span class="ss-item-ico" aria-hidden="true">
+              {getSkillIconLetter(s)}
+            </span>
+            <span class="ss-item-text">
+              <span class="ss-item-name">{s.name}</span>
+              <span class="ss-item-ver">Coming soon</span>
+            </span>
+          </div>
+        )
+      )
     }
   </div>
 </div>
@@ -215,6 +227,22 @@ const active = getActiveSkill(Astro.url.pathname);
   }
   .ss-item.active .ss-item-check {
     opacity: 1;
+  }
+
+  /* Coming-soon entries — visible but non-interactive. */
+  .ss-item.soon {
+    opacity: 0.55;
+    cursor: default;
+  }
+  .ss-item.soon:hover {
+    background: transparent;
+  }
+  .ss-item.soon .ss-item-ico {
+    background: var(--sl-color-gray-5);
+    color: var(--sl-color-gray-3);
+  }
+  .ss-item.soon .ss-item-ver {
+    color: var(--sl-color-gray-3);
   }
 
   /* At ≤48rem (768px), shrink the trigger to a green dot pill — matches the

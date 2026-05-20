@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cody Skills · Created for Builders</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --bg:#121212; --bg-2:#171717; --bg-3:#1d1d1d; --border:#2a2a2a; --border-2:#222;
+    --text:#e6e6e6; --text-2:#b0b0b0; --text-3:#888;
+    --accent:#22c55e; --accent-2:#4ade80; --accent-low:rgba(34,197,94,.10);
+  }
+  body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg);color:var(--text);line-height:1.68;font-size:15px;
+    min-height:100vh;display:flex;flex-direction:column;}
+
+  /* Topbar */
+  .topbar{height:62px;border-bottom:1px solid var(--border);background:var(--bg);
+    display:flex;align-items:center;gap:16px;padding:0 24px;position:sticky;top:0;z-index:20;}
+  .brand{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:15px;
+    letter-spacing:-.01em;color:#fff;text-decoration:none;}
+  .brand .logo{display:inline-flex;align-items:center;justify-content:center;
+    width:24px;height:24px;border-radius:7px;background:var(--accent);color:var(--bg);
+    font-weight:800;font-size:13px;line-height:1;}
+  .spacer{flex:1;}
+  .top-link{font-size:13px;color:var(--text-2);text-decoration:none;font-weight:500;}
+  .top-link:hover{color:var(--accent-2);}
+  .cta{display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border-radius:8px;
+    background:var(--accent);color:var(--bg);font-size:13px;font-weight:650;text-decoration:none;}
+  .cta:hover{filter:brightness(1.08);}
+  .cta svg{width:14px;height:14px;}
+
+  /* Compact hero — sets the stage, gets out of the way */
+  .hero{padding:64px 24px 48px;text-align:center;border-bottom:1px solid var(--border);}
+  .hero-inner{max-width:740px;margin:0 auto;}
+  .eyebrow{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--text-3);padding:6px 12px;
+    border:1px solid var(--border);border-radius:999px;margin-bottom:20px;}
+  .eyebrow .dot{display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:var(--accent);margin-right:8px;vertical-align:middle;}
+  h1{font-size:38px;line-height:1.15;letter-spacing:-.025em;font-weight:700;color:#fff;
+    margin-bottom:14px;}
+  .lead{font-size:16px;color:var(--text-2);max-width:560px;margin:0 auto;line-height:1.55;}
+
+  /* SKILLS — the centerpiece, big rich cards */
+  .skills{padding:48px 24px 80px;}
+  .skills-inner{max-width:1100px;margin:0 auto;}
+  .skill-card{display:grid;grid-template-columns:340px 1fr;gap:48px;align-items:start;
+    background:var(--bg-2);border:1px solid var(--border);border-radius:18px;
+    padding:36px;margin-bottom:24px;text-decoration:none;color:inherit;
+    transition:.2s;position:relative;overflow:hidden;}
+  .skill-card.live:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .skill-card.soon{opacity:.66;cursor:default;}
+
+  .skill-left{display:flex;flex-direction:column;}
+  .skill-ico{width:52px;height:52px;border-radius:13px;background:var(--accent);
+    color:var(--bg);display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:22px;margin-bottom:18px;}
+  .skill-card.soon .skill-ico{background:var(--bg-3);border:1px solid var(--border);color:var(--text-3);}
+  .skill-name{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.018em;margin-bottom:6px;}
+  .skill-status{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;
+    letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;
+    border:1px solid var(--border);width:fit-content;margin-bottom:18px;}
+  .skill-card.live .skill-status{color:var(--accent-2);}
+  .skill-card.live .skill-status::before{content:'';display:inline-block;width:6px;height:6px;
+    border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(34,197,94,.6);}
+  .skill-card.soon .skill-status{color:var(--text-3);}
+  .skill-cta{margin-top:auto;padding-top:14px;display:inline-flex;align-items:center;gap:6px;
+    font-size:13.5px;font-weight:600;color:var(--accent-2);}
+  .skill-card.live:hover .skill-cta svg{transform:translateX(3px);}
+  .skill-cta svg{width:14px;height:14px;transition:transform .15s;}
+  .skill-card.soon .skill-cta{color:var(--text-3);font-weight:500;}
+
+  .skill-right{padding-top:6px;}
+  .skill-tag{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--text-3);margin-bottom:10px;}
+  .skill-pitch{font-size:17px;color:var(--text);line-height:1.55;margin-bottom:20px;
+    letter-spacing:-.005em;}
+  .skill-features{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;}
+  .skill-features li{font-size:13.5px;color:var(--text-2);line-height:1.5;
+    padding-left:22px;position:relative;}
+  .skill-features li::before{content:'';position:absolute;left:0;top:7px;width:13px;height:13px;
+    background:var(--accent-low);border:1px solid var(--accent);border-radius:50%;}
+  .skill-features li::after{content:'';position:absolute;left:4px;top:11px;width:5px;height:3px;
+    border-left:1.5px solid var(--accent);border-bottom:1.5px solid var(--accent);
+    transform:rotate(-45deg);}
+  .skill-card.soon .skill-features li::before{background:transparent;border-color:var(--border);}
+  .skill-card.soon .skill-features li::after{border-color:var(--text-3);}
+
+  /* Footer */
+  footer{margin-top:auto;border-top:1px solid var(--border);padding:34px 24px;background:var(--bg);}
+  .foot-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;
+    gap:20px;flex-wrap:wrap;}
+  .foot-brand{display:inline-flex;align-items:center;gap:9px;font-weight:700;color:#fff;
+    font-size:14px;letter-spacing:-.01em;}
+  .foot-copy{font-size:12.5px;color:var(--text-3);}
+  .foot-links{display:flex;gap:22px;}
+  .foot-links a{font-size:13px;color:var(--text-2);text-decoration:none;}
+  .foot-links a:hover{color:var(--accent-2);}
+
+  @media (max-width:900px){
+    .skill-card{grid-template-columns:1fr;gap:24px;padding:28px;}
+    .skill-features{grid-template-columns:1fr;}
+  }
+  @media (max-width:768px){
+    .topbar{padding:0 14px;gap:10px;}
+    .top-link{display:none;}
+    .hero{padding:48px 18px 40px;}
+    h1{font-size:30px;}
+    .skills{padding:36px 18px 64px;}
+    .skill-name{font-size:20px;}
+    .skill-pitch{font-size:15.5px;}
+    .foot-inner{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="#" class="brand"><span class="logo">C</span> Cody Skills</a>
+  <div class="spacer"></div>
+  <a href="#" class="top-link">Docs</a>
+  <a href="#" class="top-link">GitHub</a>
+  <a href="#skills" class="cta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14"/></svg>
+    Browse Skills
+  </a>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow"><span class="dot"></span>Cody Skills · v1</span>
+    <h1>Created for Builders</h1>
+    <p class="lead">AI agent skills that turn ideas into shipped products. Built for knowledge workers, domain experts, and creators using any AI coding environment.</p>
+  </div>
+</section>
+
+<section class="skills" id="skills">
+  <div class="skills-inner">
+
+    <a href="#" class="skill-card live">
+      <div class="skill-left">
+        <div class="skill-ico">P</div>
+        <div class="skill-name">Cody Product Builder</div>
+        <div class="skill-status">v2.1.0 · Available now</div>
+        <div class="skill-cta">
+          Open the docs
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </div>
+      </div>
+      <div class="skill-right">
+        <div class="skill-tag">For builders shipping real products with AI</div>
+        <p class="skill-pitch">Take an idea from raw concept to shipped product with a structured two-phase workflow. Plan, build, and ship versions in any AI coding environment, without the work collapsing into chaos.</p>
+        <ul class="skill-features">
+          <li>Structured Plan + Build phases</li>
+          <li>Versions and lightweight patches</li>
+          <li>Throwaway prototyping built in</li>
+          <li>Quick idea capture mid-flow</li>
+          <li>Brownfield codebase support</li>
+          <li>Works with Claude Code, Cursor, Copilot</li>
+        </ul>
+      </div>
+    </a>
+
+    <div class="skill-card soon">
+      <div class="skill-left">
+        <div class="skill-ico">A</div>
+        <div class="skill-name">Cody Article Writer</div>
+        <div class="skill-status">Coming soon</div>
+        <div class="skill-cta">In development</div>
+      </div>
+      <div class="skill-right">
+        <div class="skill-tag">For writers turning ideas into long-form content</div>
+        <p class="skill-pitch">Plan, research, draft, and manage long-form articles. Topic ideation through export, with custom writing styles you can save and reuse across pieces.</p>
+        <ul class="skill-features">
+          <li>Topic ideation and research</li>
+          <li>Structured outlining and drafting</li>
+          <li>Custom writing styles</li>
+          <li>Draft and archive management</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="skill-card soon">
+      <div class="skill-left">
+        <div class="skill-ico">S</div>
+        <div class="skill-name">Cody Skill Auditor</div>
+        <div class="skill-status">Coming soon</div>
+        <div class="skill-cta">In development</div>
+      </div>
+      <div class="skill-right">
+        <div class="skill-tag">For skill authors enforcing spec compliance</div>
+        <p class="skill-pitch">Audit an existing agent skill against the agentskills.io spec and the Cody Skill Framework. Surface compliance gaps and framework drift before you publish or compose on top of an existing skill.</p>
+        <ul class="skill-features">
+          <li>Full, standards-only, or framework audits</li>
+          <li>Structured findings as JSON</li>
+          <li>HTML report per audit</li>
+          <li>Human and skill (orchestrator) modes</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div>
+      <div class="foot-brand"><span class="logo" style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:var(--accent);color:var(--bg);font-weight:800;font-size:11px;">C</span> Cody Skills</div>
+      <div class="foot-copy" style="margin-top:6px;">© 2026 Red Pill Blue Pill Studios. <a href="https://www.ibuildwith.ai" style="color:var(--text-2);text-decoration:none;">iBuildWith.ai</a>.</div>
+    </div>
+    <div class="foot-links">
+      <a href="#">Docs</a>
+      <a href="#">GitHub</a>
+      <a href="https://www.ibuildwith.ai">iBuildWith.ai</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

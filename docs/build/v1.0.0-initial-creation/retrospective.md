@@ -1,0 +1,53 @@
+# Version Retrospective – v1.0.0 (Initial Creation)
+This document reflects on what worked, what didn't, and how future versions can be improved.
+
+## Version Summary
+
+v1.0.0 launches the Cody Skills documentation site as a multi-skill platform from day one. What shipped:
+
+- **Public docs site** at `codyskills.ai/docs/cody-product-builder/` with 15 full content pages covering Overview, Installation, Quick Start, the three Workflow pages, six command reference pages, and three Reference pages (Prototypes, Project Settings, Changelog).
+- **Marketing landing** at `codyskills.ai/` with hero, "works with" marquee, three side-by-side skill cards (one live + two coming-soon), and a 3-column footer.
+- **Multi-skill data layer** (`src/skills/`) modeled as a discriminated union (`AvailableSkill` vs `ComingSoonSkill`) so coming-soon skills get marketing surface area without docs surface area, and all UI logic branches on a single `status` field.
+- **Custom topbar** (docs site override) with brand, Skills dropdown, Get Skill (icon-only translucent green pill), search, GitHub link, theme toggle, and a separate custom topbar for the marketing landing with the same vocabulary but distinct layout.
+- **Brand assets in place**: robot logo (`public/images/cody-skills-logo.png`) used as the topbar logo on both surfaces plus the favicon; iBuildWith.ai-style SVG illustrations (per-skill) co-located with skill downloads under `public/skills/<skill-id>/`.
+- **Production deploy** via GitHub Actions to GitHub Pages at the custom `codyskills.ai` domain, with `public/CNAME` ensuring the custom domain survives every deploy.
+- **Per-skill downloads**: `.zip` and `.skill` artifacts published at `public/skills/cody-product-builder/downloads/` and referenced from `skill.ts`'s `getSkill[]` array.
+
+## What Went Well
+
+- **Prototyping before building paid off.** Two prototypes (`design-chooser` for the docs visual identity, `marketing-landing-page` for the home page) settled the major design questions in throwaway HTML before any Astro code was written. The chosen mockup-4 (docs) and mockup-2 (marketing) were both refined heavily in their prototype phase, so the production implementations were near-1:1 conversions instead of guessing-and-iterating in Astro.
+- **Data-driven UI from day one.** Every skill-specific rendering (version pill, dropdown items, sidebar config, GitHub link, downloads, illustration, card body) reads from `src/skills/`. Adding Cody Article Writer in a future version will be a content-only diff, not a refactor.
+- **Discriminated union for coming-soon skills.** Modeling `Skill = AvailableSkill | ComingSoonSkill` keyed on `status` was the right call. UI components branch on `skill.status === 'available'` and TypeScript narrows the accessible fields automatically. No special-casing scattered across components.
+- **Co-located per-skill public assets.** The user reorganized `public/` mid-build from flat `public/images/` and `public/downloads/` into per-skill `public/skills/<id>/images/` and `public/skills/<id>/downloads/`. This mirrors the `src/skills/<id>/` partition exactly and will scale cleanly as each skill accumulates screenshots, social cards, and other assets.
+- **Centralized config (`src/site-config.ts`).** Captured contact email and parent-brand URL as exported constants, so updating either is a one-line change.
+- **Tight CSS token system in `theme.css`.** Typography (`--sl-text-*`, `--cs-*`), tracking (`--cs-tracking-*`), and weights (`--cs-fw-*`) live as variables. Components consume tokens, not hardcoded values, so global type rhythm is tunable from one file.
+
+## What Could Have Gone Better
+
+- **Browser-cache surprises.** Multiple times during the build, "the change isn't applied" turned out to be browser caching (the `/` redirect persisting, old CSS being served). Each time it took a few minutes to diagnose. Fix going forward: keep DevTools open with "Disable cache" ticked during build.
+- **Date drift in artifacts.** Several findings-log timestamps were written as `2026-05-21` when the actual date was `2026-05-20`. Caught and corrected, but a reminder to read the current date from the environment, not extrapolate.
+- **Icon-letter bug shipped briefly.** The SkillSwitcher and marketing dropdown initially showed "C / C / C" for all three Cody skills because the icon was derived from `name.charAt(0)`. Caught at first render; fixed via a `getSkillIconLetter()` helper that takes the first letter of the second word. Should have been caught at the data-design step.
+- **Repeated copy edits.** Headlines, taglines, button labels, and section heads went through multiple revisions. Not wasted work, but a writing pass with the final design in front of the user before coding the production page would have saved a few rounds.
+- **Phase 6 content review deferred.** The 15 content pages were drafted by the agent and not yet reviewed end-to-end by the user. Tracked as task 6.16 in the tasklist but unresolved at version close. Carrying this risk into v1.0.0 launch.
+
+## Lessons Learned
+_Both human and AI can add insights here. Focus on what to repeat or avoid in the future._
+
+- **Custom Astro pages need to opt in to font-smoothing — Starlight gets it for free.** When the marketing landing was added at `src/pages/index.astro` (Phase 7), the same DM Sans 700 brand text rendered visibly heavier on `/` than on `/docs/*` even though all type properties were identical. Root cause: Starlight applies `-webkit-font-smoothing: antialiased` and `-moz-osx-font-smoothing: grayscale` globally inside its surface, but raw Astro pages outside Starlight don't get these by default. Without them, browsers fall back to subpixel rendering, which makes the same font weight look heavier. Fix: add both rules to the page's body styles. The original `design-chooser/mockup-4-ibuildwith.html` prototype had `-webkit-font-smoothing: antialiased` on body, but the rule didn't get carried into the production page when the prototype was reimplemented.
+- **`public/CNAME` is load-bearing for GitHub Pages custom domain on Actions-based deploys.** Setting the custom domain in the Pages dashboard alone is not enough when deploying via `upload-pages-artifact` + `deploy-pages` — without `CNAME` in the artifact root, the custom domain setting can get cleared on each deploy. Both the dashboard setting AND the file are needed in practice.
+- **Single-token CSS changes have wide blast radius.** Changing `--sl-color-hairline-shade` from `#121212` to `#2a2a2a` to restore the topbar/sidebar borders also revealed a content-panel separator that had always been there but invisible. Lesson: when changing a CSS custom property, grep every usage in the built CSS before assuming the change is local.
+- **The "redirect from `/` to `/docs/...`" trick has a half-life.** Useful in Phase 1 (no landing page yet), wrong by Phase 7 (when the landing page existed). Removing the redirect is one line in `astro.config.mjs`, but browsers can cache the 301 response aggressively and serve the old redirect for minutes-to-hours after the deploy. The cleanest path is to set it up with `0` or short Cache-Control max-age while developing, or to use 307/308 redirects which don't cache by default — but our setup uses Astro's `redirects` config which defaults to a permanent redirect. Worth knowing when adding any future redirect.
+- **`--sl-color-hairline-shade` is what Starlight uses for header/sidebar separators, not `--sl-color-hairline`.** The two tokens look similar but are semantically distinct in Starlight's design system. When customizing borders, check which token a given element uses, don't assume.
+- **Astro builds break silently when a config import fails.** When converting `astro.config.mjs` to import from `availableSkills` instead of `skills[0]`, an early run produced a confusing build that turned out to be the redirect derivation referring to a non-existent variable. Fast fix once spotted, but the error wasn't pointed at the line that mattered.
+
+## Action Items
+_Concrete steps or process changes to carry forward into the next version._
+
+1. **Hoist font-smoothing rules into a shared CSS file.** When any new non-Starlight page is added (`/blog`, `/about`, future landing variants), the body must include `-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;`. Create `src/styles/marketing-base.css` containing these (and the marketing-page `--cs-*` token block already in `index.astro`'s global style) and import it from every non-Starlight page. Stops the regression from happening again.
+2. **Run the deferred content review (task 6.16).** Walk every Cody Product Builder docs page end-to-end and edit anything that's off-tone, inaccurate, or missing. This is the actual sign-off gate that was deliberately deferred to keep the marketing landing build unblocked.
+3. **Replace temp `cody-skill-auditor.svg` illustration.** The current SVG was created during the marketing-landing prototype as a placeholder matching the visual language of the other two. When the Cody Skill Auditor skill itself is closer to ready, swap in a real custom illustration.
+4. **Document the `public/skills/<skill-id>/` convention in `design.md` and `README` for future contributors.** The reorganization is sound but currently only documented in `types.ts` JSDoc and this retro. Surface it where someone onboarding the repo would see it.
+5. **Add real release artifacts to backlog item B6 (new).** Cody Article Writer's `.zip` and `.skill` files are already in `public/skills/cody-article-writer/downloads/` ahead of the skill shipping. When CAW shipped, flip its `skill.ts` from `ComingSoonSkill` to `AvailableSkill`, populate `getSkill[]`, and add sidebar entries. Captured in backlog as B1; ensure download files are reused not re-created.
+6. **Decide whether to keep mirroring CPB's release-notes into the website changelog or link out exclusively.** The current `reference/changelog.md` mirrors entries by hand. If CPB versions tick faster than docs-site versions, mirroring will drift. Two options: (a) keep mirroring with a clear "last synced YYYY-MM-DD" footer, (b) make the website changelog point to the canonical `release-notes.md` on GitHub and stop mirroring. Pick one before CPB v2.2.0 ships.
+7. **Capture site-wide observability.** Add backlog item: lightweight, cookie-free analytics (already exists as B5) — schedule for v1.1.0.
+8. **Repeat the prototype-first pattern.** Every visual-heavy feature in future versions should follow `:cody prototype` → decision → build, not "start in Astro and iterate." The two prototypes in this version paid for themselves multiple times over.

@@ -21,6 +21,7 @@ const items = active.getSkill;
     aria-haspopup="menu"
     aria-expanded="false"
     aria-label={`Get ${active.name}`}
+    title={`Get ${active.name}`}
   >
     <svg
       class="gs-dl"
@@ -36,7 +37,7 @@ const items = active.getSkill;
     >
       <path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" />
     </svg>
-    <span class="gs-label">Get Skill</span>
+    <span class="gs-label">Download</span>
   </button>
 
   <div class="gs-menu" id="get-skill-menu" role="menu">
@@ -116,24 +117,28 @@ const items = active.getSkill;
     position: relative;
   }
 
+  /* Icon + label button, styled like the active sidebar item — translucent
+     green tint background with a light-green icon and label. Quieter than a
+     solid CTA but still clearly on-brand. Title tooltip is also set so the
+     intent is reinforced on hover. */
   .gs-trigger {
     display: inline-flex;
     align-items: center;
-    gap: 0.4375rem;
-    padding: 0.5rem 0.875rem;
+    gap: 0.5rem;
+    padding: 0 0.75rem;
     border-radius: 0.5rem;
-    background: var(--sl-color-accent);
-    color: var(--sl-color-bg);
+    background: var(--sl-color-accent-low);
+    color: var(--sl-color-accent-high);
     border: 0;
     font: inherit;
     font-size: var(--sl-text-sm);
     font-weight: var(--cs-fw-button);
     letter-spacing: 0.005em;
     cursor: pointer;
-    line-height: 1.15;
+    line-height: 1;
   }
   .gs-trigger:hover {
-    filter: brightness(1.08);
+    background: rgba(34, 197, 94, 0.2);
   }
   .gs-dl {
     flex-shrink: 0;
@@ -204,17 +209,18 @@ const items = active.getSkill;
     margin-top: 0.0625rem;
   }
 
-  /* At ≤48rem (768px), shrink the button to the download-arrow icon only —
-     matches the prototype's mobile pattern. The dropdown still opens on tap. */
+  /* On mobile, hide the label so the button collapses to a square icon, and
+     anchor the dropdown to the right edge so it doesn't overflow the viewport. */
   @media (max-width: 48rem) {
     .gs-label {
       display: none;
     }
     .gs-trigger {
-      padding: 0.5rem 0.6875rem;
+      justify-content: center;
+      width: 2.125rem;
+      padding: 0;
       gap: 0;
     }
-    /* Anchor the menu to the right edge so it doesn't overflow the viewport. */
     .gs-menu {
       left: auto;
       right: 0;

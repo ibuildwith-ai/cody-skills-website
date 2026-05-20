@@ -1,8 +1,12 @@
-import type { Skill } from '../types';
+import type { AvailableSkill } from '../types';
 
-const skill: Skill = {
+const skill: AvailableSkill = {
   id: 'cody-product-builder',
   name: 'Cody Product Builder',
+  status: 'available',
+  tagline:
+    'Take an idea from raw concept to shipped product with a structured two-phase workflow. Plan, build, and ship versions in any AI coding environment. Capture ideas mid-flow, prototype risky bits, and keep the work shippable as it grows.',
+  illustration: '/skills/cody-product-builder/images/cody-product-builder.svg',
   version: '2.1.0',
   github: 'https://github.com/ibuildwith-ai/cody-product-builder',
 
@@ -11,13 +15,13 @@ const skill: Skill = {
       icon: 'zip',
       name: 'Download .zip',
       description: 'Source archive',
-      href: '/downloads/cody-product-builder/cody-product-builder.zip',
+      href: '/skills/cody-product-builder/downloads/cody-product-builder.zip',
     },
     {
       icon: 'skill',
       name: 'Download .skill',
       description: 'Skill bundle (drop-in)',
-      href: '/downloads/cody-product-builder/cody-product-builder.skill',
+      href: '/skills/cody-product-builder/downloads/cody-product-builder.skill',
     },
   ],
 

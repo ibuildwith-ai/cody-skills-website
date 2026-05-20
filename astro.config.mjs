@@ -1,13 +1,14 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
-import { skills } from './src/skills';
+import { availableSkills } from './src/skills';
 
 /**
- * The first skill in the barrel is the default skill — what `/docs/` (and `/`
- * until Phase 7 ships the marketing landing) redirects to.
+ * The first **available** skill in the barrel is the default skill — what
+ * `/docs/` redirects to. Coming-soon skills are skipped here; they only appear
+ * in marketing surfaces (landing page, topbar Skills dropdown).
  */
-const defaultSkill = skills[0];
+const defaultSkill = availableSkills[0];
 
 /**
  * Build Starlight's sidebar config from `skills.ts`.
@@ -36,11 +37,9 @@ const sidebar = defaultSkill.sidebar.map((group) => ({
 export default defineConfig({
   site: 'https://codyskills.ai',
 
-  // `/docs/` and `/` both redirect to the default skill's overview.
-  // The `/` redirect is temporary — removed in Phase 7 when `src/pages/index.astro`
-  // (the marketing landing) is added; Astro page routes take precedence over redirects.
+  // `/docs/` (no trailing skill id) redirects to the default skill's overview.
+  // `/` is owned by the marketing landing at `src/pages/index.astro`.
   redirects: {
-    '/': `/docs/${defaultSkill.id}/`,
     '/docs': `/docs/${defaultSkill.id}/`,
   },
 
@@ -50,6 +49,7 @@ export default defineConfig({
       description:
         'Documentation for the Cody Skills family of AI agent skills.',
       customCss: ['./src/styles/theme.css'],
+      favicon: '/images/cody-skills-logo.png',
       sidebar,
       components: {
         // Custom top bar: brand · SkillSwitcher · GetSkillMenu · search · GitHub · theme

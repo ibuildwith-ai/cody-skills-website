@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing Landing Chooser · Cody Skills</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    background:#0b0b0b;color:#e6e6e6;height:100vh;display:flex;flex-direction:column;}
+  header{padding:14px 22px;display:flex;align-items:center;gap:20px;
+    border-bottom:1px solid #2a2a2a;background:#121212;flex-shrink:0;}
+  .title{font-weight:700;font-size:15px;letter-spacing:-.01em;color:#fff;}
+  .title span{color:#888;font-weight:500;}
+  .tabs{display:flex;gap:8px;}
+  .tab{padding:8px 16px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;
+    background:#161616;border:1px solid #2a2a2a;color:#b0b0b0;transition:.13s;}
+  .tab:hover{border-color:#4ade80;color:#fff;}
+  .tab.active{background:#22c55e;color:#121212;border-color:transparent;}
+  .tab .n{opacity:.6;margin-right:6px;}
+  .tab.active .n{opacity:.85;}
+  .hint{margin-left:auto;font-size:12px;color:#888;}
+  .desc{padding:11px 22px;font-size:12.5px;color:#b0b0b0;background:#161616;
+    border-bottom:1px solid #2a2a2a;flex-shrink:0;line-height:1.55;}
+  .desc b{color:#fff;font-weight:700;}
+  .frame-wrap{flex:1;position:relative;background:#0b0b0b;}
+  iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#121212;}
+</style>
+</head>
+<body>
+  <header>
+    <div class="title">Marketing Landing Chooser <span>— codyskills.ai home page</span></div>
+    <div class="tabs">
+      <div class="tab active" data-src="mockup-1-restrained.html"><span class="n">1</span>Restrained</div>
+      <div class="tab" data-src="mockup-2-energetic.html"><span class="n">2</span>Energetic</div>
+      <div class="tab" data-src="mockup-3-showcase.html"><span class="n">3</span>Showcase</div>
+    </div>
+    <div class="hint">Scroll each mock end-to-end · resize for responsive</div>
+  </header>
+  <div class="desc" id="desc"></div>
+  <div class="frame-wrap">
+    <iframe id="frame" src="mockup-1-restrained.html"></iframe>
+  </div>
+
+<script>
+  var descriptions = {
+    "mockup-1-restrained.html":
+      "<b>Restrained (docs-extension).</b> Calm, content-first, low visual energy. Feels like the docs site moved to the home page: same brand, same restraint. Hero with a centered headline, a quiet 3-up skill grid, simple footer. Closest to 'the docs are the product.'",
+    "mockup-2-energetic.html":
+      "<b>Energetic (marketing punch).</b> Bigger hero with a soft radial glow, an oversized gradient headline, a marquee of supported AI environments, more padding and rhythm. Cards have a gradient hover border. Same brand colors, more visual energy. Pushes the marketing read.",
+    "mockup-3-showcase.html":
+      "<b>Showcase (cards-first).</b> Minimal hero, then the skills take center stage as large two-column cards with a feature list inside each. Sells each skill's substance up front rather than relying on a click into the docs. Lowest hero, biggest cards."
+  };
+  var tabs = document.querySelectorAll('.tab');
+  var frame = document.getElementById('frame');
+  var desc = document.getElementById('desc');
+  function show(src){
+    frame.src = src;
+    desc.innerHTML = descriptions[src];
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      tabs.forEach(function(x){x.classList.remove('active');});
+      t.classList.add('active');
+      show(t.dataset.src);
+    });
+  });
+  show("mockup-1-restrained.html");
+</script>
+</body>
+</html>
