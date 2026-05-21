@@ -36,11 +36,11 @@ Cody walks you through the full flow:
 
 When all three documents are signed off, Cody prints `PLAN PHASE : COMPLETED` and points you at `:cody build` to start the Build phase.
 
-For the full step-by-step command reference, see [`:cody plan`](/docs/cody-product-builder/commands/plan/).
+For the full step-by-step command reference, see [:cody plan](/docs/cody-product-builder/commands/plan/).
 
 ## Brownfield projects
 
-If you're adopting Cody Product Builder on an existing codebase, you don't run `:cody plan`. Instead, run [`:cody refresh`](/docs/cody-product-builder/commands/refresh/). Cody auto-detects the existing code, performs an autonomous codebase analysis, asks you targeted questions, and generates `brownfield-analysis.md`, `prd.md`, and `plan.md` automatically. The same explicit review gates apply between each document.
+If you're adopting Cody Product Builder on an existing codebase, you don't run `:cody plan`. Instead, run [:cody refresh](/docs/cody-product-builder/commands/refresh/). Cody auto-detects the existing code, performs an autonomous codebase analysis, asks you targeted questions, and generates `brownfield-analysis.md`, `prd.md`, and `plan.md` automatically. The same explicit review gates apply between each document.
 
 ## When the Plan phase is "done"
 

@@ -1,0 +1,72 @@
+---
+/**
+ * Per-route sidebar — swaps based on the active skill.
+ *
+ * Starlight's default `Sidebar.astro` reads a single global sidebar tree from
+ * `astro.config.mjs`. That works for one-skill sites but breaks once you have
+ * two or more docs sets (CPB's sidebar would render on CAW pages and vice
+ * versa). This override resolves the active skill from `Astro.url.pathname`
+ * via `getActiveSkill()` and renders that skill's own `sidebar` array (declared
+ * in its `skill.ts`) — keeping each skill's nav configuration co-located with
+ * its data, no per-route config in `astro.config.mjs` needed.
+ *
+ * We reuse Starlight's internal `SidebarPersister` and `SidebarSublist` so the
+ * rendered DOM matches what Starlight's CSS and active-state highlighting
+ * expect. These imports are internal API — re-check on every Starlight major
+ * upgrade.
+ */
+
+import SidebarPersister from '@astrojs/starlight/components/SidebarPersister.astro';
+import SidebarSublist from '@astrojs/starlight/components/SidebarSublist.astro';
+import MobileMenuFooter from 'virtual:starlight/components/MobileMenuFooter';
+import { getActiveSkill } from '../skills/active';
+
+const skill = getActiveSkill(Astro.url.pathname);
+
+const normalize = (s: string): string => (s.endsWith('/') ? s : s + '/');
+const here = normalize(Astro.url.pathname);
+
+const slugToHref = (slug: string): string =>
+  slug === '' ? `/docs/${skill.id}/` : `/docs/${skill.id}/${slug}/`;
+
+/**
+ * Build SidebarSublist's expected entry shape directly from the active skill's
+ * `sidebar` array. Structural typing — we match the runtime shape Starlight's
+ * SidebarSublist component reads (`type`, `label`, `href`, `isCurrent`, `attrs`
+ * for links; `type`, `label`, `entries`, `collapsed` for groups). The internal
+ * `SidebarEntry` type isn't exported, so we cast.
+ */
+const sidebar = skill.sidebar.map((group) => {
+  const entries = group.items.map((item) => {
+    const href = slugToHref(item.slug);
+    return {
+      type: 'link' as const,
+      label: item.label,
+      href,
+      isCurrent: normalize(href) === here,
+      attrs: {},
+    };
+  });
+
+  // Always open — matches v1.0.0 behavior. Starlight defaults to open when
+  // `collapsed` isn't set; theme.css further hides chevrons and disables
+  // click-to-collapse via `<summary>` pointer-events: none. Setting this to
+  // `false` (rather than computing per-group) keeps every group expanded so
+  // the full sidebar is always visible.
+  return {
+    type: 'group' as const,
+    label: group.label,
+    entries,
+    collapsed: false,
+    badge: undefined,
+  };
+});
+---
+
+<SidebarPersister>
+  <SidebarSublist sublist={sidebar as never} />
+</SidebarPersister>
+
+<div class="md:sl-hidden">
+  <MobileMenuFooter />
+</div>

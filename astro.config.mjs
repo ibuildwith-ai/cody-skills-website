@@ -58,6 +58,10 @@ export default defineConfig({
         PageTitle: './src/components/PageTitle.astro',
         // Replaces the "Auto" dropdown with a single sun/moon icon button
         ThemeSelect: './src/components/ThemeToggle.astro',
+        // Per-route sidebar — swaps based on the active skill (see component
+        // header). Ignores the static `sidebar` config below; reads each
+        // skill's `sidebar` array directly from `skills.ts`.
+        Sidebar: './src/components/Sidebar.astro',
       },
       head: [
         // DM Sans (matches iBuildWith.ai brand typography)

@@ -26,9 +26,9 @@ These are all the `:cody` commands Cody Product Builder responds to:
 
 | Command | What it does |
 |---------|--------------|
-| [`:cody help`](/docs/cody-product-builder/commands/help/) | Shows help and every available command. |
-| [`:cody plan`](/docs/cody-product-builder/commands/plan/) | Starts the Plan phase and creates a new project. |
-| [`:cody build`](/docs/cody-product-builder/commands/build/) | Starts or continues the Build phase. Creates the feature backlog if needed, then offers a new version, an existing version, or a patch. |
-| [`:cody idea`](/docs/cody-product-builder/commands/idea/) | Captures an idea to the backlog without breaking your flow, or views backlog items. |
-| [`:cody prototype`](/docs/cody-product-builder/commands/prototype/) | Builds a throwaway prototype to test an idea. Independent of Plan and Build. |
-| [`:cody refresh`](/docs/cody-product-builder/commands/refresh/) | Refreshes the agent's memory about the project. Auto-detects brownfield projects. |
+| [:cody help](/docs/cody-product-builder/commands/help/) | Shows help and every available command. |
+| [:cody plan](/docs/cody-product-builder/commands/plan/) | Starts the Plan phase and creates a new project. |
+| [:cody build](/docs/cody-product-builder/commands/build/) | Starts or continues the Build phase. Creates the feature backlog if needed, then offers a new version, an existing version, or a patch. |
+| [:cody idea](/docs/cody-product-builder/commands/idea/) | Captures an idea to the backlog without breaking your flow, or views backlog items. |
+| [:cody prototype](/docs/cody-product-builder/commands/prototype/) | Builds a throwaway prototype to test an idea. Independent of Plan and Build. |
+| [:cody refresh](/docs/cody-product-builder/commands/refresh/) | Refreshes the agent's memory about the project. Auto-detects brownfield projects. |

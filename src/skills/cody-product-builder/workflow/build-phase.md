@@ -42,7 +42,7 @@ After that, every `:cody build` invocation presents a menu:
 
 Whichever you pick, the workflow loops back to the backlog when the version or patch ships, ready for the next one.
 
-For the full command reference, see [`:cody build`](/docs/cody-product-builder/commands/build/).
+For the full command reference, see [:cody build](/docs/cody-product-builder/commands/build/).
 
 ## Versions vs patches
 
@@ -67,11 +67,11 @@ While you're building, ideas come up. Capture them on the spot with:
 
 The idea lands in the **Backlog** section of `feature-backlog.md`. When you start a new version or patch later, Cody offers your backlog items as a starting point.
 
-Type `:cody idea` with no arguments to view the current backlog. See [`:cody idea`](/docs/cody-product-builder/commands/idea/) for details.
+Type `:cody idea` with no arguments to view the current backlog. See [:cody idea](/docs/cody-product-builder/commands/idea/) for details.
 
 ## Resuming in a new AI session
 
-A new AI session starts with no memory of the project. Run [`:cody refresh`](/docs/cody-product-builder/commands/refresh/) at the start of any new session to have Cody re-read your project documents and pick up where you left off.
+A new AI session starts with no memory of the project. Run [:cody refresh](/docs/cody-product-builder/commands/refresh/) at the start of any new session to have Cody re-read your project documents and pick up where you left off.
 
 ## What's next
 

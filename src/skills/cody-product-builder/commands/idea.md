@@ -56,4 +56,4 @@ Backlog items are removed when they're picked up and written into a version or a
 
 ## What's next
 
-See [`:cody build`](/docs/cody-product-builder/commands/build/) for how backlog items flow into a new version or patch. See [The Build Phase](/docs/cody-product-builder/workflow/build-phase/) for the conceptual overview.
+See [:cody build](/docs/cody-product-builder/commands/build/) for how backlog items flow into a new version or patch. See [The Build Phase](/docs/cody-product-builder/workflow/build-phase/) for the conceptual overview.

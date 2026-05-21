@@ -11,7 +11,7 @@ Use `:cody plan` once, at the start of a brand-new (greenfield) project.
 
 Do not use `:cody plan` if:
 
-- You already have application code in the project. Run [`:cody refresh`](/docs/cody-product-builder/commands/refresh/) instead. Cody auto-detects the brownfield case and runs the equivalent flow.
+- You already have application code in the project. Run [:cody refresh](/docs/cody-product-builder/commands/refresh/) instead. Cody auto-detects the brownfield case and runs the equivalent flow.
 - You already have a Plan phase in progress. `:cody plan` checks for existing plan documents before doing anything and stops if it finds them, so you don't overwrite work in progress.
 
 ## What it does
@@ -42,10 +42,10 @@ cody-projects/product-builder/plan/
 └── plan.md
 ```
 
-For the brownfield variant (existing codebase), `brownfield-analysis.md` replaces `discovery.md`. That flow is triggered by [`:cody refresh`](/docs/cody-product-builder/commands/refresh/), not by `:cody plan`.
+For the brownfield variant (existing codebase), `brownfield-analysis.md` replaces `discovery.md`. That flow is triggered by [:cody refresh](/docs/cody-product-builder/commands/refresh/), not by `:cody plan`.
 
 ## What's next
 
-When the Plan phase ends, run [`:cody build`](/docs/cody-product-builder/commands/build/) to create the feature backlog and start shipping versions.
+When the Plan phase ends, run [:cody build](/docs/cody-product-builder/commands/build/) to create the feature backlog and start shipping versions.
 
 For the conceptual overview, see [The Plan Phase](/docs/cody-product-builder/workflow/plan-phase/).

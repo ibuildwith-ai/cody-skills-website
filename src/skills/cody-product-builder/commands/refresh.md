@@ -51,4 +51,4 @@ Then it runs targeted Q&A (with the same `help me` and `no more` escape hatches 
 
 ## What's next
 
-After refresh completes, drive Cody with the normal `:cody` commands. Most commonly, that's [`:cody build`](/docs/cody-product-builder/commands/build/) to continue building.
+After refresh completes, drive Cody with the normal `:cody` commands. Most commonly, that's [:cody build](/docs/cody-product-builder/commands/build/) to continue building.

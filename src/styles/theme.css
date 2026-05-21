@@ -328,3 +328,37 @@ h3 {
     --sl-text-h1: var(--sl-text-4xl);
   }
 }
+
+
+/* ============================================================
+   PART 5 — INLINE CODE INSIDE LINKS
+
+   Starlight's default `<code>` styling (smaller monospace, gray
+   chip background) is intentional for standalone code in prose
+   like `:cody plan`, but produces awkward small-text links when
+   it nests inside an `<a>` — e.g., `[\`release-notes.md\`](...)`
+   in markdown renders as a tiny monospace chip in the middle of
+   body text.
+
+   This rule normalizes `<code>` inside `<a>` to inherit the
+   link's font, size, background, and padding so any link with
+   backticked text renders at body-text size. Future content
+   authors (and AI) don't need to remember to strip backticks
+   from link text — the design system handles it.
+
+   Tradeoff: code-styled link text is never visible anywhere on
+   the site. A future API-reference page that wanted styled
+   function-name links (e.g., `getUserById()` as code-in-link)
+   would need to opt out by writing inline HTML rather than
+   markdown. For a prose-and-commands docs site, that's the
+   right default.
+   ============================================================ */
+.sl-markdown-content a code,
+.sl-markdown-content a > code {
+  font-family: inherit;
+  font-size: inherit;
+  background: none;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}

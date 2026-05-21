@@ -9,7 +9,7 @@ This guide walks you through your first Cody Product Builder project end-to-end.
 
 Make sure Cody Product Builder is installed in your AI coding environment. See [Installation](/docs/cody-product-builder/getting-started/installation/) if you haven't done that yet.
 
-This guide assumes a brand-new project (no existing code). For an existing codebase, see the [`:cody refresh`](/docs/cody-product-builder/commands/refresh/) command, which auto-detects brownfield projects.
+This guide assumes a brand-new project (no existing code). For an existing codebase, see the [:cody refresh](/docs/cody-product-builder/commands/refresh/) command, which auto-detects brownfield projects.
 
 ## 1. Activate the skill
 

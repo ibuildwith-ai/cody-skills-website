@@ -46,6 +46,6 @@ If you're not sure whether something is a version or a patch, default to a versi
 
 ## What's next
 
-While building, you can capture ideas without breaking flow using [`:cody idea`](/docs/cody-product-builder/commands/idea/), or test risky ideas with a throwaway [`:cody prototype`](/docs/cody-product-builder/commands/prototype/). Resuming in a new AI session? Start with [`:cody refresh`](/docs/cody-product-builder/commands/refresh/).
+While building, you can capture ideas without breaking flow using [:cody idea](/docs/cody-product-builder/commands/idea/), or test risky ideas with a throwaway [:cody prototype](/docs/cody-product-builder/commands/prototype/). Resuming in a new AI session? Start with [:cody refresh](/docs/cody-product-builder/commands/refresh/).
 
 For the conceptual overview, see [The Build Phase](/docs/cody-product-builder/workflow/build-phase/).

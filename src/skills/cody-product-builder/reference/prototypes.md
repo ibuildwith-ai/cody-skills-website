@@ -5,7 +5,7 @@ description: Throwaway, interactive mockups for testing an idea in a single sess
 
 A prototype is a throwaway, interactive mockup built to test an idea. You build it beginning to end in one session.
 
-Prototyping is independent of the [Plan](/docs/cody-product-builder/workflow/plan-phase/) and [Build](/docs/cody-product-builder/workflow/build-phase/) phases. You can run [`:cody prototype`](/docs/cody-product-builder/commands/prototype/) anytime, before planning, while planning, before or during a build, or after one. Running it does not change the `phase` value in `cody.json`.
+Prototyping is independent of the [Plan](/docs/cody-product-builder/workflow/plan-phase/) and [Build](/docs/cody-product-builder/workflow/build-phase/) phases. You can run [:cody prototype](/docs/cody-product-builder/commands/prototype/) anytime, before planning, while planning, before or during a build, or after one. Running it does not change the `phase` value in `cody.json`.
 
 ## What a prototype is for
 
@@ -50,7 +50,7 @@ The Findings Log is append-only on purpose. Earlier entries are never overwritte
 
 ## How prototypes connect to plan and build
 
-Prototypes do not interrupt other workflows. Both [`:cody plan`](/docs/cody-product-builder/commands/plan/) and [`:cody build`](/docs/cody-product-builder/commands/build/) check for existing prototypes and mention them in a single non-blocking line. If you don't want to use one, the flow continues silently.
+Prototypes do not interrupt other workflows. Both [:cody plan](/docs/cody-product-builder/commands/plan/) and [:cody build](/docs/cody-product-builder/commands/build/) check for existing prototypes and mention them in a single non-blocking line. If you don't want to use one, the flow continues silently.
 
 If you do want to use one, tell Cody to use it. Cody reads its `prototype.md` and factors the findings, likes, and dislikes into the work at hand.
 
@@ -72,4 +72,4 @@ Cody ships no `.gitignore` for prototypes and does not manage their git status. 
 
 ## What's next
 
-To create your first prototype, see [`:cody prototype`](/docs/cody-product-builder/commands/prototype/) for the step-by-step command reference.
+To create your first prototype, see [:cody prototype](/docs/cody-product-builder/commands/prototype/) for the step-by-step command reference.

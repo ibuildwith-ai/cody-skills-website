@@ -4,7 +4,46 @@ This document lists new features, bug fixes and other changes implemented during
 
 The order of releases listed below is descending — the latest version or patch is always shown at the top.
 
+- [v1.1.0 - Cody Article Writer](#v110---cody-article-writer---2026-05-21)
 - [v1.0.0 - Initial Creation](#v100---initial-creation---2026-05-20)
+
+---
+
+# v1.1.0 - Cody Article Writer - 2026-05-21
+
+## Overview
+
+Adds **Cody Article Writer** to the site as the second fully documented skill. Flips the existing "coming soon" placeholder to a live, fully shipped skill with 19 documentation pages, real download URLs, and per-route sidebar swapping. Resolves a known v1.0.0 architectural debt (single global sidebar) along the way. Validates the PRD's promise that adding a new skill is a content-and-data diff — no shell rebuild needed.
+
+## Key Features
+
+- **Cody Article Writer documentation (19 pages).** Overview, Installation, Quick Start (Getting Started); The Article Workflow with ASCII flowchart, Topic Ideation & Research, Style Selection, Title/Thesis/Outline, Writing the Article, Editor Pass & Export (Workflow); Style Guides Overview, Voice, Formatting, Structure, Context, Managing Styles (Writing Styles); Triggers & Commands, Editor Style Guide, Storage & Data, Changelog (Reference). Drafted from the real skill source at `~/.claude/skills/cody-article-writer/` and the Cody Article Writer FigJam.
+- **Marketing landing card flipped to live.** Cody Article Writer now renders as an "Available now · v3.0" card with the real tagline, illustration, alternating left/right rhythm (`reverse` prop), and "Get the skill" CTA. The flip was automatic — `src/pages/index.astro` already iterated over the skills barrel; only `status: 'coming-soon'` → `status: 'available'` was needed in `skill.ts`.
+- **Per-route sidebar swap.** New `src/components/Sidebar.astro` override that reads the active skill from `Astro.url.pathname` (via the existing `getActiveSkill()` utility) and renders that skill's own `sidebar` array. Each skill's `skill.ts` stays the single source of truth; the override iterates over whatever's there (N groups, M items). No new npm dependencies.
+- **Real CAW download URLs.** Get Skill menu serves `/skills/cody-article-writer/downloads/cody-article-writer.{zip,skill}` from the per-skill `public/` folder. Files were pre-staged during v1.0.0 task 8.6.
+- **Skill switcher + GitHub link auto-swap.** Topbar Skills dropdown lists CAW as clickable; GitHub icon points to `ibuildwith-ai/cody-article-writer` on CAW pages and to `ibuildwith-ai/cody-product-builder` on CPB pages. All driven by `getActiveSkill()` — no per-page configuration.
+
+## Enhancements
+
+- **Changelog format unified across both skills.** Each skill's Changelog page is now a single-sentence-per-entry summary linking out to that skill's `release-notes.md` on GitHub for the full version history. Every released version and patch is listed — 16 entries for CPB (v1.3.0 through v2.1.0), 9 entries for CAW (v1.0 through v3.0).
+- **External release-notes link uses a real anchor with `target="_blank"`.** Opens in a new tab without losing the site session. Avoids the small-monospace styling that markdown code-in-link produced.
+- **Backticks stripped from link text across all skill pages.** All `[\`text\`](url)` patterns replaced with plain `[text](url)` so links render at body-text size instead of small monospace. Affects ~30 occurrences across CPB pages (mostly `:cody command` references in tables and inline mentions). Improves visual consistency with the surrounding prose.
+- **`<code>` inside `<a>` now normalized in the design system.** New CSS rule in `src/styles/theme.css` (PART 5 — INLINE CODE INSIDE LINKS) makes `<code>` inside `<a>` inherit the link's font, size, background, and padding. Even if a future page author accidentally writes `[\`text\`](url)`, the link will render at body-text size automatically — no need to remember the convention.
+
+## Bug Fixes
+
+- **Sidebar override initially hid all groups except the one containing the current page.** First implementation computed `collapsed: !entries.some(e => e.isCurrent)`. On the CAW Overview page, only "Getting Started" rendered items; Workflow, Writing Styles, and Reference were collapsed. Fixed by always setting `collapsed: false` to match v1.0.0 behavior (theme.css hides chevrons and disables click-to-collapse via `<summary>` `pointer-events: none`, so groups are visually always-open).
+
+## Other Notes
+
+- **No new npm dependencies.** Stayed within v1.0.0's pinned stack (Astro 5.17.3, Starlight 0.37.6, etc.). The version policy (≥ 3-month soak) was not exercised for this release.
+- **Mermaid not rendered natively.** Probed Starlight 0.37.6 with a `mermaid` code fence; rendered as a plain code block. Per design decision, no plugin added — the workflow diagram in "The Article Workflow" page uses an ASCII boxes-and-arrows flowchart instead.
+- **Pagefind re-indexed automatically.** 34 pages in the search index (17 CPB + 17 CAW after excluding 404/redirect/short pages). Live ranking quality was deferred to user review during the editorial pass.
+- **Editorial pass (task 4.1) signed off by user.** Walked every new CAW page; one issue surfaced (the sidebar collapse bug above) and was fixed. Pagefind ranking and responsive cross-device behavior verified.
+- **Backlog item B1 absorbed into this version.** B3 (custom domain), B4 (Edit-on-GitHub), B5 (analytics) removed from backlog during planning as out of scope for v1.1.0. B2 (Cody Skill Auditor), B6 (marketing landing review), B7 (designed OG image), B8 (favicon suite) remain in backlog.
+- **Cody Article Writer skill version on the badge is `3.0`.** This is the CAW skill's own metadata version (from its `SKILL.md` frontmatter), separate from the docs-site version (v1.1.0).
+- **CAW download artifacts already staged.** v1.0.0 task 8.6 pre-placed the `.zip` and `.skill` files at `public/skills/cody-article-writer/downloads/`. v1.1.0 just wired the hrefs in `skill.ts` — no new artifacts shipped.
+- **Mermaid + ASCII flowchart decision recorded.** The ASCII diagram in `workflow/the-article-workflow.md` covers all 12 phases plus the iteration loops and the research integration branches. If a future version adds Mermaid support (via plugin or Starlight upgrade), the diagram is a candidate to swap to native Mermaid for interactivity.
 
 ---
 

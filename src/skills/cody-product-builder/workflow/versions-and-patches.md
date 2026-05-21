@@ -83,4 +83,4 @@ You don't have to do any of that by hand.
 
 ## What's next
 
-See [`:cody build`](/docs/cody-product-builder/commands/build/) for the menu that picks between a new version, an existing version, and a patch. See [Project Settings](/docs/cody-product-builder/reference/project-settings/) for the `cody.json` reference.
+See [:cody build](/docs/cody-product-builder/commands/build/) for the menu that picks between a new version, an existing version, and a patch. See [Project Settings](/docs/cody-product-builder/reference/project-settings/) for the `cody.json` reference.
