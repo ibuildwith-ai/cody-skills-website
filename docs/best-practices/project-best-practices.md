@@ -16,7 +16,7 @@ _Structural decisions and patterns to follow (e.g. layering, module boundaries, 
 ## Code & Style
 _Naming, formatting, idioms, and conventions specific to this project._
 
-- Never use em-dashes (—) in site content or docs. **Why:** house style; replace with commas, parentheses, colons, or by restructuring the sentence.
+- Never use em-dashes (—) in site content or docs. **Why:** house style. Replace per context: parentheses for asides, colon for a label/definition lead-in, comma for an appositive, and semicolon or period when the dash joined two independent clauses (a blind comma swap creates comma splices).
 
 ## Testing
 _How this project tests: what to test, where tests live, what "done" means._
@@ -41,3 +41,4 @@ _Traps, surprises, and hard-won lessons to avoid repeating._
 - Astro "Duplicate id" warnings on incremental `npm run build` are a stale local cache, not a content problem. **Why:** they name only recently-edited files; clear `node_modules/.astro` and `node_modules/.vite` for a clean build. CI (fresh checkout) never sees them.
 - When flipping task/version statuses with a regex, anchor to the line/status column. **Why:** a loose pattern also matches task IDs in the Dependencies column and flips the wrong rows.
 - Never put an unquoted colon inside a YAML frontmatter value (`title:`/`description:`); keep those values colon-free (comma/restructure). **Why:** an unquoted colon breaks the YAML parser and fails the build; quoting only the offending lines also leaves the frontmatter visually inconsistent (the site convention is unquoted descriptions).
+- When scripting a site-wide text sweep, skip fenced code blocks and preserve intentional examples. **Why:** code fences hold ASCII diagrams, file trees, and JSON samples a blind replace would corrupt; some occurrences are deliberate (e.g. the `em_dashes` page's literal "(—)" character demo). Verify with a clean build afterward.
