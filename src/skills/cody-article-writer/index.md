@@ -3,13 +3,13 @@ title: Cody Article Writer
 description: Plan, research, draft, and manage long-form articles end-to-end. Custom writing styles you can save and reuse across pieces.
 ---
 
-Cody Article Writer is an agent skill that takes you from a raw idea to a finished, exported article through a structured twelve-phase workflow. It is built for thought leadership, essays, and product writing — long-form pieces where voice, structure, and source quality matter — in any AI coding environment (Claude Code, Cursor, GitHub Copilot, and others).
+Cody Article Writer is an agent skill that takes you from a raw idea to a finished, exported article through a structured twelve-phase workflow. It is built for thought leadership, essays, and product writing (long-form pieces where voice, structure, and source quality matter) in any AI coding environment (Claude Code, Cursor, GitHub Copilot, and others).
 
 ## Why it exists
 
-Writing long-form with AI usually goes one of two ways. Either the AI moves too fast — generating a finished draft that sounds nothing like you, with no clear thesis, no sources, and no plan — or it stalls in conversation, helping you "explore the topic" without ever producing something you can ship.
+Writing long-form with AI usually goes one of two ways. Either the AI moves too fast (generating a finished draft that sounds nothing like you, with no clear thesis, no sources, and no plan) or it stalls in conversation, helping you "explore the topic" without ever producing something you can ship.
 
-Cody Article Writer fixes both. It moves through twelve discrete phases with an iteration loop at every step, so you and the AI converge on each decision (topic, thesis, outline, every section) before moving on. It pulls in current web research where it matters. And it writes in a saved, reusable **style guide** that controls voice, formatting, structure, and audience context — so every article sounds like you, not the model.
+Cody Article Writer fixes both. It moves through twelve discrete phases with an iteration loop at every step, so you and the AI converge on each decision (topic, thesis, outline, every section) before moving on. It pulls in current web research where it matters. And it writes in a saved, reusable **style guide** that controls voice, formatting, structure, and audience context, so every article sounds like you, not the model.
 
 ## What it helps you do
 
@@ -26,7 +26,7 @@ Cody Article Writer organizes work around two reusable systems.
 
 **[The Article Workflow](/docs/cody-article-writer/workflow/the-article-workflow/)** is the twelve-phase pipeline from raw topic to exported markdown. It splits into ideation and research, style selection, title/thesis/outline development, writing, an optional editor pass, and metadata + export. Every phase iterates until you approve.
 
-**[Style Guides](/docs/cody-article-writer/writing-styles/overview/)** are the reusable definitions of how your articles read. Four categories — **Voice**, **Formatting**, **Structure**, and **Context** — get applied progressively across the workflow: voice and context inform the thesis, structure shapes the outline, formatting shapes the writing.
+**[Style Guides](/docs/cody-article-writer/writing-styles/overview/)** are the reusable definitions of how your articles read. Four categories, **Voice**, **Formatting**, **Structure**, and **Context**: get applied progressively across the workflow: voice and context inform the thesis, structure shapes the outline, formatting shapes the writing.
 
 For where files end up on disk (drafts, finished articles, archive, saved styles), see **[Storage & Data](/docs/cody-article-writer/reference/storage-and-data/)**.
 

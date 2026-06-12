@@ -1,6 +1,6 @@
 ---
 title: Voice
-description: The four voice sliders — tone, humor, opinion, technical — that define how your articles sound.
+description: The four voice sliders (tone, humor, opinion, technical) that define how your articles sound.
 ---
 
 The **Voice** category of a style guide. Four sliders, each 0–10, that control how your articles sound at the sentence level. Voice (together with [Context](/docs/cody-article-writer/writing-styles/context/)) is applied in Phase 4 of the article workflow to shape title and thesis.
@@ -14,7 +14,7 @@ The **Voice** category of a style guide. Four sliders, each 0–10, that control
 | **Opinion** | Balanced | Opinionated | How strong the viewpoint is. |
 | **Technical** | Less | More | Depth of technical detail and jargon. |
 
-All four are integers 0–10. There is no neutral or default — every style guide picks an explicit value for each.
+All four are integers 0–10. There is no neutral or default; every style guide picks an explicit value for each.
 
 ## Tone
 
@@ -54,11 +54,11 @@ All four are integers 0–10. There is no neutral or default — every style gui
 
 In **Phase 4** (Title & Thesis), Cody reads your voice settings before generating any title or thesis options. The four sliders inform:
 
-- **Title** — formality (Tone), playfulness (Humor), assertiveness (Opinion).
-- **Thesis claim strength** — how directly the thesis takes a position (Opinion), how much it explains vs. asserts (Technical).
-- **Audience framing** — works together with [Context](/docs/cody-article-writer/writing-styles/context/) settings.
+- **Title**: formality (Tone), playfulness (Humor), assertiveness (Opinion).
+- **Thesis claim strength**: how directly the thesis takes a position (Opinion), how much it explains vs. asserts (Technical).
+- **Audience framing**: works together with [Context](/docs/cody-article-writer/writing-styles/context/) settings.
 
-Voice doesn't directly shape the outline (that's [Structure](/docs/cody-article-writer/writing-styles/structure/)) or the prose-level texture (that's [Formatting](/docs/cody-article-writer/writing-styles/formatting/)). But the voice baked into the thesis carries forward — Cody won't generate a casual, joke-filled section under a thesis it just wrote in formal academic language.
+Voice doesn't directly shape the outline (that's [Structure](/docs/cody-article-writer/writing-styles/structure/)) or the prose-level texture (that's [Formatting](/docs/cody-article-writer/writing-styles/formatting/)). But the voice baked into the thesis carries forward; Cody won't generate a casual, joke-filled section under a thesis it just wrote in formal academic language.
 
 ## What's stored
 
@@ -87,9 +87,9 @@ A few combinations that work:
 | Industry essay (general audience) | 6 | 4 | 7 | 4 |
 | Internal documentation | 5 | 0 | 2 | 7 |
 
-These are starting points, not prescriptions. Iterate on the style as you write — most styles need a few articles of use before the values feel right.
+These are starting points, not prescriptions. Iterate on the style as you write; most styles need a few articles of use before the values feel right.
 
 ## Related
 
-- [Context](/docs/cody-article-writer/writing-styles/context/) — co-applied at Phase 4 (title & thesis).
-- [Style Guides Overview](/docs/cody-article-writer/writing-styles/overview/) — how voice fits into the full style guide.
+- [Context](/docs/cody-article-writer/writing-styles/context/): co-applied at Phase 4 (title & thesis).
+- [Style Guides Overview](/docs/cody-article-writer/writing-styles/overview/): how voice fits into the full style guide.

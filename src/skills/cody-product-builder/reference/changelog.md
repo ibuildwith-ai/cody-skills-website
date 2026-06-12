@@ -3,7 +3,7 @@ title: Changelog
 description: Every released version of Cody Product Builder, newest first.
 ---
 
-Every released version of Cody Product Builder, newest first. For the complete release notes — features, enhancements, bug fixes, and other notes — see <a href="https://github.com/ibuildwith-ai/cody-product-builder/blob/main/release-notes.md" target="_blank" rel="noopener noreferrer">release-notes.md</a> in the GitHub repository.
+Every released version of Cody Product Builder, newest first. For the complete release notes (features, enhancements, bug fixes, and other notes) see <a href="https://github.com/ibuildwith-ai/cody-product-builder/blob/main/release-notes.md" target="_blank" rel="noopener noreferrer">release-notes.md</a> in the GitHub repository.
 
 ## v2.2.0 · Best Practices (2026-06-12)
 
@@ -19,7 +19,7 @@ Migrates to the Agent Skill open standard. Cody is now a single, self-contained 
 
 ## v1.11.0 · Prototype Command (2026-05-18)
 
-Adds the standalone `:cody prototype` command for throwaway, interactive prototypes that test an idea — independent of the Plan and Build phases.
+Adds the standalone `:cody prototype` command for throwaway, interactive prototypes that test an idea, independent of the Plan and Build phases.
 
 ## v1.10.0 · Configurable Release Notes Path (2026-03-20)
 

@@ -1,6 +1,6 @@
 ---
 title: Structure
-description: Opening and closing types, visual breaks, examples and example types — the structural skeleton of every article.
+description: Opening and closing types, visual breaks, examples and example types, the structural skeleton of every article.
 ---
 
 The **Structure** category of a style guide. Five fields that control how each article is organized at the section and paragraph level. Structure is applied in Phase 5 of the article workflow (Outline).
@@ -17,7 +17,7 @@ The **Structure** category of a style guide. Five fields that control how each a
 
 ## Opening types
 
-How each article begins. You pick one or more — Cody chooses the right one per article based on the topic.
+How each article begins. You pick one or more; Cody chooses the right one per article based on the topic.
 
 | Type | What it does |
 |------|--------------|
@@ -43,15 +43,15 @@ How each article ends.
 
 Most styles pick one or two. `["callback", "call_to_action"]` is a common pairing (echo the opening, then prompt the next step).
 
-**Note:** Section labels like "Opening" and "Closing" are workflow metadata — Cody uses them internally to apply the right opening/closing type, but they don't end up as visible "Opening:" or "Closing:" prefixes in the article body. Section headings are written normally.
+**Note:** Section labels like "Opening" and "Closing" are workflow metadata: Cody uses them internally to apply the right opening/closing type, but they don't end up as visible "Opening:" or "Closing:" prefixes in the article body. Section headings are written normally.
 
 ## Visual Breaks
 
 How much white space and paragraph spacing the article uses.
 
-- `minimal` — Dense prose, longer paragraphs, fewer section breaks. Reads like a journal article or long-form essay.
-- `moderate` — Balanced spacing, standard paragraph lengths. Reads like a mainstream blog post.
-- `generous` — Short paragraphs, more white space, frequent breaks. Reads like a newsletter or LinkedIn post.
+- `minimal`, Dense prose, longer paragraphs, fewer section breaks. Reads like a journal article or long-form essay.
+- `moderate`, Balanced spacing, standard paragraph lengths. Reads like a mainstream blog post.
+- `generous`, Short paragraphs, more white space, frequent breaks. Reads like a newsletter or LinkedIn post.
 
 Visual breaks influence both writing (Phase 7) and the editor pass (Phase 10). A style set to `generous` will be edited toward shorter paragraphs even if the draft came in dense.
 
@@ -59,9 +59,9 @@ Visual breaks influence both writing (Phase 7) and the editor pass (Phase 10). A
 
 Default preference for including examples in the article.
 
-- `none` — Minimal to no examples. Rely on explanation. Suitable for opinion pieces, manifestos.
-- `some` — Occasional examples where they genuinely clarify a concept.
-- `many` — Liberal use of examples throughout. Suitable for tutorials, explainers, technical posts.
+- `none`, Minimal to no examples. Rely on explanation. Suitable for opinion pieces, manifestos.
+- `some`, Occasional examples where they genuinely clarify a concept.
+- `many`, Liberal use of examples throughout. Suitable for tutorials, explainers, technical posts.
 
 If you set this to `none`, the **Example Types** field becomes optional (and is ignored). For `some` or `many`, you must pick at least one example type below.
 
@@ -76,7 +76,7 @@ When examples are used, which kinds Cody should reach for. Multi-select.
 | `diagrams` | Flowcharts, sequence diagrams, state diagrams. Generated as Mermaid markdown when possible; ASCII as fallback. |
 | `code_snippets` | Code examples (for technical content). |
 | `quotes` | Pull quotes, expert citations, testimonials. |
-| `case_studies` | Brief real-world scenarios (2–4 paragraphs each, embedded inline — not separate sections). |
+| `case_studies` | Brief real-world scenarios (2–4 paragraphs each, embedded inline, not separate sections). |
 
 A technical tutorial style might pick `["lists", "code_snippets", "diagrams"]`. A LinkedIn thought-leadership style might pick `["lists", "quotes", "case_studies"]`. An academic essay might pick `["quotes", "case_studies"]` only.
 
@@ -85,11 +85,11 @@ A technical tutorial style might pick `["lists", "code_snippets", "diagrams"]`. 
 In **Phase 5** (Outline), Cody:
 
 1. Extracts opening and closing types from your style and picks the right one for this article's topic (e.g., a piece about a controversial decision benefits from `tension`; a how-to benefits from `direct`).
-2. Tags the first section with the chosen opening type and the last with the chosen closing type — internal metadata, doesn't appear in the article.
+2. Tags the first section with the chosen opening type and the last with the chosen closing type, internal metadata, doesn't appear in the article.
 3. Plans section count and length based on `visual_breaks` (generous = more sections, shorter; minimal = fewer sections, longer).
 4. Identifies where examples can land based on `examples` and `example_types`.
 
-In **Phase 10** (Editor Pass), structure also calibrates editor suggestions — visual breaks gets re-checked, example types inform what kinds of inline examples the editor adds.
+In **Phase 10** (Editor Pass), structure also calibrates editor suggestions, visual breaks gets re-checked, example types inform what kinds of inline examples the editor adds.
 
 ## What's stored
 
@@ -125,6 +125,6 @@ Some example combinations:
 
 ## Related
 
-- [Voice](/docs/cody-article-writer/writing-styles/voice/) — applied at Phase 4.
-- [Formatting](/docs/cody-article-writer/writing-styles/formatting/) — applied at Phase 7.
-- [Style Guides Overview](/docs/cody-article-writer/writing-styles/overview/) — how structure fits into the full style guide.
+- [Voice](/docs/cody-article-writer/writing-styles/voice/): applied at Phase 4.
+- [Formatting](/docs/cody-article-writer/writing-styles/formatting/): applied at Phase 7.
+- [Style Guides Overview](/docs/cody-article-writer/writing-styles/overview/): how structure fits into the full style guide.

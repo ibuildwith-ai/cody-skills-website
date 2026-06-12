@@ -1,6 +1,6 @@
 ---
 title: Style Guides Overview
-description: The four categories of a style guide — Voice, Formatting, Structure, Context — and how they progressively shape every article you write.
+description: The four categories of a style guide (Voice, Formatting, Structure, Context) and how they progressively shape every article you write.
 ---
 
 A **style guide** is the reusable definition of how your articles sound, look, and land. One JSON file per style, saved to `cody-projects/article-writer/styles/<name>.json`. Every article you write attaches to a style guide; one style can power infinite articles.
@@ -18,11 +18,11 @@ Style guides exist so you don't have to teach Cody your voice every time. Config
 
 ## Why settings apply progressively
 
-Voice and context shape **what** you're saying and **to whom**, so they belong at the thesis layer — the article's claim and framing are inseparable from how strong an opinion you hold and who you're addressing.
+Voice and context shape **what** you're saying and **to whom**, so they belong at the thesis layer: the article's claim and framing are inseparable from how strong an opinion you hold and who you're addressing.
 
-Structure shapes **how the article is organized**, so it belongs at the outline layer — opening types decide how you hook the reader, closing types decide how you leave them, examples decide what evidence you weave in.
+Structure shapes **how the article is organized**, so it belongs at the outline layer: opening types decide how you hook the reader, closing types decide how you leave them, examples decide what evidence you weave in.
 
-Formatting shapes **prose-level texture** — em dashes, emojis, blockquotes — so it belongs at the writing layer, after the structure is settled.
+Formatting shapes **prose-level texture**: em dashes, emojis, blockquotes, so it belongs at the writing layer, after the structure is settled.
 
 Applying every setting at every phase would muddy the work. Progressive application keeps each phase focused.
 
@@ -49,22 +49,22 @@ Triggered explicitly with "create a new article style", or inline during Phase 3
 6. Save to styles/<name>.json
 ```
 
-### Phase 0 — Recommendation Offer
+### Phase 0: Recommendation Offer
 
 Before configuration, Cody asks if you want AI-recommended settings based on your writing purpose, target audience, or example articles. If yes, Cody generates a complete style as a starting point and you skip directly to Review. If no, manual configuration starts.
 
-### Phase 1 — Configuration
+### Phase 1: Configuration
 
 Cody walks you through each category in order:
 
-1. **Voice** — Tone, Humor, Opinion, Technical (each 0–10).
-2. **Formatting** — Emojis (0–10), EM Dashes (0–10), Blockquotes (never/rare/occasional/frequent).
-3. **Structure** — Opening type(s), Closing type(s), Visual Breaks, Examples, Example Types.
-4. **Context** — Author Role, Author Topic Knowledge, Audience Role, Audience Topic Knowledge, Author Relationship to Audience.
+1. **Voice**: Tone, Humor, Opinion, Technical (each 0–10).
+2. **Formatting**: Emojis (0–10), EM Dashes (0–10), Blockquotes (never/rare/occasional/frequent).
+3. **Structure**: Opening type(s), Closing type(s), Visual Breaks, Examples, Example Types.
+4. **Context**: Author Role, Author Topic Knowledge, Audience Role, Audience Topic Knowledge, Author Relationship to Audience.
 
-Detailed prompts for each setting live on the per-category pages — see the table above.
+Detailed prompts for each setting live on the per-category pages, see the table above.
 
-### Phase 2 — Review Settings
+### Phase 2: Review Settings
 
 Cody presents the full configuration for approval:
 
@@ -99,7 +99,7 @@ Does this look correct, or would you like to adjust anything?
 
 Adjust as many times as needed.
 
-### Phase 3 — Name & Description
+### Phase 3: Name & Description
 
 Once settings are approved, Cody suggests a name and a one-line description:
 
@@ -110,7 +110,7 @@ Suggested description: "For thought leadership articles targeting enterprise pro
 
 You approve or override. Both are required.
 
-### Phase 4 — Final Confirmation & Save
+### Phase 4: Final Confirmation & Save
 
 Cody shows the full style one more time (settings + name + description) and asks for explicit "save" confirmation. On save:
 

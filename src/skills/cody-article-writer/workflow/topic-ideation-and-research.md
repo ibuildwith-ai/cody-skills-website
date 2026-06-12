@@ -5,20 +5,20 @@ description: Refine a raw idea into a focused topic with always-on exploratory r
 
 The first two phases of the article workflow turn a raw topic idea into something focused and (optionally) researched. Together they cover the first three of Cody Article Writer's six research integration points.
 
-## Phase 1 — Topic Ideation
+## Phase 1: Topic Ideation
 
 **Goal:** Refine the raw topic idea into something focused and angle-able.
 
 ### How it works
 
-1. You provide an initial topic idea in plain language ("I want to write about how AI is reshaping product management"). Cody captures the input verbatim as `initial_idea` — exactly as you typed it.
+1. You provide an initial topic idea in plain language ("I want to write about how AI is reshaping product management"). Cody captures the input verbatim as `initial_idea`, exactly as you typed it.
 2. Cody immediately performs **exploratory research** using WebSearch. It runs three to five queries related to your topic to surface current trends, recent data, and angles you may not have considered. The searches and URLs reviewed are saved into the draft state for the record.
-3. You and Cody iterate on the topic — pushing back, narrowing scope, finding a unique angle informed by what the research surfaced.
+3. You and Cody iterate on the topic, pushing back, narrowing scope, finding a unique angle informed by what the research surfaced.
 4. When Cody asks `Ready to form a thesis?`, you say yes. The refined topic is saved as `refined_topic` in the draft state.
 
 ### Why exploratory research is always on
 
-Your AI's training data may be months or years out of date. Without a quick web pass, ideation happens in a vacuum. Three to five searches at the top of the workflow gives Cody current context — recent studies, market shifts, who's writing about what — without making you opt in.
+Your AI's training data may be months or years out of date. Without a quick web pass, ideation happens in a vacuum. Three to five searches at the top of the workflow gives Cody current context (recent studies, market shifts, who's writing about what) without making you opt in.
 
 This exploratory pass uses **search snippets only** (not full-page fetches). It's lightweight, fast, and meant for context, not citation. Full source content is gathered later in Phase 2 if you opt in to comprehensive research.
 
@@ -40,7 +40,7 @@ This exploratory pass uses **search snippets only** (not full-page fetches). It'
 
 The draft is saved with `phase: "ideation"`.
 
-## Phase 2 — Research Planning
+## Phase 2: Research Planning
 
 **Goal:** Decide whether this article needs comprehensive research, and if so, gather and approve sources.
 
@@ -70,7 +70,7 @@ Cody walks you through three steps.
 | Medium | 6–11    | Standard research piece; key claims cited. |
 | Heavy  | 12–20   | Deeply researched, most claims cited (long-form essays, white-paper-style articles). |
 
-**2. Source approval.** Cody runs targeted searches (the number scales with depth) and presents a long list of candidate sources — title, domain, brief relevance note, URL. You decide:
+**2. Source approval.** Cody runs targeted searches (the number scales with depth) and presents a long list of candidate sources, title, domain, brief relevance note, URL. You decide:
 
 - Which to keep.
 - Which to drop.
@@ -83,7 +83,7 @@ Cody then uses WebFetch to pull the full content of each approved source, extrac
 
 > Do you want citations in your final exported article?
 
-If **yes**, Cody inserts `[^1]`, `[^2]` markers in the article as it writes and generates a References section at export. If **no**, the sources still inform the writing — Cody references them while drafting — but no markers or References section appear in the output.
+If **yes**, Cody inserts `[^1]`, `[^2]` markers in the article as it writes and generates a References section at export. If **no**, the sources still inform the writing (Cody references them while drafting) but no markers or References section appear in the output.
 
 ### What's saved
 
@@ -127,4 +127,4 @@ If you skipped comprehensive research, all three integration points are skipped 
 
 ## Next
 
-Either way, the next phase is **[Style Selection](/docs/cody-article-writer/workflow/style-selection/)** — choosing how the article should sound and read.
+Either way, the next phase is **[Style Selection](/docs/cody-article-writer/workflow/style-selection/)**: choosing how the article should sound and read.

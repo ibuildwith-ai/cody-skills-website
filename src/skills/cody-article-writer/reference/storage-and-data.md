@@ -1,9 +1,9 @@
 ---
 title: Storage & Data
-description: Where Cody Article Writer keeps your styles, drafts, articles, and archive — and the JSON schemas behind each.
+description: Where Cody Article Writer keeps your styles, drafts, articles, and archive, plus the JSON schemas behind each.
 ---
 
-Everything Cody Article Writer creates lives under `cody-projects/article-writer/` in your project (or your home directory, depending on where you installed the skill). Plain files on disk — no database, no external service.
+Everything Cody Article Writer creates lives under `cody-projects/article-writer/` in your project (or your home directory, depending on where you installed the skill). Plain files on disk, no database, no external service.
 
 ## Folder layout
 
@@ -30,7 +30,7 @@ The four data folders serve distinct purposes:
 | Folder | Holds | Lifetime |
 |--------|-------|----------|
 | `styles/` | Reusable writing style guide JSONs | Permanent until you delete them. |
-| `drafts/` | Articles in progress — JSON state + working `.md` (+ optional `-editorpass.md`) | Lives while you're writing; on export, the JSON moves to `archive/` and the `.md` files are deleted. |
+| `drafts/` | Articles in progress, JSON state + working `.md` (+ optional `-editorpass.md`) | Lives while you're writing; on export, the JSON moves to `archive/` and the `.md` files are deleted. |
 | `articles/` | Finished, shareable markdown files | Permanent. Never deleted automatically. |
 | `archive/` | Frozen draft JSON state for every exported article | Permanent. Enables re-export with original research preserved. |
 
@@ -42,7 +42,7 @@ A single-line file (e.g., `3.0`) tracking which version of Cody Article Writer l
 - If the stored version equals the current version, no migrations run.
 - If the file is missing, the skill treats you as a pre-versioning (`"1.0"`) user and runs the full migration chain.
 
-Migrations are designed to be transparent — you'll get a one-line "I've updated your style guides to vX format" message if any data was transformed.
+Migrations are designed to be transparent: you'll get a one-line "I've updated your style guides to vX format" message if any data was transformed.
 
 ## Style guide schema
 
@@ -97,7 +97,7 @@ For deeper explanations of each field, see the per-category pages: [Voice](/docs
 
 Drafts live at `drafts/<draft-id>.json`. The draft ID is generated when the article starts (typically `<topic-slug>-<date>`).
 
-The schema grows as the workflow progresses — early phases have fewer fields populated:
+The schema grows as the workflow progresses, early phases have fewer fields populated:
 
 ```json
 {
@@ -188,7 +188,7 @@ If the editor pass runs, it produces a second file at `drafts/<draft-id>-editorp
 On export (Phase 12), three things happen:
 
 1. The chosen source (`<draft-id>.md` or `<draft-id>-editorpass.md`) is filled into the export template at `assets/templates/article_default.md` and saved to `articles/<filename>.md`.
-2. The draft JSON is moved (not copied) to `archive/<draft-id>.json` — every decision, source, citation, and section preserved.
+2. The draft JSON is moved (not copied) to `archive/<draft-id>.json`: every decision, source, citation, and section preserved.
 3. The intermediate `.md` files in `drafts/` are deleted.
 
 The article in `articles/` is a regular markdown file with frontmatter:
@@ -220,7 +220,7 @@ You can re-export any archived article by triggering "re-export the X article". 
 3. Asks the citation choice again (the archived JSON preserves the option both ways).
 4. Re-runs the export, saving a new file to `articles/`.
 
-This is what makes the archive valuable — your original research and sources persist, and you can produce different export variants from the same writing without rewriting.
+This is what makes the archive valuable: your original research and sources persist, and you can produce different export variants from the same writing without rewriting.
 
 ## Direct file access
 
@@ -232,4 +232,4 @@ Every file in this folder structure is plain JSON or plain Markdown. You can:
 - Back the entire `article-writer/` folder up.
 - Version-control it with git.
 
-The skill never requires you to use its triggers — they're conveniences. Disk is the source of truth.
+The skill never requires you to use its triggers; they're conveniences. Disk is the source of truth.

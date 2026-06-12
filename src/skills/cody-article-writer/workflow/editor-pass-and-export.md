@@ -1,11 +1,11 @@
 ---
 title: Editor Pass & Export
-description: Phases 8–12 — article approval, the optional editor pass, metadata generation, and the final export to your articles folder.
+description: Phases 8–12, covering article approval, the optional editor pass, metadata generation, and the final export to your articles folder.
 ---
 
 The final five phases of the article workflow. The article is written; now it gets approved, optionally polished, given metadata, and exported as a finished markdown file.
 
-## Phase 8 — Article Approval
+## Phase 8: Article Approval
 
 **Goal:** You read the completed article end-to-end and decide whether it's done.
 
@@ -20,9 +20,9 @@ Cody presents the working draft:
 - **Approved** → move to Phase 9.
 - **Needs changes** → you specify what to change ("in section 2, tighten the conclusion", "swap the example in section 3 for something more recent"). Cody updates the specific section in the JSON, regenerates the draft markdown, and loops back for re-approval.
 
-This loop has no limit — refine as many times as needed.
+This loop has no limit, refine as many times as needed.
 
-## Phase 9 — Editorial Decision
+## Phase 9: Editorial Decision
 
 After approval, Cody offers an optional editor pass:
 
@@ -42,14 +42,14 @@ After approval, Cody offers an optional editor pass:
 - **Yes** → Phase 10.
 - **Skip** → straight to Phase 11.
 
-## Phase 10 — Editor Pass (optional)
+## Phase 10: Editor Pass (optional)
 
 **Goal:** Polish formatting, tighten prose, apply the style guide's calibration rules without altering the structure or substance.
 
 The editor pass is governed by the [Editor Style Guide](/docs/cody-article-writer/reference/editor-style-guide/), which defines exactly what gets checked. Two categories of checks:
 
-- **Calibrated to your style** — Visual Breaks, Blockquotes, EM Dashes, Emojis, Tone Consistency. These adapt to whatever settings you picked in your style guide.
-- **Always applied** — AI Tell Removal, Prose Tightening, Spelling & Grammar, Flow & Transitions. These run regardless of style.
+- **Calibrated to your style**: Visual Breaks, Blockquotes, EM Dashes, Emojis, Tone Consistency. These adapt to whatever settings you picked in your style guide.
+- **Always applied**: AI Tell Removal, Prose Tightening, Spelling & Grammar, Flow & Transitions. These run regardless of style.
 
 ### How it works
 
@@ -82,15 +82,15 @@ The editor pass is governed by the [Editor Style Guide](/docs/cody-article-write
 
 The editor pass **does not modify citation markers** (`[^1]`, `[^2]`, etc.) or the References section. Those live in the writing layer; the editor pass only touches prose and formatting.
 
-## Phase 11 — Article Metadata Generation
+## Phase 11: Article Metadata Generation
 
 **Goal:** Produce metadata that goes into the article frontmatter on export.
 
 Cody generates:
 
-- **Title** — confirms or refines the title you approved in Phase 4.
-- **Description** — a 150–160 character meta description.
-- **Keywords** — an array of relevant tags.
+- **Title**: confirms or refines the title you approved in Phase 4.
+- **Description**: a 150–160 character meta description.
+- **Keywords**: an array of relevant tags.
 
 You approve or adjust:
 
@@ -111,7 +111,7 @@ Suggested filename: your-article-title-here.md
 Use this, or provide your own filename (extension will always be .md):
 ```
 
-## Phase 12 — Export
+## Phase 12: Export
 
 **Goal:** Generate the final markdown file, optionally with citations, and archive the draft state.
 
@@ -124,7 +124,7 @@ If research was enabled, Cody asks one more time:
 > - Yes: Citation markers ([^1], [^2]) and References section will be included
 > - No: Citations will be removed, but sources remain archived for potential re-export
 
-This is per-export — it doesn't change the draft state. You can re-export later (see "re-export the X article" in [Triggers & Commands](/docs/cody-article-writer/reference/triggers-and-commands/)) with the opposite choice.
+This is per-export; it doesn't change the draft state. You can re-export later (see "re-export the X article" in [Triggers & Commands](/docs/cody-article-writer/reference/triggers-and-commands/)) with the opposite choice.
 
 ### Export mechanics
 
@@ -158,7 +158,7 @@ cody-projects/article-writer/
     └── article-id-2026-05-20.json   ← preserved state for re-export
 ```
 
-For where each piece of data lives — including the full draft JSON schema — see [Storage & Data](/docs/cody-article-writer/reference/storage-and-data/).
+For where each piece of data lives (including the full draft JSON schema) see [Storage & Data](/docs/cody-article-writer/reference/storage-and-data/).
 
 ## Done
 

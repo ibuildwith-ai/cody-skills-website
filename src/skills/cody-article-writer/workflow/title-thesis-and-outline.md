@@ -1,11 +1,11 @@
 ---
 title: Title, Thesis & Outline
-description: Phases 4–6 — develop a compelling title and thesis, generate a structured outline, then confirm sections before writing.
+description: Phases 4–6, where you develop a compelling title and thesis, generate a structured outline, then confirm sections before writing.
 ---
 
 Phases 4, 5, and 6 of the article workflow. By the end of these three phases, you have an approved title, a thesis statement, and a confirmed section breakdown ready to draft.
 
-## Phase 4 — Title & Thesis
+## Phase 4: Title & Thesis
 
 **Goal:** Land a title and a thesis statement strong enough to anchor the entire article.
 
@@ -18,8 +18,8 @@ Cody pulls **voice** and **context** from your style guide:
 
 Before generating, Cody reviews every approved source's excerpt:
 
-- **Required sources** — the thesis must accommodate their findings. Cody won't generate a thesis that contradicts a well-supported required source.
-- **Optional sources** — used when they strengthen the thesis.
+- **Required sources**: the thesis must accommodate their findings. Cody won't generate a thesis that contradicts a well-supported required source.
+- **Optional sources**: used when they strengthen the thesis.
 
 A worked example from the AI radiology domain:
 
@@ -32,12 +32,12 @@ A worked example from the AI radiology domain:
 > Strong thesis: "While AI radiology systems now exceed human diagnostic accuracy in specific tasks, regulatory frameworks and edge-case limitations mean the technology should augment rather than replace human radiologists."
 > *(Incorporates both required sources)*
 
-If the iteration surfaces gaps in research — "I need a source for X" — Cody can run additional WebSearches mid-phase to fill them, with your approval.
+If the iteration surfaces gaps in research ("I need a source for X") Cody can run additional WebSearches mid-phase to fill them, with your approval.
 
 ### The iteration loop
 
 1. Cody generates title and thesis options informed by voice, context, and (if enabled) research.
-2. You iterate — push back, sharpen, reframe.
+2. You iterate, push back, sharpen, reframe.
 3. Cody asks `Ready for outline?`. No → keep refining. Yes → proceed.
 
 ### What's saved
@@ -50,14 +50,14 @@ If the iteration surfaces gaps in research — "I need a source for X" — Cody 
 }
 ```
 
-## Phase 5 — Outline
+## Phase 5: Outline
 
 **Goal:** Turn the thesis into a structured plan for the article.
 
 Cody pulls **structure** from your style guide:
 
-- **Opening type(s)** — direct, contextual, narrative, tension — shape the introduction approach.
-- **Closing type(s)** — summary, call to action, open question, callback, provocation, key takeaways — shape the conclusion.
+- **Opening type(s)**: direct, contextual, narrative, tension, shape the introduction approach.
+- **Closing type(s)**: summary, call to action, open question, callback, provocation, key takeaways, shape the conclusion.
 
 ### If research is enabled (Integration Point 5)
 
@@ -65,7 +65,7 @@ Cody reviews approved sources to understand what evidence is available, then pla
 
 - Required sources get dedicated sections (or are mapped to specific sections that will use them).
 - Optional sources are identified as candidates to strengthen specific arguments.
-- If the outline reveals research gaps, Cody may add more sources — same iteration pattern as Phase 4.
+- If the outline reveals research gaps, Cody may add more sources, using the same iteration pattern as Phase 4.
 
 ### The iteration loop
 
@@ -86,7 +86,7 @@ Cody reviews approved sources to understand what evidence is available, then pla
 }
 ```
 
-## Phase 6 — Section Confirmation
+## Phase 6: Section Confirmation
 
 **Goal:** Confirm the section breakdown before drafting starts.
 
@@ -106,7 +106,7 @@ Would you like to split or combine any sections before we start writing?
 
 You can split a section into two, combine adjacent sections, rename, or reorder. This is the last chance to restructure before writing begins.
 
-The outline updates to reflect any changes. Section labels like "Opening" and "Closing" are workflow metadata — they tag which section uses the opening/closing types from your style guide, but they don't end up as visible "Opening:" or "Closing:" prefixes in the final article.
+The outline updates to reflect any changes. Section labels like "Opening" and "Closing" are workflow metadata: they tag which section uses the opening/closing types from your style guide, but they don't end up as visible "Opening:" or "Closing:" prefixes in the final article.
 
 ## What rolls forward
 
@@ -123,4 +123,4 @@ That's everything Cody needs to start writing.
 
 ## Next
 
-**[Writing the Article](/docs/cody-article-writer/workflow/writing-the-article/)** — section-by-section vs full-draft mode, inline citations, and the writing iteration loop.
+**[Writing the Article](/docs/cody-article-writer/workflow/writing-the-article/)**: section-by-section vs full-draft mode, inline citations, and the writing iteration loop.

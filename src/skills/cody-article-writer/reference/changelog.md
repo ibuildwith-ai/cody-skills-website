@@ -3,7 +3,7 @@ title: Changelog
 description: Every released version of Cody Article Writer, newest first.
 ---
 
-Every released version of Cody Article Writer, newest first. For the complete release notes — features, enhancements, bug fixes, and other notes — see <a href="https://github.com/ibuildwith-ai/cody-article-writer/blob/main/release-notes.md" target="_blank" rel="noopener noreferrer">release-notes.md</a> in the GitHub repository.
+Every released version of Cody Article Writer, newest first. For the complete release notes (features, enhancements, bug fixes, and other notes) see <a href="https://github.com/ibuildwith-ai/cody-article-writer/blob/main/release-notes.md" target="_blank" rel="noopener noreferrer">release-notes.md</a> in the GitHub repository.
 
 ## v3.0 · Version System & Humor Slider Fix (2026-03-09)
 
@@ -31,7 +31,7 @@ Adds anti-sycophancy guidance: the AI now acts as a firm sounding board, providi
 
 ## v1.5 · Optional Editor Pass (2025-12-25)
 
-Adds an optional editor pass that polishes the article based on style guide settings — removes AI tells, tightens prose, adds formatting. Working draft files give a clean markdown preview as you write.
+Adds an optional editor pass that polishes the article based on style guide settings, removes AI tells, tightens prose, adds formatting. Working draft files give a clean markdown preview as you write.
 
 ## v1.0.1 · Metadata & Versioning (2025-12-25)
 

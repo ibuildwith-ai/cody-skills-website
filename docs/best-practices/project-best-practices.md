@@ -31,11 +31,13 @@ _Build tools, libraries, versions, and how the project manages them._
 ## Workflow & Process
 _How work moves through the project: commits, reviews, releases, checkpoints._
 
-- Closing a version: mark it complete in `feature-backlog.md`, write the retrospective, capture best practices, bump `version` + `updatedAt` in `cody.json`, update the root `release-notes.md`, update `README.md` (version badge), then commit, push `main`, and tag `vX.Y.Z`. **Why:** this is the project's full close-out checklist; release notes live at the repo root, the changelog page is separate per-skill content.
-- Deploy is automatic on push to `main` via GitHub Actions to GitHub Pages; commit directly to `main`. **Why:** the project's established convention (every prior version shipped this way) and the deploy trigger.
+- The agent never runs git: no `commit`, no `push`, no `tag`. The user does ALL git operations themselves. **Why:** explicit user rule ("Never do that please. I like to do this."). Do the file work, then stop and tell the user it's ready to review and commit.
+- Closing a version (agent's part): mark it complete in `feature-backlog.md`, write the retrospective, capture best practices, bump `version` + `updatedAt` in `cody.json`, update the root `release-notes.md`, update `README.md` (version badge). Then hand off to the user for commit/push/release. **Why:** this is the project's close-out checklist; release notes live at the repo root, the changelog page is separate per-skill content; git is the user's step.
+- Deploy is automatic on push to `main` via GitHub Actions to GitHub Pages. **Why:** the project's established convention; the user pushes to `main` and the Actions workflow deploys.
 
 ## Gotchas
 _Traps, surprises, and hard-won lessons to avoid repeating._
 
 - Astro "Duplicate id" warnings on incremental `npm run build` are a stale local cache, not a content problem. **Why:** they name only recently-edited files; clear `node_modules/.astro` and `node_modules/.vite` for a clean build. CI (fresh checkout) never sees them.
 - When flipping task/version statuses with a regex, anchor to the line/status column. **Why:** a loose pattern also matches task IDs in the Dependencies column and flips the wrong rows.
+- Never put an unquoted colon inside a YAML frontmatter value (`title:`/`description:`); keep those values colon-free (comma/restructure). **Why:** an unquoted colon breaks the YAML parser and fails the build; quoting only the offending lines also leaves the frontmatter visually inconsistent (the site convention is unquoted descriptions).

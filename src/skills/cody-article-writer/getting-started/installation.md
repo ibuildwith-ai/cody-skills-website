@@ -31,9 +31,9 @@ A skills directory inside a project makes Cody Article Writer available for that
 
 Cody Article Writer has no `:cody`-prefixed commands. You activate it with plain-language requests:
 
-- **Topical** — "I want to write an article about AI in healthcare", "help me write a blog post on remote work", "let's draft an essay about pricing strategy."
-- **Resumption** — "continue my article", "continue the X article."
-- **Management** — "show my drafts", "list my writing styles", "create a new article style."
+- **Topical**: "I want to write an article about AI in healthcare", "help me write a blog post on remote work", "let's draft an essay about pricing strategy."
+- **Resumption**: "continue my article", "continue the X article."
+- **Management**: "show my drafts", "list my writing styles", "create a new article style."
 
 Your agent invokes the skill automatically. See the [Triggers & Commands](/docs/cody-article-writer/reference/triggers-and-commands/) reference for the full list.
 

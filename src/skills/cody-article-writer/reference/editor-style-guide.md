@@ -1,9 +1,9 @@
 ---
 title: Editor Style Guide
-description: The ruleset the optional editor pass follows — calibrated checks that adapt to your style, plus always-applied checks.
+description: The ruleset the optional editor pass follows, with calibrated checks that adapt to your style, plus always-applied checks.
 ---
 
-The **Editor Style Guide** is the ruleset that governs the optional [editor pass](/docs/cody-article-writer/workflow/editor-pass-and-export/) (Phase 10 of the article workflow). It is **not** the same as your writing [style guide](/docs/cody-article-writer/writing-styles/overview/) — that's the one you configure per article (Voice, Formatting, Structure, Context). The Editor Style Guide is fixed; it ships with the skill and defines what the editor pass checks.
+The **Editor Style Guide** is the ruleset that governs the optional [editor pass](/docs/cody-article-writer/workflow/editor-pass-and-export/) (Phase 10 of the article workflow). It is **not** the same as your writing [style guide](/docs/cody-article-writer/writing-styles/overview/); that's the one you configure per article (Voice, Formatting, Structure, Context). The Editor Style Guide is fixed; it ships with the skill and defines what the editor pass checks.
 
 Two categories of checks: **User Style Calibrated** (the editor adapts to your style settings) and **Always Applied** (the editor runs them regardless of style).
 
@@ -15,7 +15,7 @@ Before anything else: the editor pass **does not modify citation markers** (`[^1
 
 These five checks read your writing style guide's settings and apply differently for different styles.
 
-### Visual Breaks — calibrated by `structure.visual_breaks`
+### Visual Breaks: calibrated by `structure.visual_breaks`
 
 | Setting | Editor action |
 |---------|---------------|
@@ -23,18 +23,18 @@ These five checks read your writing style guide's settings and apply differently
 | `moderate` | Standard paragraph lengths (3–5 sentences). Regular section breaks. Balanced white space. |
 | `generous` | Shorter paragraphs (2–4 sentences). Frequent section breaks. Liberal use of single-sentence paragraphs for impact. |
 
-### Blockquotes — calibrated by `formatting.blockquotes`
+### Blockquotes: calibrated by `formatting.blockquotes`
 
 | Setting | Editor action |
 |---------|---------------|
 | `never` | Don't suggest any blockquotes. |
-| `rare` | Suggest only for truly exceptional insights — quotes that earn their visual weight. |
+| `rare` | Suggest only for truly exceptional insights, quotes that earn their visual weight. |
 | `occasional` | Suggest 1–2 blockquotes per article where they add emphasis. |
 | `frequent` | Actively look for opportunities (2–4 per article). |
 
 Pull quotes are always pulled from the article's own prose, not external citations.
 
-### EM Dashes — calibrated by `formatting.em_dashes`
+### EM Dashes: calibrated by `formatting.em_dashes`
 
 | Setting | Editor action |
 |---------|---------------|
@@ -42,9 +42,9 @@ Pull quotes are always pulled from the article's own prose, not external citatio
 | 3–5 | Use sparingly (max 1–2 per article). |
 | 6–10 | Acceptable to use where appropriate. |
 
-The low end of this scale is the AI-tell defense — see [Formatting](/docs/cody-article-writer/writing-styles/formatting/) for the rationale.
+The low end of this scale is the AI-tell defense, see [Formatting](/docs/cody-article-writer/writing-styles/formatting/) for the rationale.
 
-### Emojis — calibrated by `formatting.emojis`
+### Emojis: calibrated by `formatting.emojis`
 
 | Setting | Editor action |
 |---------|---------------|
@@ -53,7 +53,7 @@ The low end of this scale is the AI-tell defense — see [Formatting](/docs/cody
 | 4–6 | Occasional use in headers or key points. |
 | 7–10 | Liberal use throughout. |
 
-### Tone Consistency — calibrated by `voice.tone`
+### Tone Consistency: calibrated by `voice.tone`
 
 | Setting | Editor action |
 |---------|---------------|
@@ -99,7 +99,7 @@ The editor scans for common AI writing patterns and removes or rephrases them.
 
 - Redundant words ("very unique" → "unique")
 - Weasel words ("somewhat," "quite," "rather")
-- Unnecessary qualifiers ("I think," "I believe" — unless voice settings call for them)
+- Unnecessary qualifiers ("I think," "I believe", unless voice settings call for them)
 - Repeated words in close proximity
 
 **Improve:**
@@ -122,15 +122,15 @@ The editor scans for common AI writing patterns and removes or rephrases them.
 
 ## Content Enhancement Suggestions
 
-In addition to the calibrated and always-applied checks above, the editor suggests **content enhancements** based on your style guide. These are proactive suggestions, not silent edits — the editor proposes, you approve or skip.
+In addition to the calibrated and always-applied checks above, the editor suggests **content enhancements** based on your style guide. These are proactive suggestions, not silent edits. The editor proposes, you approve or skip.
 
 ### Examples & Illustrations (driven by `structure.examples` and `structure.example_types`)
 
 For each section, the editor assesses whether adding an example would clarify the concept, based on your `examples` preference:
 
-- `none` — no proactive example suggestions.
-- `some` — suggestions where examples genuinely clarify.
-- `many` — actively look for opportunities to add examples.
+- `none`, no proactive example suggestions.
+- `some`, suggestions where examples genuinely clarify.
+- `many`, actively look for opportunities to add examples.
 
 Example types come from `example_types`:
 
@@ -157,7 +157,7 @@ The editor adds italics for:
 - Book/article/product titles
 - Vocal stress ("I didn't say *he* stole the money")
 
-Neither is applied liberally — both lose impact when overused.
+Neither is applied liberally; both lose impact when overused.
 
 ## Output
 
@@ -191,7 +191,7 @@ Fixes:
 Approve the changes, or let me know what to adjust.
 ```
 
-The editor never overwrites the original — `<id>.md` stays as a backup, and the edited version saves as `<id>-editorpass.md`. If you reject the editor pass entirely, the original is what flows forward to metadata and export.
+The editor never overwrites the original: `<id>.md` stays as a backup, and the edited version saves as `<id>-editorpass.md`. If you reject the editor pass entirely, the original is what flows forward to metadata and export.
 
 ## Iteration
 
@@ -199,7 +199,7 @@ If you request changes to the editor pass, Cody updates `<id>-editorpass.md` dir
 
 ## Related
 
-- [Editor Pass & Export](/docs/cody-article-writer/workflow/editor-pass-and-export/) — the workflow phases where the editor runs.
-- [Formatting](/docs/cody-article-writer/writing-styles/formatting/) — the user-side formatting fields that calibrate the editor pass.
-- [Structure](/docs/cody-article-writer/writing-styles/structure/) — the structure fields that calibrate example suggestions and visual breaks.
-- [Voice](/docs/cody-article-writer/writing-styles/voice/) — the voice fields that calibrate tone consistency.
+- [Editor Pass & Export](/docs/cody-article-writer/workflow/editor-pass-and-export/): the workflow phases where the editor runs.
+- [Formatting](/docs/cody-article-writer/writing-styles/formatting/): the user-side formatting fields that calibrate the editor pass.
+- [Structure](/docs/cody-article-writer/writing-styles/structure/): the structure fields that calibrate example suggestions and visual breaks.
+- [Voice](/docs/cody-article-writer/writing-styles/voice/): the voice fields that calibrate tone consistency.

@@ -1,6 +1,6 @@
 ---
 title: Writing the Article
-description: Phase 7 — section-by-section vs full-draft modes, the iteration loop, and inline citations.
+description: Phase 7, covering section-by-section vs full-draft modes, the iteration loop, and inline citations.
 ---
 
 Phase 7 of the article workflow. With topic, research, style, title, thesis, and outline all locked, Cody writes the article. You choose how.
@@ -20,13 +20,13 @@ Pick one. The mode is saved as `writing_mode: "section"` or `"full"` in the draf
 
 Cody pulls **formatting** from your style guide at this phase:
 
-- **Emojis** (0–10) — how often emojis appear.
-- **EM dashes** (0–10) — how often em dashes appear. Overuse is a common AI tell; many styles set this low.
-- **Blockquotes** (never / rare / occasional / frequent) — how often to use pull quotes.
+- **Emojis** (0–10), how often emojis appear.
+- **EM dashes** (0–10), how often em dashes appear. Overuse is a common AI tell; many styles set this low.
+- **Blockquotes** (never / rare / occasional / frequent), how often to use pull quotes.
 
-Voice, context, and structure were already applied in earlier phases — the title, thesis, and outline reflect them. Phase 7's job is to write within those constraints using the formatting layer.
+Voice, context, and structure were already applied in earlier phases; the title, thesis, and outline reflect them. Phase 7's job is to write within those constraints using the formatting layer.
 
-## Mode A — Section by section
+## Mode A: Section by section
 
 For each section in the outline:
 
@@ -38,7 +38,7 @@ For each section in the outline:
 
 When every section is approved, Cody announces `Article Completed` and moves to [Article Approval](/docs/cody-article-writer/workflow/editor-pass-and-export/).
 
-## Mode B — Full draft first
+## Mode B: Full draft first
 
 1. **Cody writes the entire article at once.** Same research and formatting integration as Mode A, just all at once.
 2. **The full draft is saved to `drafts/<draft-id>.md`** as a single file you can read end-to-end.
@@ -69,17 +69,17 @@ The markers are inserted directly into the section content and stored alongside 
 }
 ```
 
-This makes the export deterministic — only sources that actually appear in the article end up in the References section, in citation order.
+This makes the export deterministic, only sources that actually appear in the article end up in the References section, in citation order.
 
 If research is enabled but citations are off, Cody still uses the sources to inform the writing but doesn't add any `[^N]` markers.
 
-The decision of whether to include citations in the final exported article can be revisited per export — see [Editor Pass & Export](/docs/cody-article-writer/workflow/editor-pass-and-export/).
+The decision of whether to include citations in the final exported article can be revisited per export, see [Editor Pass & Export](/docs/cody-article-writer/workflow/editor-pass-and-export/).
 
 ## The working draft file
 
-Throughout Phase 7, Cody maintains `cody-projects/article-writer/drafts/<draft-id>.md` — a readable markdown file that reflects the latest approved sections. This file exists so you can review the article outside the chat (open it in your editor, share it with a collaborator, paste it elsewhere) without scrolling chat history.
+Throughout Phase 7, Cody maintains `cody-projects/article-writer/drafts/<draft-id>.md`, a readable markdown file that reflects the latest approved sections. This file exists so you can review the article outside the chat (open it in your editor, share it with a collaborator, paste it elsewhere) without scrolling chat history.
 
-The authoritative state lives in `<draft-id>.json` — that's what Cody reads from when you resume the draft. The `.md` file is regenerated from the JSON, not the other way around.
+The authoritative state lives in `<draft-id>.json`; that's what Cody reads from when you resume the draft. The `.md` file is regenerated from the JSON, not the other way around.
 
 See [Storage & Data](/docs/cody-article-writer/reference/storage-and-data/) for the full draft state schema.
 
@@ -99,4 +99,4 @@ See [Storage & Data](/docs/cody-article-writer/reference/storage-and-data/) for 
 
 ## Next
 
-**[Editor Pass & Export](/docs/cody-article-writer/workflow/editor-pass-and-export/)** — article approval, the optional editor pass, metadata generation, and the final export to your articles folder.
+**[Editor Pass & Export](/docs/cody-article-writer/workflow/editor-pass-and-export/)**: article approval, the optional editor pass, metadata generation, and the final export to your articles folder.
