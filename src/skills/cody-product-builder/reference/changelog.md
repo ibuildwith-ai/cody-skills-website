@@ -5,6 +5,10 @@ description: Every released version of Cody Product Builder, newest first.
 
 Every released version of Cody Product Builder, newest first. For the complete release notes — features, enhancements, bug fixes, and other notes — see <a href="https://github.com/ibuildwith-ai/cody-product-builder/blob/main/release-notes.md" target="_blank" rel="noopener noreferrer">release-notes.md</a> in the GitHub repository.
 
+## v2.2.0 · Best Practices (2026-06-12)
+
+Adds a project-level **Best Practices** record: a `best-practices/` folder holding `project-best-practices.md`, the project's living, categorized set of build learnings. Cody reads it when generating a design, starting a patch, during implementation, and on `:cody refresh`, and updates it after every version or patch (or on demand). Kept deliberately lean: contradicted rules are changed or removed, not appended.
+
 ## v2.1.0 · Standards Compliance (2026-05-19)
 
 Brings the skill into compliance with the agentskills.io specification and the Cody Skill Framework. Moves `version` into `metadata.version`, renames `templates/` to `assets/`, and adds a deterministic Python config resolver script.

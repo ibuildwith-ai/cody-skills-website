@@ -2,11 +2,11 @@
   "cody-product-builder": {
     "name": "Cody Skills Documentation Website",
     "description": "Public documentation website for the Cody Skills family (codyskills.ai). v1 documents Cody Product Builder; built on Astro Starlight; deployed to GitHub Pages.",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "phase": "build",
     "projectPath": "docs",
     "releaseNotesPath": "{{projectRoot}}",
     "createdAt": "2026-05-19",
-    "updatedAt": "2026-05-21"
+    "updatedAt": "2026-06-12"
   }
 }

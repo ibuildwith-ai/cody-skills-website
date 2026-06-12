@@ -44,6 +44,10 @@ When you run `:cody build`, Cody walks through this flow:
 
 If you're not sure whether something is a version or a patch, default to a version. See [Versions & Patches](/docs/cody-product-builder/workflow/versions-and-patches/) for the rule of thumb.
 
+## Best Practices
+
+Whichever option you pick, the build consults the project's [Best Practices](/docs/cody-product-builder/reference/best-practices/) before it designs or writes code, and captures new learnings back into them when the version or patch ships, so the project keeps following its own standards as it grows.
+
 ## What's next
 
 While building, you can capture ideas without breaking flow using [:cody idea](/docs/cody-product-builder/commands/idea/), or test risky ideas with a throwaway [:cody prototype](/docs/cody-product-builder/commands/prototype/). Resuming in a new AI session? Start with [:cody refresh](/docs/cody-product-builder/commands/refresh/).

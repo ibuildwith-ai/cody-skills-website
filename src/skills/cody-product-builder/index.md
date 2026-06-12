@@ -30,6 +30,8 @@ Cody Product Builder organizes work into two phases.
 
 Both phases run alongside **[prototyping](/docs/cody-product-builder/reference/prototypes/)**, which gives you disposable, self-contained experiments you can run anytime to test an idea before committing.
 
+As you build, Cody also keeps a project-level **[Best Practices](/docs/cody-product-builder/reference/best-practices/)** record (a `best-practices/` folder sitting alongside your plan and build folders) that captures the rules your project learns and feeds them back into every version, patch, and refresh.
+
 For naming conventions and how versions and patches are organized, see **[Versions & Patches](/docs/cody-product-builder/workflow/versions-and-patches/)**.
 
 ## Commands

@@ -35,8 +35,9 @@ When you run `:cody refresh`, Cody walks through this flow:
    6. The most recent patch documents
    7. The whole project root, as a last resort
    8. Asking you directly, only if everything above is still insufficient
-5. **Announce.** Cody tells you its memory is refreshed and that it's ready to work.
-6. **Offer to update documents.** Cody asks `Would you also like me to review and update the PRD, plan, and release notes?` Say yes if you want the docs brought up to date with the current state of the project. Say no if you just wanted to refresh memory.
+5. **Load Best Practices.** Cody reads the project's [Best Practices](/docs/cody-product-builder/reference/best-practices/) (`best-practices/project-best-practices.md`) so the refreshed session works to the project's own learned rules from its first action. If the project predates the feature and has no Best Practices file yet, Cody creates an empty one from the template.
+6. **Announce.** Cody tells you its memory is refreshed and that it's ready to work.
+7. **Offer to update documents.** Cody asks `Would you also like me to review and update the PRD, plan, and release notes?` Say yes if you want the docs brought up to date with the current state of the project. Say no if you just wanted to refresh memory.
 
 ## Brownfield projects
 

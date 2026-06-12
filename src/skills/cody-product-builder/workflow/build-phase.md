@@ -57,6 +57,15 @@ When to use which:
 
 See [Versions & Patches](/docs/cody-product-builder/workflow/versions-and-patches/) for the full naming convention and how patches fit alongside versions.
 
+## Best Practices feed every build
+
+The Build phase both reads and writes the project's [Best Practices](/docs/cody-product-builder/reference/best-practices/), the project's living record of learned rules, stored in `<project-path>/best-practices/project-best-practices.md`.
+
+- **Read** when Cody generates a version's `design.md`, when it starts a patch, and as it writes code, so new work follows conventions the project already settled on.
+- **Written** after a version or patch ships: Cody captures what it learned (from the retrospective or `patch.md`, plus the session) back into the file, keeping it lean rather than appending endlessly.
+
+You can also tell Cody to record a rule on the spot ("please add this to our best practices") without waiting for a build to finish.
+
 ## Capturing ideas without breaking flow
 
 While you're building, ideas come up. Capture them on the spot with:

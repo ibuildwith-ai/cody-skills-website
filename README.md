@@ -1,6 +1,6 @@
 # Cody Skills Website
 
-![Version](https://img.shields.io/badge/version-1.0.0-22c55e?style=flat-square)
+![Version](https://img.shields.io/badge/version-1.2.0-22c55e?style=flat-square)
 [![Release Notes](https://img.shields.io/badge/Release_Notes-changelog-blue?style=flat-square)](release-notes.md)
 
 Public website and documentation for the Cody Skills family of AI agent skills.

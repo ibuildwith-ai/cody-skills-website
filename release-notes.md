@@ -4,8 +4,40 @@ This document lists new features, bug fixes and other changes implemented during
 
 The order of releases listed below is descending — the latest version or patch is always shown at the top.
 
+- [v1.2.0 - Cody Product Builder Best Practices](#v120---cody-product-builder-best-practices---2026-06-12)
 - [v1.1.0 - Cody Article Writer](#v110---cody-article-writer---2026-05-21)
 - [v1.0.0 - Initial Creation](#v100---initial-creation---2026-05-20)
+
+---
+
+# v1.2.0 - Cody Product Builder Best Practices - 2026-06-12
+
+## Overview
+
+Documents the **Best Practices** functionality added in Cody Product Builder skill v2.2.0. A content-and-metadata diff against the already-published Cody Product Builder docs, not a new skill. Adds one Reference page, bumps the documented skill version 2.1.0 to 2.2.0, adds a changelog entry, and weaves Best Practices into the four pages where the feature appears in the workflow. Validates again the PRD's promise that documenting a skill change is a content diff against the `skills.ts`-driven shell, with no shell rebuild.
+
+## Key Features
+
+- **New Reference page: Best Practices** (`src/skills/cody-product-builder/reference/best-practices.md`). The canonical explainer, modeled on the Prototypes page: what Best Practices is and why; the project-level `best-practices/` folder and `project-best-practices.md`; the starter category set and the one-rule-plus-why entry format (no version tags); when Cody reads it (design, patch start, implementation, refresh) and writes it (automatically after every version/patch, and on demand); the keep-it-lean "project's bible" principle, contrasted with the append-only Prototypes Findings Log; and lazy creation for older projects. Drafted from the real skill source at `~/.claude/skills/cody-product-builder/`.
+- **Skill version bumped 2.1.0 to 2.2.0** in `skill.ts`, with **Best Practices** added as the first item under the Reference sidebar group (it leads because it is read across the whole build cycle and on every refresh). The version pill and landing card pick up the bump automatically.
+- **Changelog entry** `v2.2.0 · Best Practices` added to `src/skills/cody-product-builder/reference/changelog.md`.
+
+## Enhancements
+
+- **Consistency pass across four touched pages.** `workflow/build-phase.md` gains a "Best Practices feed every build" section; `workflow/versions-and-patches.md` adds capture to "After a version or patch ships" and shows `best-practices/` as a project-level sibling of `build/` in the layout; `commands/refresh.md` adds a "Load Best Practices" step to the documented flow; `commands/build.md` gains a short Best Practices section; `index.md` (Overview) introduces the project-level `best-practices/` folder in one line.
+- **House style: no em-dashes.** All v1.2.0 content was written or rewritten without em-dashes (replaced with commas, parentheses, colons, or restructured sentences). Captured as a project best practice so future content follows it automatically.
+
+## Bug Fixes
+
+- None. This is a documentation-only release.
+
+## Other Notes
+
+- **"Duplicate id" build warnings are a local cache artifact.** Incremental `npm run build` emitted Starlight glob-loader "Duplicate id" warnings for recently-edited files. Confirmed harmless: clearing `node_modules/.astro` and `node_modules/.vite` produces a clean build, and CI builds from a fresh checkout never see them.
+- **Best Practices framework feature exercised live.** Mid-build the user used the on-demand capture path ("add this to our best practices") to record the em-dash rule, which was then applied across the version, a real-world use of the feature being documented.
+- **On-demand-capture phrasing documented on the skill author's authority.** That behavior is not spelled out in the skill's reference files (which cover automatic post-build capture); worth confirming against the skill's implementation when convenient.
+- **Pre-existing em-dashes left in place.** Older content from v1.0.0 / v1.1.0 (e.g. `reference/changelog.md` lines 6 and 22) still contains em-dashes; sweeping them is a candidate follow-up patch, deferred to keep this version's diff scoped.
+- **Remaining backlog:** B2 (Cody Skill Auditor docs), B6 (marketing landing review), B7 (designed OG image), B8 (favicon suite).
 
 ---
 

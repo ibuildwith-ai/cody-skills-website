@@ -7,7 +7,7 @@ const skill: AvailableSkill = {
   tagline:
     'Take an idea from raw concept to shipped product with a structured two-phase workflow. Plan, build, and ship versions in any AI coding environment. Capture ideas mid-flow, prototype risky bits, and keep the work shippable as it grows.',
   illustration: '/skills/cody-product-builder/images/cody-product-builder.svg',
-  version: '2.1.0',
+  version: '2.2.0',
   github: 'https://github.com/ibuildwith-ai/cody-product-builder',
 
   getSkill: [
@@ -58,6 +58,7 @@ const skill: AvailableSkill = {
     {
       label: 'Reference',
       items: [
+        { label: 'Best Practices', slug: 'reference/best-practices' },
         { label: 'Prototypes', slug: 'reference/prototypes' },
         { label: 'Project Settings', slug: 'reference/project-settings' },
         { label: 'Changelog', slug: 'reference/changelog' },

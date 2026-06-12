@@ -54,19 +54,22 @@ Rules:
 ## What lives where
 
 ```
-<project-path>/build/
-├── feature-backlog.md           # Master backlog, organized by version
-├── release-notes.md             # Auto-updated after each ship (location configurable)
-├── v0.1.0-initial-version/      # First version
-│   ├── design.md
-│   ├── tasklist.md
-│   └── retrospective.md
-├── v0.1.1-fix-login-bug/        # Patch on top of v0.1.0
-│   └── patch.md
-└── v0.2.0-search/               # Next version
-    ├── design.md
-    ├── tasklist.md
-    └── retrospective.md
+<project-path>/
+├── build/
+│   ├── feature-backlog.md           # Master backlog, organized by version
+│   ├── release-notes.md             # Auto-updated after each ship (location configurable)
+│   ├── v0.1.0-initial-version/      # First version
+│   │   ├── design.md
+│   │   ├── tasklist.md
+│   │   └── retrospective.md
+│   ├── v0.1.1-fix-login-bug/        # Patch on top of v0.1.0
+│   │   └── patch.md
+│   └── v0.2.0-search/               # Next version
+│       ├── design.md
+│       ├── tasklist.md
+│       └── retrospective.md
+└── best-practices/                  # Project-level, sibling of build/
+    └── project-best-practices.md    # Learnings captured after each ship
 ```
 
 `feature-backlog.md` is the single source of truth for what gets built next. Every version and patch is drawn from it.
@@ -76,6 +79,7 @@ Rules:
 When a version or patch ships, Cody:
 
 - Updates `release-notes.md` with the changes.
+- Captures what it learned into [Best Practices](/docs/cody-product-builder/reference/best-practices/) (`best-practices/project-best-practices.md`).
 - Bumps the `version` field in `cody.json`.
 - Updates the `updatedAt` timestamp in `cody.json`.
 
