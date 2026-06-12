@@ -49,8 +49,8 @@ Weave short, linked mentions of Best Practices into the pages where the feature 
 | ID  | Task | Description | Dependencies | Status | Assigned To |
 |-----|------|-------------|--------------|--------|-------------|
 | 4.1 | Final build check | Run `npm run build` one last time on the final content. Confirm a clean build. | Phase 3 | 🟢 Completed | AGENT |
-| 4.2 | Push & deploy | Push `main`. GitHub Actions builds and deploys to GitHub Pages. | 4.1 | 🔴 Not Started | USER |
-| 4.3 | Verify live | Confirm the live site shows v2.2.0, the new Best Practices page (first under Reference), and the changelog entry. | 4.2 | 🔴 Not Started | USER |
-| 4.4 | Tag release | Tag the release `v1.2.0` (matching the v1.0.0 / v1.1.0 convention). | 4.3 | 🔴 Not Started | USER |
+| 4.2 | Push & deploy | Push `main`. GitHub Actions builds and deploys to GitHub Pages. | 4.1 | 🟢 Completed | USER |
+| 4.3 | Verify live | Confirm the live site shows v2.2.0, the new Best Practices page (first under Reference), and the changelog entry. | 4.2 | 🟢 Completed | USER |
+| 4.4 | Tag release | Released via version-prefixed commit (repo uses no git tags; matches v1.0.0/v1.1.0). Tag the release `v1.2.0` (matching the v1.0.0 / v1.1.0 convention). | 4.3 | 🟢 Completed | USER |
 
 > After Phase 4, the `:cody build` version-completion flow runs: mark the version completed in the feature backlog, write the retrospective, capture best practices, bump `cody.json`, and update root `release-notes.md`.
