@@ -17,14 +17,12 @@
 
 import codyProductBuilder from './cody-product-builder/skill';
 import codyArticleWriter from './cody-article-writer/skill';
-import codySkillAuditor from './cody-skill-auditor/skill';
 import type { Skill, AvailableSkill } from './types';
 
 /** Every skill, in display order. Used by the marketing landing + Skills dropdown. */
 export const skills: readonly Skill[] = [
   codyProductBuilder,
   codyArticleWriter,
-  codySkillAuditor,
 ];
 
 /** Just the available skills. Used anywhere we need docs routes or sidebars. */

@@ -13,7 +13,6 @@ This document lists features and enhancements derived from the plan. It is a liv
 
 | #  | Feature             | Description                               | Source |
 |----|---------------------|-------------------------------------------|--------|
-| B2 | Cody Skill Auditor documentation | Add third skill once that skill itself is ready. Same shape as Cody Article Writer onboarding. | Agent |
 | B6 | Marketing landing review | User reviews the marketing landing at `codyskills.ai/` end-to-end (copy, layout, responsive behavior, cross-browser) and edits anything off-tone or off-design. Deferred from v1.0.0 task 7.4 so Phase 7 could ship to production without blocking on the review. | User |
 | B7 | Designed 1200×630 OG share image | Replace the temp og:image (currently reuses `cody-skills-logo.png`) with a proper 1200×630 PNG showing the Cody Skills mark + tagline on the brand-dark background with the green accent. Update `og:image` and `twitter:image` references in `astro.config.mjs` head config and `src/pages/index.astro` head. | Agent |
 | B8 | Full favicon suite | Generate the multi-format favicon set: `favicon.svg` (modern browsers, scales perfectly), `favicon-32.png`, `favicon-16.png`, `apple-touch-icon.png` at 180×180 (iOS). Currently only the brand logo PNG is wired — modern browsers auto-scale it, but a purpose-cropped 16/32 favicon set renders sharper at small sizes. | Agent |

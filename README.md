@@ -104,7 +104,6 @@ import myNewSkill from './my-new-skill/skill';
 export const skills: readonly Skill[] = [
   codyProductBuilder,
   codyArticleWriter,
-  codySkillAuditor,
   myNewSkill,   // ← add here
 ];
 ```
